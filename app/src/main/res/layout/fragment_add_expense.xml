@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddExpense"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <!-- got header here -->
+    <TextView
+        android:id="@+id/TVAddTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:paddingBottom="10dp"
+        android:text="Add transaction"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/BTExpenses"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
+            android:text="Expenses"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_height="33dp"
+            android:background="@drawable/round_ish_button"
+            android:textAllCaps="false"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/BTIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:text="Income"
+            android:fontFamily="@font/open_sans"
+            android:textAllCaps="false"
+            android:background="@drawable/round_ish_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/VTAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        android:paddingBottom="10dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/ETAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="RM"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Receipt"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="#000000"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Add"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="33dp"
+            android:background="@drawable/round_ish_button"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="None"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="33dp"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/round_ish_button"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wallet"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_ish_button"
+            android:fontFamily="@font/open_sans"
+            android:shadowColor="#00FFFFFF"
+            android:text="Maybank"
+            style="?android:attr/borderlessButtonStyle"
+            android:textAllCaps="false"
+            android:textColor="#000000" />
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Boost"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="33dp"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/round_ish_button"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Other"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="33dp"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:background="@drawable/round_ish_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Categories"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000" />
+
+
+</LinearLayout>
