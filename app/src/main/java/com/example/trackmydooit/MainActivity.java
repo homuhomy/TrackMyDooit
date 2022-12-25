@@ -3,6 +3,7 @@ package com.example.trackmydooit;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
+
+        getWindow().setNavigationBarColor(SurfaceColors.SURFACE_2.getColor(this));
 
         //go to CreateSavings
         CreateSaving=findViewById(R.id.CreateSaving);
