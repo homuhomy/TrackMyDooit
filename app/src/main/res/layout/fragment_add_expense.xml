@@ -9,77 +9,91 @@
     android:padding="30dp">
 
     <!-- got header here -->
-    <TextView
-        android:id="@+id/TVAddTransaction"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_semibold"
-        android:layout_marginBottom="10dp"
-        android:text="Add transaction"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/TVAddTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_marginBottom="10dp"
+            android:text="Add transaction"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/BTExpenses"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_ish_button"
+                android:fontFamily="@font/open_sans"
+                android:text="Expenses"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                app:backgroundTint="@color/orange" />
+
+            <Button
+                android:id="@+id/BTIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Income"
+                android:fontFamily="@font/open_sans"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/orange"
+                android:background="@drawable/round_ish_button"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="#000000"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/BTExpenses"
-            style="?android:attr/borderlessButtonStyle"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/VTAmount"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_ish_button"
-            android:fontFamily="@font/open_sans"
-            android:text="Expenses"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            app:backgroundTint="@color/orange" />
+            android:layout_height="wrap_content"
+            android:text="Amount"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_marginTop="20dp"
+            android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/BTIncome"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/ETAmount"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Income"
-            android:fontFamily="@font/open_sans"
-            android:textAllCaps="false"
-            app:backgroundTint="@color/orange"
-            android:background="@drawable/round_ish_button"
-            style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
-            android:layout_weight="1"/>
-
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="RM"
+            android:paddingLeft="15dp"
+            android:background="@drawable/edit_text_frame"
+            />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/VTAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Amount"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:layout_marginTop="20dp"
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/ETAmount"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="RM"
-        android:paddingLeft="15dp"
-        android:background="@drawable/edit_text_frame"
-        />
 
     <LinearLayout
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,69 +128,161 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wallet"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="#000000" />
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallet"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="#000000" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_ish_button"
+                android:fontFamily="@font/open_sans"
+                android:shadowColor="#00FFFFFF"
+                android:text="Maybank"
+                style="?android:attr/borderlessButtonStyle"
+                app:backgroundTint="@color/orange"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_ish_button"
+                android:fontFamily="@font/open_sans"
+                android:text="Boost"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                app:backgroundTint="@color/orange" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:text="Other"
+                android:fontFamily="@font/open_sans"
+                android:layout_height="40dp"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:background="@drawable/round_ish_button"
+                style="?android:attr/borderlessButtonStyle"
+                app:backgroundTint="@color/orange"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_ish_button"
-            android:fontFamily="@font/open_sans"
-            android:shadowColor="#00FFFFFF"
-            android:text="Maybank"
-            style="?android:attr/borderlessButtonStyle"
-            app:backgroundTint="@color/orange"
-            android:textAllCaps="false"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Categories"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:textColor="#000000" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-        <Button
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_ish_button"
-            android:fontFamily="@font/open_sans"
-            android:text="Boost"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            app:backgroundTint="@color/orange" />
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/custom_border">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:text="Other"
-            android:fontFamily="@font/open_sans"
-            android:layout_height="40dp"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:background="@drawable/round_ish_button"
-            style="?android:attr/borderlessButtonStyle"
-            app:backgroundTint="@color/orange"
-            android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/small_button"
+                    android:backgroundTint="#E5DCFF"
+                    android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                    app:tint="#3F278A"
+                    android:layout_margin="12dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/small_button"
+                    android:backgroundTint="#E5DCFF"
+                    android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                    app:tint="#3F278A"
+                    android:layout_margin="12dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/small_button"
+                    android:backgroundTint="#E5DCFF"
+                    android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                    app:tint="#3F278A"
+                    android:layout_margin="12dp"
+                    />
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/small_button"
+                    android:backgroundTint="#E5DCFF"
+                    android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                    app:tint="#3F278A"
+                    android:layout_margin="12dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="Categories"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000000" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/round_ish_button"
+            android:fontFamily="@font/open_sans"
+            android:text="Add transaction"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/black"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>
