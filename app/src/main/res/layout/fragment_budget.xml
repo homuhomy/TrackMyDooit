@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".BudgetFragment">
+
+
+    <TextView
+        android:id="@+id/Month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="March"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="50dp"/>
+
+    <ImageButton
+        android:id="@+id/month_dropdown"
+        android:layout_width="28dp"
+        android:layout_height="13dp"
+        android:backgroundTint="#FFFFFF"
+        android:src="@drawable/dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006"
+        app:tint="#000000" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="131dp"
+        android:layout_height="132dp"
+        android:progress="60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
+
+    <TextView
+        android:id="@+id/transportation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Transportation"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/Food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Food"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/transportation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <TextView
+        android:id="@+id/Bills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Bills"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Food"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.171" />
+
+    <TextView
+        android:id="@+id/Groceries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Groceries"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Bills"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <TextView
+        android:id="@+id/Others"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Others"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Bills"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.244" />
+
+    <ImageView
+        android:id="@+id/indicator_trans"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/transportation"
+        app:layout_constraintEnd_toStartOf="@+id/transportation"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/indicator_food"
+        app:layout_constraintTop_toTopOf="@+id/transportation"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="@android:color/holo_purple" />
+
+    <ImageView
+        android:id="@+id/indicator_grocer"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/Groceries"
+        app:layout_constraintStart_toStartOf="@+id/indicator_others"
+        app:layout_constraintTop_toTopOf="@+id/Groceries"
+        app:layout_constraintVertical_bias="0.198"
+        app:tint="@android:color/holo_orange_light" />
+
+    <ImageView
+        android:id="@+id/indicator_others"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/Others"
+        app:layout_constraintTop_toTopOf="@+id/Others"
+        app:layout_constraintVertical_bias="0.233"
+        app:tint="@android:color/holo_red_light"
+        tools:layout_editor_absoluteX="238dp" />
+
+    <ImageView
+        android:id="@+id/indicator_bills"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/Bills"
+        app:layout_constraintStart_toStartOf="@+id/indicator_grocer"
+        app:layout_constraintTop_toTopOf="@+id/Bills"
+        app:layout_constraintVertical_bias="0.159"
+        app:tint="@android:color/holo_green_light" />
+
+    <ImageView
+        android:id="@+id/indicator_food"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/Food"
+        app:layout_constraintStart_toStartOf="@+id/indicator_bills"
+        app:layout_constraintTop_toTopOf="@+id/Food"
+        app:layout_constraintVertical_bias="0.127"
+        app:tint="@android:color/holo_blue_light" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="RM400"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <TextView
+        android:id="@+id/RecentExpenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="Recent Expenses"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.336" />
+
+    <Button
+        android:id="@+id/budgetBtn"
+        android:layout_width="109dp"
+        android:layout_height="27dp"
+        android:background="@drawable/round_ish_button"
+        android:fontFamily="@font/open_sans"
+        android:text="Budget"
+        android:textColor="#ffffff"
+        android:textSize="7dp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:padding="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/transIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/small_button"
+                android:backgroundTint="#E5DCFF"
+                android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                app:tint="#3F278A" />
+
+            <LinearLayout
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="173dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/TransOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Transport"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/progressbar_percentTransport"
+                        android:layout_width="149dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="right"
+                        android:text="45%"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarTransport"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="45"
+                        android:scaleY="2" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/spentTransport"
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Spent"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ringgitTransport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="RM100"
+                        android:textColor="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/editringgitTrans"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/edit"
+                        app:tint="#000000" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/foodIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/small_button"
+                android:backgroundTint="#E5DCFF"
+                android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                app:tint="#3F278A" />
+
+            <LinearLayout
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="173dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/FoodOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Food"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/progressbar_percentFood"
+                        android:layout_width="149dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="right"
+                        android:text="45%"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarFood"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="45"
+                        android:scaleY="2" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/spentFood"
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Spent"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ringgitFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="RM100"
+                        android:textColor="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/editringgitFood"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/edit"
+                        app:tint="#000000" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/homeIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/small_button"
+                android:backgroundTint="#E5DCFF"
+                android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                app:tint="#3F278A" />
+
+            <LinearLayout
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="173dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/HomeOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Home"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/progressbar_percentHome"
+                        android:layout_width="149dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="right"
+                        android:text="45%"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarHome"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="45"
+                        android:scaleY="2" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/spentHome"
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Spent"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ringgitHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="RM100"
+                        android:textColor="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/editringgitHome"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/edit"
+                        app:tint="#000000" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.989">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/GroceriesIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/small_button"
+                android:backgroundTint="#E5DCFF"
+                android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
+                app:tint="#3F278A" />
+
+            <LinearLayout
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="173dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/GrocOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Groceries"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/progressbar_percentGroceries"
+                        android:layout_width="149dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="right"
+                        android:text="45%"
+                        android:textColor="#000000" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarGroceries"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="150dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="45"
+                        android:scaleY="2" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:id="@+id/spentGroceries"
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Spent"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ringgitGroceries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="RM100"
+                        android:textColor="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/editringgitGroceries"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/edit"
+                        app:tint="#000000" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
