@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "718914901606",
+    "project_id": "trackmydooit",
+    "storage_bucket": "trackmydooit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718914901606:android:25ca95b26b573e1dac7fa7",
+        "android_client_info": {
+          "package_name": "com.example.trackmydooit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718914901606-47i7mcth5f1i8gg8so95b5uj7n22vbas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trackmydooit",
+            "certificate_hash": "da77f5c0e4fdff1b06333eba7f464e027a0cafd4"
+          }
+        },
+        {
+          "client_id": "718914901606-1vffv5vb0k9l29ctil0mftc8teptmon1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQRb4S3t2W3MeJT9rbjal1ahhXz5Cjc_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718914901606-1vffv5vb0k9l29ctil0mftc8teptmon1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

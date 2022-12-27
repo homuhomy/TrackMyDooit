@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         CreateSaving.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CreateSavingsGoal.class);
+                Intent intent = new Intent(MainActivity.this, CreateSavingsGoalActivity.class);
                 startActivity(intent);
             }
         });
