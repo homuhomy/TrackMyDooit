@@ -1,6 +1,7 @@
 package com.example.trackmydooit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -11,12 +12,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CardView expenseCardView;
     Button CreateSaving;
     TextView forgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //expenseCardView = findViewById(R.id.expenseCardView);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
@@ -42,15 +46,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    //testing this againnnn
-    //hi it's homu
-    //hi it's ED
-    //hi it's Kell
-    //hi its annei
-    //annei test again
-    //homu test again
-    //hellloooo
-    //syaza finally -.-
+        /*expenseCardView.setOnClickListener(new View.OnClickListener(){
+            Intent intent = new Intent(MainActivity.this, ExpenseActivity.class);
+            startActivity(intent);
+        });*/
+    }
 }

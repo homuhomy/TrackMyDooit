@@ -209,14 +209,14 @@
             android:weightSum="3">
 
             <LinearLayout
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_weight="1"
-                android:background="@drawable/custom_border">
+                android:background="@drawable/custom_border"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp">
 
                 <ImageButton
                     android:id="@+id/imageButton1"
@@ -232,56 +232,49 @@
                     android:id="@+id/imageButton2"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:layout_margin="12dp"
                     android:background="@drawable/small_button"
                     android:backgroundTint="#E5DCFF"
                     android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
-                    app:tint="#3F278A"
-                    android:layout_margin="12dp"
-                    />
+                    app:tint="#3F278A" />
 
                 <ImageButton
                     android:id="@+id/imageButton3"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:layout_margin="12dp"
                     android:background="@drawable/small_button"
                     android:backgroundTint="#E5DCFF"
                     android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
-                    app:tint="#3F278A"
-                    android:layout_margin="12dp"
-                    />
+                    app:tint="#3F278A" />
+
                 <ImageButton
                     android:id="@+id/imageButton4"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:layout_margin="12dp"
                     android:background="@drawable/small_button"
                     android:backgroundTint="#E5DCFF"
                     android:src="@drawable/directions_bus_fill1_wght300_grad0_opsz40"
-                    app:tint="#3F278A"
-                    android:layout_margin="12dp"
-                    />
+                    app:tint="#3F278A" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:background="@drawable/round_ish_button"
-            android:fontFamily="@font/open_sans"
-            android:text="Add transaction"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/black"
-            android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
-
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom|center"
+        android:id="@+id/BTAddTransaction"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:textAlignment="center"
+        android:text="Add transaction"
+        android:textAllCaps="false"
+        />
 
 
 </LinearLayout>
