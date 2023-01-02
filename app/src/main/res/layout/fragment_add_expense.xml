@@ -155,8 +155,8 @@
                 android:background="@drawable/round_ish_button"
                 android:fontFamily="@font/open_sans"
                 android:shadowColor="#00FFFFFF"
-                android:text="Maybank"
                 style="?android:attr/borderlessButtonStyle"
+                android:text="Maybank"
                 app:backgroundTint="@color/orange"
                 android:textAllCaps="false"
                 android:textColor="#000000" />

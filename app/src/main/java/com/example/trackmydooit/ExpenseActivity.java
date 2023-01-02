@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +42,9 @@ public class ExpenseActivity extends AppCompatActivity {
     private FloatingActionButton FABAddTrans;
     private ProgressDialog progressDialog;
 
+    private RadioButton RBIncome;
+    private RadioButton RBExpenses;
+
     private FirebaseAuth mAuth;
     private String onlineUserId = "";
     private DatabaseReference expenseRef;
@@ -48,10 +54,9 @@ public class ExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
-        */
-/*TBExpense = findViewById(R.id.TBExpense);
+TBExpense = findViewById(R.id.TBExpense);
         setSupportActionBar(TBExpense);
-        getSupportActionBar().setTitle("Total Spending");*//*
+        getSupportActionBar().setTitle("Total Spending");
 
 
         TVTotalSpent = findViewById(R.id.TVTotalSpent);
@@ -73,6 +78,20 @@ public class ExpenseActivity extends AppCompatActivity {
 
 
         }
+
+radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (radioButton != null) {
+                radioButton.setBackgroundColor(Color.TRANSPARENT);
+                radioButton.setButtonDrawable(0); // removes the image
+            }
+            radioButton = (RadioButton) group.findViewById(checkedId);
+            radioButton.setBackgroundColor(Color.YELLOW);
+            radioButton.setButtonDrawable(R.drawable.icon); //sets the image
+        }
+    });
+
 
     private void addItemSpentOn(){
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
@@ -143,4 +162,5 @@ public class ExpenseActivity extends AppCompatActivity {
         BTcancel.setOnClickListener((view -> {dialog.dismiss();}));
         dialog.show();
     }
-}*/
+}
+*/

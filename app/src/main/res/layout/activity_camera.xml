@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraActivity">
+
+    <ScrollView
+        android:id="@+id/linear_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:text="Scan your recipt" />
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/linearHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BTCapture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_ish_button"
+            android:fontFamily="@font/open_sans"
+            android:text="Capture"
+            app:icon="@drawable/add_a_photo_black_24dp"
+            app:iconTint="@color/black"
+            app:iconGravity="textStart"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            app:backgroundTint="@color/orange" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/BTCopyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_ish_button"
+            android:fontFamily="@font/open_sans"
+            android:text="Copy text"
+            app:icon="@drawable/content_copy_black_24dp"
+            app:iconTint="@color/black"
+            app:iconGravity="textStart"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            app:backgroundTint="@color/orange" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
