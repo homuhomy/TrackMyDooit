@@ -15,12 +15,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText email, password;
+    private TextInputLayout email, password;
     private Button loginBtn;
     private TextView loginQn;
 
@@ -53,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailString = email.getText().toString();
-                String passwordString = password.getText().toString();
+                String emailString = email.getEditText().getText().toString();
+                String passwordString = password.getEditText().getText().toString();
 
                 if (TextUtils.isEmpty(emailString)){
                     email.setError("Email is required!");

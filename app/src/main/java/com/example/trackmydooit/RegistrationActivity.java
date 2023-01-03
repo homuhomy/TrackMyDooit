@@ -5,17 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,18 +31,21 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
-                    "(?=.*[0-9])" +         //at least 1 digit
-                    "(?=.*[a-z])" +         //at least 1 lower case letter
-                    "(?=.*[A-Z])" +         //at least 1 upper case letter
-                    //"(?=.*[a-zA-Z])" +      //any letter
+//                    "(?=.*[0-9])" +         //at least 1 digit
+//                    "(?=.*[a-z])" +         //at least 1 lower case letter
+//                    "(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +      //any letter
                     "(?=.*[@#$%^&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +           //no white spaces
                     ".{6,}" +               //at least 6 characters
                     "$");
 
-    private EditText email, password, confirmpassword;
+    private TextInputLayout email, password, confirmpassword;
     private Button registerBtn;
     private TextView registerQn;
+    private CheckBox checkBox;
+    private MaterialAlertDialogBuilder materialAlertDialogBuilder;
+
 
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
@@ -52,9 +61,45 @@ public class RegistrationActivity extends AppCompatActivity {
         confirmpassword = findViewById(R.id.ConfirmPassword);
         registerBtn = findViewById(R.id.registerBtn);
         registerQn = findViewById(R.id.registerQn);
+        checkBox = findViewById(R.id.checkbox);
+        materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
+
+
+
+        registerBtn.setEnabled(false);
 
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    materialAlertDialogBuilder.setTitle("Terms and Conditions");
+                    materialAlertDialogBuilder.setMessage("You need to accept the terms and conditions to proceed");
+                    materialAlertDialogBuilder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            registerBtn.setEnabled(true);
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            checkBox.setChecked(false);
+                        }
+                    });
+
+                    materialAlertDialogBuilder.show();
+                }
+                else{
+                    registerBtn.setEnabled(false);
+                }
+            }
+        });
+
 
         //user will be directed to login page
         registerQn.setOnClickListener(new View.OnClickListener() {
@@ -69,9 +114,9 @@ public class RegistrationActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailString = email.getText().toString();
-                String passwordString = password.getText().toString();
-                String conPasswordString = confirmpassword.getText().toString();
+                String emailString = email.getEditText().getText().toString();
+                String passwordString = password.getEditText().getText().toString();
+                String conPasswordString = confirmpassword.getEditText().getText().toString();
 
 //                if (validateEmail()&&validatePassword()){
 //
@@ -105,13 +150,16 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                     });
                 }
+                if(samePassword()){
+
+                }
             }
         });
 
     }
 
     private boolean validateEmail(){
-        String emailInput = email.getText().toString();
+        String emailInput = email.getEditText().getText().toString();
         if (emailInput.isEmpty()){
             email.setError("Field can't be empty");
             return false;
@@ -127,7 +175,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean validatePassword(){
-        String passwordInput = password.getText().toString();
+        String passwordInput = password.getEditText().getText().toString();
+        String confirmPassInput = confirmpassword.getEditText().getText().toString();
         if(passwordInput.isEmpty()){
             password.setError("Field can't be empty");
             return false;
@@ -136,8 +185,26 @@ public class RegistrationActivity extends AppCompatActivity {
             password.setError("Password too weak");
             return false;
         }
+        else if(passwordInput.equals(confirmPassInput)){
+            confirmpassword.setError("Password does not match");
+            password.setError("Password does not match");
+            return false;
+        }
         else {
             password.setError(null);
+            return true;
+        }
+    }
+
+    private boolean samePassword(){
+        String passwordInput = password.getEditText().getText().toString();
+        String conPasswordInput = confirmpassword.getEditText().getText().toString();
+        if(!passwordInput.equals(conPasswordInput)){
+            confirmpassword.setError("The password doesn't match");
+            return false;
+        }
+        else {
+            confirmpassword.setError(null);
             return true;
         }
     }
