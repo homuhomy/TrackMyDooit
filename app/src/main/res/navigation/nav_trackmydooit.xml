@@ -15,4 +15,9 @@
         android:name="com.example.trackmydooit.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/registrationActivity"
+        android:name="com.example.trackmydooit.RegistrationActivity"
+        android:label="activity_registration"
+        tools:layout="@layout/activity_registration" />
 </navigation>
