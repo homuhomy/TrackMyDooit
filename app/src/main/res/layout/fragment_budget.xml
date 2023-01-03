@@ -44,8 +44,10 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="131dp"
+        android:layout_width="132dp"
         android:layout_height="132dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle_progress"
         android:progress="60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,10 +155,12 @@
         android:layout_height="10dp"
         android:src="@drawable/circle"
         app:layout_constraintBottom_toBottomOf="@+id/Others"
+        app:layout_constraintEnd_toStartOf="@+id/Others"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Others"
-        app:layout_constraintVertical_bias="0.233"
-        app:tint="@android:color/holo_red_light"
-        tools:layout_editor_absoluteX="238dp" />
+        app:layout_constraintVertical_bias="1.0"
+        app:tint="@android:color/holo_red_light" />
 
     <ImageView
         android:id="@+id/indicator_bills"
