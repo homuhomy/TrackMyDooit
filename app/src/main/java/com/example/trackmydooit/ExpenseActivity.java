@@ -1,4 +1,3 @@
-/*
 package com.example.trackmydooit;
 
 import androidx.appcompat.app.AlertDialog;
@@ -6,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,12 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +28,8 @@ import org.joda.time.MutableDateTime;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ExpenseActivity extends AppCompatActivity {
     private Toolbar TBExpense;
@@ -41,9 +38,6 @@ public class ExpenseActivity extends AppCompatActivity {
     private RecyclerView RVExpense;
     private FloatingActionButton FABAddTrans;
     private ProgressDialog progressDialog;
-
-    private RadioButton RBIncome;
-    private RadioButton RBExpenses;
 
     private FirebaseAuth mAuth;
     private String onlineUserId = "";
@@ -54,10 +48,8 @@ public class ExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
-TBExpense = findViewById(R.id.TBExpense);
-        setSupportActionBar(TBExpense);
+        setSupportActionBar(findViewById(R.id.TBExpense));
         getSupportActionBar().setTitle("Total Spending");
-
 
         TVTotalSpent = findViewById(R.id.TVTotalSpent);
         PBExpense = findViewById(R.id.PBExpense);
@@ -69,29 +61,14 @@ TBExpense = findViewById(R.id.TBExpense);
         onlineUserId = mAuth.getCurrentUser().getUid();
         expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserId);
 
-        FABAddTrans.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                addItemSpentOn();
-            }
-        });
-
+            FABAddTrans.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    addItemSpentOn();
+                }
+            });
 
         }
-
-radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (radioButton != null) {
-                radioButton.setBackgroundColor(Color.TRANSPARENT);
-                radioButton.setButtonDrawable(0); // removes the image
-            }
-            radioButton = (RadioButton) group.findViewById(checkedId);
-            radioButton.setBackgroundColor(Color.YELLOW);
-            radioButton.setButtonDrawable(R.drawable.icon); //sets the image
-        }
-    });
-
 
     private void addItemSpentOn(){
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
@@ -102,37 +79,42 @@ radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         final AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
 
+        final Spinner SPWallet = myView.findViewById(R.id.SPWallet);
         final Spinner SPCategory = myView.findViewById(R.id.SPCategory);
         final EditText amount = myView.findViewById(R.id.amount);
         final EditText note = myView.findViewById(R.id.note);
-        final Button BTcancel = findViewById(R.id.BTcancel);
-        final Button BTadd = findViewById(R.id.BTadd); //why cannot use myView.xx?
+        final Button BTCancel = myView.findViewById(R.id.BTCancel);
+        final Button BTadd = myView.findViewById(R.id.BTadd);
 
-        note.setVisibility(myView.VISIBLE);
+        //note.setVisibility(View.VISIBLE); //set this as visible if we need the user to add note
 
         BTadd.setOnClickListener((view -> {
             String Amount = amount.getText().toString();
-            String Item = SPCategory.getSelectedItem().toString();
+            String WalletItems = SPWallet.getSelectedItem().toString();
+            String CategoryItems = SPCategory.getSelectedItem().toString();
             String notes = note.getText().toString();
+
+            if(WalletItems.equals("Select Wallet")){
+                Toast.makeText(ExpenseActivity.this, "Select a wallet", Toast.LENGTH_SHORT).show();
+            }
+
+            if(CategoryItems.equals("Select Category")){
+                Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
+            }
+
+            //change this to make the notes optional
+            /*if(TextUtils.isEmpty(notes)){
+                note.setError("Note is required");
+                return;
+            }*/
 
             if(TextUtils.isEmpty(Amount)){
                 amount.setError("Amount is required!");
                 return;
             }
 
-            if(Item.equals("Select Item")){
-                Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
-            }
-
-            //change this to make the notes optional
-            if(TextUtils.isEmpty(notes)){
-                note.setError("Note is required");
-                return;
-            }
-
-
             else{
-                progressDialog.setMessage("Adding a budget item");
+                progressDialog.setMessage("Adding expense item");
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
@@ -146,10 +128,10 @@ radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(Item, date, id, notes, Integer.parseInt(Amount), months.getMonths());
+                Data data = new Data(CategoryItems, date, id, notes, Integer.parseInt(Amount), months.getMonths());
                 expenseRef.child(id).setValue(data).addOnCompleteListener((task -> {
                     if(task.isSuccessful()){
-                        Toast.makeText(ExpenseActivity.this, "Budget Item added successfuly ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpenseActivity.this, "Budget CategoryItems added successfully ", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -159,8 +141,7 @@ radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             }
             dialog.dismiss();
         }));
-        BTcancel.setOnClickListener((view -> {dialog.dismiss();}));
+        BTCancel.setOnClickListener((view -> {dialog.dismiss();}));
         dialog.show();
     }
 }
-*/

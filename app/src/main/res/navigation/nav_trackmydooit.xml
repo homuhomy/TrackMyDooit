@@ -3,16 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_trackmydooit"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/splashScreenActivity">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.trackmydooit.SplashScreenActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_splash_screen" />
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.trackmydooit.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+
+    <activity
+        android:id="@+id/splashScreenActivity"
+        android:name="com.example.trackmydooit.SplashScreenActivity"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.trackmydooit.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

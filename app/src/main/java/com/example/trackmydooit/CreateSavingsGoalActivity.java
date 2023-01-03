@@ -26,6 +26,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
 
+import java.nio.FloatBuffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -61,7 +62,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateSavingsGoalActivity.this, SplashScreenActivity.class);
+                Intent intent = new Intent(CreateSavingsGoalActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -33,7 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#fff"
-                android:entries="@array/items"
                 android:gravity="center"
                 android:minHeight="48dp">
 
