@@ -1,6 +1,7 @@
 package com.example.trackmydooit;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -10,9 +11,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -57,14 +64,12 @@ public class LoginActivity extends AppCompatActivity {
                 String emailString = email.getEditText().getText().toString();
                 String passwordString = password.getEditText().getText().toString();
 
-                if (TextUtils.isEmpty(emailString)){
+                if (TextUtils.isEmpty(emailString)) {
                     email.setError("Email is required!");
                 }
-                if (TextUtils.isEmpty(passwordString)){
+                if (TextUtils.isEmpty(passwordString)) {
                     password.setError("Password is required!");
-                }
-
-                else{
+                } else {
                     progressDialog.setMessage("Login in progress");
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
@@ -72,14 +77,13 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 //Intent intent = new Intent (LoginActivity.this, SplashScreenActivity.class);
-                                Intent intent = new Intent (LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                                 progressDialog.dismiss();
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
