@@ -17,9 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
         expenseCardView = findViewById(R.id.expenseCardView);
 
-        expenseCardView.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ExpenseActivity.class);
-            startActivity(intent);
+        expenseCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenseCardView.getContext().startActivity(new Intent(expenseCardView.getContext(), ExpenseActivity.class));
+            }
         });
 
     }

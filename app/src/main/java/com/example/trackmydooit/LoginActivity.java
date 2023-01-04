@@ -73,7 +73,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent (LoginActivity.this, SplashScreenActivity.class);
+                                //Intent intent = new Intent (LoginActivity.this, SplashScreenActivity.class);
+                                Intent intent = new Intent (LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                                 progressDialog.dismiss();

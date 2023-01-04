@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +37,7 @@ public class ExpenseActivity extends AppCompatActivity {
     private TextView TVTotalSpent;
     private ProgressBar PBExpense;
     private RecyclerView RVExpense;
-    private FloatingActionButton FABAddTrans;
+    private ExtendedFloatingActionButton FABAddTrans;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
