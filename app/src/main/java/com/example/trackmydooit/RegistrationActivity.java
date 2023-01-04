@@ -35,7 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
 //                    "(?=.*[a-z])" +         //at least 1 lower case letter
 //                    "(?=.*[A-Z])" +         //at least 1 upper case letter
                     "(?=.*[a-zA-Z])" +      //any letter
-                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=.*[@#$%!*?<>~`.^&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +           //no white spaces
                     ".{6,}" +               //at least 6 characters
                     "$");
@@ -64,42 +64,49 @@ public class RegistrationActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkbox);
         materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
 
-
-
-        registerBtn.setEnabled(false);
-
-        mAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
-
+//checkbox for the terms and conditions
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    materialAlertDialogBuilder.setTitle("Terms and Conditions");
-                    materialAlertDialogBuilder.setMessage("You need to accept the terms and conditions to proceed");
-                    materialAlertDialogBuilder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            registerBtn.setEnabled(true);
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    materialAlertDialogBuilder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            checkBox.setChecked(false);
-                        }
-                    });
-
-                    materialAlertDialogBuilder.show();
+//                    materialAlertDialogBuilder.setTitle("Terms and Conditions");
+//                    materialAlertDialogBuilder.setMessage("You need to accept the terms and conditions to proceed");
+//                    materialAlertDialogBuilder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            registerBtn.setEnabled(true);
+//                            dialogInterface.dismiss();
+//                        }
+//                    });
+//                    materialAlertDialogBuilder.setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            dialogInterface.dismiss();
+//                            checkBox.setChecked(false);
+//                        }
+//                    });
+//
+//                    materialAlertDialogBuilder.show();
+                    checkBox.setChecked(true);
+                    registerBtn.setEnabled(true);
                 }
                 else{
                     registerBtn.setEnabled(false);
+                    materialAlertDialogBuilder.setMessage("You need to accept the terms and conditions to proceed");
+                    materialAlertDialogBuilder.setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
                 }
             }
         });
 
+//        registerBtn.setEnabled(false);
+
+        mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
         //user will be directed to login page
         registerQn.setOnClickListener(new View.OnClickListener() {
@@ -118,17 +125,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 String passwordString = password.getEditText().getText().toString();
                 String conPasswordString = confirmpassword.getEditText().getText().toString();
 
-//                if (validateEmail()&&validatePassword()){
-//
-//                }
-//
-//                if (TextUtils.isEmpty(emailString)){
-//                    email.setError("Email is required!");
-//                }
-//                if (TextUtils.isEmpty(passwordString)){
-//                    password.setError("Password is required!");
-//                }
-
                 if(validateEmail()&&validatePassword()){
                     progressDialog.setMessage("Registration in progress");
                     progressDialog.setCanceledOnTouchOutside(false);
@@ -138,7 +134,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent (RegistrationActivity.this, SplashScreenActivity.class);
+                                Intent intent = new Intent (RegistrationActivity.this, HomeFragment.class);
                                 startActivity(intent);
                                 finish();
                                 progressDialog.dismiss();
@@ -155,6 +151,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 
@@ -182,12 +179,11 @@ public class RegistrationActivity extends AppCompatActivity {
             return false;
         }
         else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            password.setError("Password too weak");
+            password.setError("Password too weak. \n Make sure there's at least one number and " +
+                    "\n one special character");
             return false;
         }
-        else if(passwordInput.equals(confirmPassInput)){
-            confirmpassword.setError("Password does not match");
-            password.setError("Password does not match");
+        else if(samePassword()){
             return false;
         }
         else {
