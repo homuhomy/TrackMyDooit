@@ -134,7 +134,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent (RegistrationActivity.this, HomeFragment.class);
+                                Intent intent = new Intent (RegistrationActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                                 progressDialog.dismiss();
@@ -184,7 +184,7 @@ public class RegistrationActivity extends AppCompatActivity {
             return false;
         }
         else if(samePassword()){
-            return false;
+            return samePassword();
         }
         else {
             password.setError(null);
