@@ -5,21 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="20dp"
     tools:context="RegistrationActivity"
+    android:background="@drawable/registration"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="center_vertical"
         >
-    <ImageView
-        android:layout_marginLeft="80dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/star_40px"
-        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:singleLine="false"
+                android:text="Sign up, start tracking!"
+                android:textColor="#FF9B49"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/signup"
+                />
+
+        </FrameLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
@@ -35,7 +60,9 @@
         android:inputType="textEmailAddress"
         android:textColor="#000"
         android:textColorHint="#000"
-        android:textSize="20sp" >
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/mail_fill1_wght400_grad0_opsz24"
+        android:theme="@style/MyTextInputLayout_overlay">
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +85,9 @@
         android:inputType="textEmailAddress"
         android:textColor="#000"
         android:textColorHint="#000"
-        android:textSize="20sp" >
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/person_black_24dp"
+        android:theme="@style/MyTextInputLayout_overlay">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +114,9 @@
         android:inputType="textPassword"
         android:textColor="#000"
         android:textColorHint="#000"
-        android:textSize="20sp" >
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/lock_fill1_wght400_grad0_opsz24"
+        android:theme="@style/MyTextInputLayout_overlay">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:helperText="Required*"
         app:helperTextTextColor="#D50000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -111,7 +142,9 @@
         android:inputType="textPassword"
         android:textColor="#000"
         android:textColorHint="#000"
-        android:textSize="20sp" >
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/lock_fill1_wght400_grad0_opsz24"
+        android:theme="@style/MyTextInputLayout_overlay">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,22 +159,29 @@
         android:layout_height="wrap_content"
         android:text="I agree to the terms and conditions"
         android:textStyle="italic"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         />
 
     <Button
         android:id="@+id/registerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="Sign Up"
         android:textAllCaps="false"
+        android:textSize="20sp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/open_sans"
         />
 
     <RelativeLayout
         android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_gravity="right"
-        android:layout_margin="30dp"
+        android:layout_marginRight="25dp"
         >
 
         <TextView
@@ -159,10 +199,11 @@
             android:layout_alignParentRight="true"
             android:text="Login"
             android:textStyle="bold"
+            android:textColor="@color/dark_orange"
 
             />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

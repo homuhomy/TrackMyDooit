@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="text_input_layout_stroke_color">@color/dark_orange</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,6 +9,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#F8A543</color>
+    <color name="dark_orange">#FF5722</color>
     <color name="light_orange">#FAC370</color>
     <color name="light_grey">#F3F1F1</color>
     <color name="light_border_color">#DADADA</color>

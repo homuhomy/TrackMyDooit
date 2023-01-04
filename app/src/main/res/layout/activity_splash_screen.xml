@@ -12,14 +12,14 @@
         android:id="@+id/logo"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/circle"
-        android:layout_gravity="center" />
+        android:src="@drawable/trackmydooit_logo"
+        android:layout_gravity="center_horizontal|center_vertical"/>
 
-    <TextView
+   <TextView
         android:id="@+id/logoLable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track My Dooit"
+        android:text="Track your expenses efficiently"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="#000000"
