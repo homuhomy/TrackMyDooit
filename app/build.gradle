@@ -32,8 +32,6 @@ android {
 
 dependencies {
 
-
-    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.google.mlkit:image-labeling:17.0.7'
     implementation 'com.google.android.gms:play-services-mlkit-image-labeling:16.0.8'
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
@@ -62,7 +60,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-functions:20.2.1'
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'com.google.mlkit:camera:16.0.0-beta3'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 }
 
 allprojects {
