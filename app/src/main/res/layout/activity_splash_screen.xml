@@ -6,23 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".SplashScreenActivity">
+    tools:context=".SplashScreenActivity"
+    android:background="@drawable/loginv3">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/trackmydooit_logo"
+        android:src="@drawable/logo3"
         android:layout_gravity="center_horizontal|center_vertical"/>
 
    <TextView
         android:id="@+id/logoLable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Track your expenses efficiently"
-        android:textSize="20dp"
+        android:text="@string/track_your_expenses_efficiently"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#000000"
+        android:textColor="@color/orange"
         android:layout_marginTop="10dp"/>
 
 </LinearLayout>

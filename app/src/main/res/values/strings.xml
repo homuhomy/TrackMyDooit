@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Track MyDooit</string>
     <string name="wallet" />
+    <string name="track_your_expenses_efficiently">Track your expenses efficiently</string>
 
     <string-array name="walletList">
         <item>Maybank</item>
