@@ -61,7 +61,6 @@ public class ExpenseActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         onlineUserId = mAuth.getCurrentUser().getUid();
         expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserId);
-
             FABAddTrans.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -86,8 +85,16 @@ public class ExpenseActivity extends AppCompatActivity {
         final EditText note = myView.findViewById(R.id.note);
         final Button BTCancel = myView.findViewById(R.id.BTCancel);
         final Button BTadd = myView.findViewById(R.id.BTadd);
+        final Button BTAddReceipt = myView.findViewById(R.id.BTAddReceipt);
 
         //note.setVisibility(View.VISIBLE); //set this as visible if we need the user to add note
+        BTAddReceipt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //to camera activity
+            }
+        });
+
 
         BTadd.setOnClickListener((view -> {
             String Amount = amount.getText().toString();
