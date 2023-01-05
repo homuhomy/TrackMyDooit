@@ -13,4 +13,6 @@
     <color name="light_orange">#FAC370</color>
     <color name="light_grey">#F3F1F1</color>
     <color name="light_border_color">#DADADA</color>
+    <color name="black_shade_1">#292D36</color>
+    <color name="yellow">#ffa500</color>
 </resources>

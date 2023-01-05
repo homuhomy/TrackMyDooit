@@ -39,6 +39,7 @@ dependencies {
 
     implementation 'com.google.mlkit:image-labeling:17.0.7'
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    //implementation 'com.google.firebase:firebase-ml-vision:'
 
     def nav_version = "2.5.3"
     implementation fileTree(dir: 'build-libs', include: '*.jar')
@@ -60,6 +61,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics'
 
+    implementation 'com.google.firebase:firebase-core:21.1.1'
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
     implementation 'com.google.firebase:firebase-functions:20.2.1'
     implementation 'com.google.code.gson:gson:2.10'

@@ -95,19 +95,21 @@ public class ExpenseActivity extends AppCompatActivity {
         final Button BTAddReceipt = myView.findViewById(R.id.BTAddReceipt);
         final ImageView addCategory = myView.findViewById(R.id.addCategory);
 
-        addCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (ExpenseActivity.this, AddCategoryActivity.class);
-                startActivity(intent);
-            }
-        });
+//        addCategory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent (ExpenseActivity.this, AddCategoryActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //note.setVisibility(View.VISIBLE); //set this as visible if we need the user to add note
         BTAddReceipt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 //to camera activity
+                Intent intent = new Intent(ExpenseActivity.this, CameraActivity.class);
+                startActivity(intent);
             }
         });
 
