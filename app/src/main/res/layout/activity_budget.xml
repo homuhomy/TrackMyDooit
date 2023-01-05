@@ -22,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Budget this month: RM500"
-        android:textSize="27sp"
+        android:text="Budget this month: RM0"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="25sp"
         android:textAlignment="center"
         android:textColor="#000000"/>
 
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/black"
+            app:backgroundTint="@color/orange"
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"

@@ -11,16 +11,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a budget type"
+            android:text="Select a budget categoy:"
+            android:fontFamily="@font/open_sans"
+            android:textStyle="bold"
             android:gravity="center"
             android:textColor="#000"
             android:id="@+id/itemBudgetTV"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_margin="5dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,11 +35,13 @@
                 android:id="@+id/spinnerBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
                 android:layout_gravity="center"
                 android:background="#fff"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:entries="@array/budgetItems">
+                android:entries="@array/budgetItems"
+                android:layout_margin="5dp">
             </Spinner>
 
             <EditText
@@ -43,10 +49,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Amount..."
+                android:fontFamily="@font/open_sans_semibold"
                 android:inputType="number"
                 android:minHeight="48dp"
                 android:textColor="#000"
-                android:textColorHint="#000" />
+                android:textColorHint="#000"
+                android:layout_margin="5dp"/>
 
         </LinearLayout>
 
@@ -70,6 +78,8 @@
                     android:layout_marginEnd="2dp"
                     android:text="Cancel"
                     android:textAllCaps="false"
+                    app:backgroundTint="@color/orange"
+                    android:background="@drawable/round_ish_button"
                     android:textColor="#000"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -88,6 +98,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_marginBottom="2dp"
                     android:text="Save"
+                    app:backgroundTint="@color/orange"
+                    android:background="@drawable/round_ish_button"
                     android:textAllCaps="false"
                     android:textColor="#000"
                     android:textStyle="bold"/>

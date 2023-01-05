@@ -4,7 +4,7 @@
     <string name="track_your_expenses_efficiently">Track your expenses efficiently</string>
 
     <string-array name="budgetItems">
-        <item>Select a budget category</item>
+        <item>Click to select a budget category</item>
         <item>Food</item>
         <item>Transport</item>
         <item>Entertainment</item>
