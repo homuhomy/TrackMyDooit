@@ -3,6 +3,15 @@
     <string name="wallet" />
     <string name="track_your_expenses_efficiently">Track your expenses efficiently</string>
 
+    <string-array name="budgetItems">
+        <item>Select a budget category</item>
+        <item>Food</item>
+        <item>Transport</item>
+        <item>Entertainment</item>
+        <item>Personal</item>
+        <item>Home</item>
+    </string-array>
+
     <string-array name="walletList">
         <item>Maybank</item>
         <item>Boost</item>

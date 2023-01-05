@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/expenseCardView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:elevation="10dp"
-    android:layout_margin="10dp"
-    android:layout_height="match_parent">
-
+    android:layout_marginTop="10dp">
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,10 +14,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a budget Item"
+            android:text="Select a budget type"
             android:gravity="center"
             android:textColor="#000"
-            android:id="@+id/item"
+            android:id="@+id/itemBudgetTV"
             android:textSize="18sp"/>
 
         <LinearLayout
@@ -28,7 +26,7 @@
             android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,11 +34,10 @@
                 android:gravity="center"
                 android:minHeight="48dp"
                 android:entries="@array/budgetItems">
-
             </Spinner>
 
             <EditText
-                android:id="@+id/amount"
+                android:id="@+id/BudgetAmountET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Amount..."
@@ -48,15 +45,6 @@
                 android:minHeight="48dp"
                 android:textColor="#000"
                 android:textColorHint="#000" />
-
-            <EditText
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Note"
-                android:id="@+id/note"
-                android:textColor="#000"
-                android:textColorHint="#000"/>
 
         </LinearLayout>
 
@@ -72,20 +60,16 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/cancel"
+                    android:id="@+id/cancelBudgetBTN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="2dp"
-                    android:layout_marginBottom="2dp"
                     android:text="Cancel"
                     android:textAllCaps="false"
                     android:textColor="#000"
-                    android:textStyle="bold">
-
-                </Button>
-
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -94,22 +78,22 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/save"
+                    android:id="@+id/saveBudgetBTN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
                     android:text="Save"
                     android:textAllCaps="false"
                     android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_margin="2dp">
-
-                </Button>
-
+                    android:textStyle="bold"/>
             </RelativeLayout>
-
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </androidx.cardview.widget.CardView>
