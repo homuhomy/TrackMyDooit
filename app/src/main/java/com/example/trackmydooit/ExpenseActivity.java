@@ -2,15 +2,19 @@ package com.example.trackmydooit;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,6 +48,9 @@ public class ExpenseActivity extends AppCompatActivity {
     private String onlineUserId = "";
     private DatabaseReference expenseRef;
 
+    private ImageView addCategory;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +93,15 @@ public class ExpenseActivity extends AppCompatActivity {
         final Button BTCancel = myView.findViewById(R.id.BTCancel);
         final Button BTadd = myView.findViewById(R.id.BTadd);
         final Button BTAddReceipt = myView.findViewById(R.id.BTAddReceipt);
+        final ImageView addCategory = myView.findViewById(R.id.addCategory);
+
+        addCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (ExpenseActivity.this, AddCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //note.setVisibility(View.VISIBLE); //set this as visible if we need the user to add note
         BTAddReceipt.setOnClickListener(new View.OnClickListener(){

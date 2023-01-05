@@ -193,6 +193,12 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:layout_marginTop="20dp"
                 android:textColor="#000000" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
             <Spinner
                 android:id="@+id/SPCategory"
                 android:layout_width="match_parent"
@@ -200,9 +206,23 @@
                 android:layout_gravity="center"
                 android:entries="@array/expensesCategory"
                 android:gravity="center"
-                android:minHeight="48dp">
+                android:minHeight="48dp"
+                android:layout_marginEnd="50dp"
+                >
 
             </Spinner>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_circle_40"
+                android:layout_alignParentEnd="true"
+                android:layout_alignRight="@+id/SPCategory"
+                android:id="@+id/addCategory"
+                />
+
+
+            </RelativeLayout>
 
             <TextView
             android:id="@+id/VTAmount"
