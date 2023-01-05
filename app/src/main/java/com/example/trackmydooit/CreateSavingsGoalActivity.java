@@ -45,7 +45,6 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
-
         loader = new ProgressDialog(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
