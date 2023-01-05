@@ -90,7 +90,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
@@ -104,7 +104,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="10dp"
-                android:margin="10dp"
+                android:layout_margin="10dp"
                 android:max="100"
                 android:progress="60" />
         </LinearLayout>
@@ -112,7 +112,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -133,7 +133,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
@@ -168,7 +168,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
@@ -182,7 +182,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="10dp"
-                android:margin="10dp"
+                android:layout_margin="10dp"
                 android:max="100"
                 android:progress="60" />
         </LinearLayout>
@@ -195,25 +195,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:text="Total Savings" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:text="RM50" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
@@ -248,7 +248,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
@@ -262,7 +262,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="10dp"
-                android:margin="10dp"
+                android:layout_margin="10dp"
                 android:max="100"
                 android:progress="60" />
         </LinearLayout>

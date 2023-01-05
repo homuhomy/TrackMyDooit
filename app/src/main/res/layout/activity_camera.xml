@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CameraActivity">
+
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Image name" />
+
+    <Button
+        android:id="@+id/readText"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Read text" />
 
     <ScrollView
         android:id="@+id/linear_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_margin="20dp">
 
         <TextView
             android:id="@+id/text_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:text="Scan your recipt" />
+            android:text="Scan your receipt"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black" />
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/scannedImage"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
 
     <LinearLayout
         android:id="@+id/linearHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:paddingTop="50dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/BTCapture"
@@ -43,12 +71,12 @@
             android:background="@drawable/round_ish_button"
             android:fontFamily="@font/open_sans"
             android:text="Capture"
-            app:icon="@drawable/add_a_photo_black_24dp"
-            app:iconTint="@color/black"
-            app:iconGravity="textStart"
             android:textAllCaps="false"
             android:textColor="#000000"
-            app:backgroundTint="@color/orange" />
+            app:backgroundTint="@color/orange"
+            app:icon="@drawable/add_a_photo_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/BTCopyText"
@@ -58,13 +86,14 @@
             android:background="@drawable/round_ish_button"
             android:fontFamily="@font/open_sans"
             android:text="Copy text"
-            app:icon="@drawable/content_copy_black_24dp"
-            app:iconTint="@color/black"
-            app:iconGravity="textStart"
             android:textAllCaps="false"
             android:textColor="#000000"
-            app:backgroundTint="@color/orange" />
+            app:backgroundTint="@color/orange"
+            app:icon="@drawable/content_copy_black_24dp"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black" />
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

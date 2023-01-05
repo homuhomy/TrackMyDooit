@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         CVBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CVBudget.getContext().startActivity(new Intent(expenseCardView.getContext(), BudgetActivity.class));
+                CVBudget.getContext().startActivity(new Intent(CVBudget.getContext(), BudgetActivity.class));
                 //its stopping cuz i think it has something to do with going froma ctivity to fragment
             }
         });
