@@ -7,66 +7,66 @@
     android:elevation="10dp"
     app:cardElevation="10dp"
     android:layout_margin="10dp">
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="Item name"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="18dp"
-                android:id="@+id/item" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="RM0"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="18dp"
-                android:id="@+id/amount" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="note"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="18dp"
-                android:id="@+id/note" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
                 android:text="Date"
-                android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="18dp"
-                android:id="@+id/date" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/itemIV"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/circle"
             android:layout_margin="10dp"
-            android:layout_toEndOf="@id/linearLayout"
-            android:id="@+id/itemIV"/>
+            android:layout_toEndOf="@+id/linearLayout"
+            android:src="@drawable/circle" />
 
     </RelativeLayout>
 
