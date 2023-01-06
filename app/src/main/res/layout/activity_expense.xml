@@ -2,62 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ExpenseActivity">
-    <LinearLayout
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/TBExpense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_grey"
-            app:titleTextColor="@color/black"
-            android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <TextView
-        android:id="@+id/TVTotalSpent"
-        android:text="Total amount: RM50"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:gravity="center"
+        android:id="@+id/expenseTV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Expenses this month: RM500"
+        android:textSize="27sp"
+        android:textAlignment="center"
+        android:textColor="#000000"/>
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ProgressBar
-                android:id="@+id/PBExpense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"/>
+            android:layout_height="match_parent"
+            android:id="@+id/RVExpense"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/RVExpense"/>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/FABAddTrans"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:layout_marginVertical="20dp"
+            android:text="Add transaction"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/FABAddTrans"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/open_sans_semibold"
-                android:paddingStart="0dp"
-                android:paddingEnd="0dp"
-                android:layout_marginVertical="20dp"
-                android:text="Add transaction"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </LinearLayout>
+
 
 </LinearLayout>

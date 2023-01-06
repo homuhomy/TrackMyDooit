@@ -9,7 +9,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView expenseCardView;
+    private CardView CVExpense;
     private CardView CVBudget;
 
     @Override
@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        expenseCardView = findViewById(R.id.expenseCardView);
+        CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
 
-        expenseCardView.setOnClickListener(new View.OnClickListener() {
+        CVExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                expenseCardView.getContext().startActivity(new Intent(expenseCardView.getContext(), ExpenseActivity.class));
+                CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class));
             }
         });
 
