@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:elevation="10dp"
     app:cardElevation="10dp"
+    android:layout_margin="20dp"
     android:layout_marginTop="10dp">
 
     <LinearLayout
@@ -16,16 +17,89 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select expense category type"
+            android:text="@string/add_new_transaction"
             android:gravity="center"
             android:textColor="#000"
             android:id="@+id/itemExpenseTV"
             android:textSize="18sp"/>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/choose_transaction_type"
+                 android:layout_marginStart="10dp"/>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButtonTransaction"
+                app:singleSelection="true"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/expenseBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expense"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:id="@+id/incomeBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/income"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <Spinner
+                android:id="@+id/spinnerWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:visibility="visible"
+                android:entries="@array/walletList">
+            </Spinner>
+
+            <LinearLayout
+                android:id="@+id/receiptLayout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/receipt"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="@string/add"
+                    android:layout_height="40dp"
+                    android:background="@drawable/round_ish_button"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    style="?android:attr/borderlessButtonStyle"
+                    app:backgroundTint="@color/orange"
+                    android:layout_marginRight="10dp"/>
+
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/spinnerExpense"
@@ -33,20 +107,34 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#fff"
+                android:entries="@array/expensesCategory"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:entries="@array/expensesCategory">
-            </Spinner>
+                android:visibility="visible"></Spinner>
+
+            <Spinner
+                android:id="@+id/spinnerIncome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#fff"
+                android:entries="@array/incomeCategory"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:visibility="gone"></Spinner>
 
             <EditText
                 android:id="@+id/AmountET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Amount"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:textColor="#000"
-                android:textColorHint="#000" />
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="RM"
+                android:inputType="numberDecimal"
+                android:paddingLeft="15dp"
+                android:background="@drawable/edit_text_frame"
+                />
 
         </LinearLayout>
 

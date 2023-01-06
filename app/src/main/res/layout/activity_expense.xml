@@ -26,6 +26,15 @@
         android:textSize="27sp"
         android:textAlignment="center"
         android:textColor="#000000"/>
+    <TextView
+        android:id="@+id/incomeTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Income this month: RM500"
+        android:textSize="27sp"
+        android:textAlignment="center"
+        android:textColor="#000000"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -35,6 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/RVExpense"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/RVIncome"/>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/FABAddTrans"

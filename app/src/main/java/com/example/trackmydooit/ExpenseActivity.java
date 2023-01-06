@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +29,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,13 +49,13 @@ import java.util.Calendar;
 public class ExpenseActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView expenseTV;
-    private RecyclerView RVExpense;
+    private TextView expenseTV, incomeTV;
+    private RecyclerView RVExpense, RVIncome;
 
     private ExtendedFloatingActionButton FABAddTrans;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference expenseRef;
+    private DatabaseReference expenseRef, incomeRef;
     private String onlineUserId = "";
     private ProgressDialog loader;
 
@@ -61,8 +67,10 @@ public class ExpenseActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         onlineUserId = mAuth.getCurrentUser().getUid();
         expenseRef = FirebaseDatabase.getInstance().getReference().child("expense").child(onlineUserId);
+        incomeRef = FirebaseDatabase.getInstance().getReference().child("income").child(onlineUserId);
         loader = new ProgressDialog(this);
 
+        incomeTV = findViewById(R.id.incomeTV);
         expenseTV = findViewById(R.id.expenseTV);
         RVExpense = findViewById(R.id.RVExpense);
 
@@ -72,6 +80,23 @@ public class ExpenseActivity extends AppCompatActivity {
         RVExpense.setHasFixedSize(true);
         RVExpense.setLayoutManager(linearLayoutManager);
 
+        incomeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int totalAmount = 0;
+
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    Data data = snap.getValue(Data.class);
+                    totalAmount = totalAmount + data.getAmount();
+                    String sTotal = "Income this month: RM" + totalAmount;
+                    expenseTV.setText(sTotal);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         expenseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,7 +109,6 @@ public class ExpenseActivity extends AppCompatActivity {
                     expenseTV.setText(sTotal);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -111,63 +135,135 @@ public class ExpenseActivity extends AppCompatActivity {
         final AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
 
+        final LinearLayout receiptLayout = myView.findViewById(R.id.receiptLayout);
         final Spinner spinnerExpense = myView.findViewById(R.id.spinnerExpense);
-        final EditText ExpenseAmountET = myView.findViewById(R.id.AmountET);
+        final Spinner spinnerIncome = myView.findViewById(R.id.spinnerIncome);
+        final Spinner spinnerWallet = myView.findViewById(R.id.spinnerWallet);
+        final EditText AmountET = myView.findViewById(R.id.AmountET);
         final Button cancelTransBTN = myView.findViewById(R.id.cancelTransBTN);
         final Button addTransBTN = myView.findViewById(R.id.addTransBTN);
+        final Button expenseBTN = myView.findViewById(R.id.expenseBTN);
+        final Button incomeBTN = myView.findViewById(R.id.incomeBTN);
+        final MaterialButtonToggleGroup toggleButtonTransaction = myView.findViewById(R.id.toggleButtonTransaction);
 
-        addTransBTN.setOnClickListener(view -> {
-            String expenseAmount = ExpenseAmountET.getText().toString();
-            String expenseItem = spinnerExpense.getSelectedItem().toString();
+        toggleButtonTransaction.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                //TODO: make it so it recognized the expenseButton even when user first clicked it
+                //for now even if in xml it is checked, it's not recognized?
+                if (group.getCheckedButtonId()==R.id.expenseBTN){
+                    receiptLayout.setVisibility(View.VISIBLE);
+                    spinnerExpense.setVisibility(View.VISIBLE);
+                    spinnerIncome.setVisibility(View.GONE);
 
-            if (TextUtils.isEmpty(expenseAmount)){
-                ExpenseAmountET.setError("Amount is required!");
-                return;
+                    addTransBTN.setOnClickListener(view -> {
+                        String expenseAmount = AmountET.getText().toString();
+                        String expenseItem = spinnerExpense.getSelectedItem().toString();
+                        String walletItem = spinnerWallet.getSelectedItem().toString();
+
+                        if (TextUtils.isEmpty(expenseAmount)){
+                            AmountET.setError("Amount is required!");
+                            return;
+                        }
+
+                        if(walletItem.equals("Select wallet")){
+                            Toast.makeText(ExpenseActivity.this, "Select a valid wallet", Toast.LENGTH_SHORT).show();
+                        }
+                        if(expenseItem.equals("Select an expense category")){
+                            Toast.makeText(ExpenseActivity.this, "Select a valid category", Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            loader.setMessage("Adding an expense");
+                            loader.setCanceledOnTouchOutside(false);
+                            loader.show();
+
+                            String id = expenseRef.push().getKey();
+                            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                            Calendar cal = Calendar.getInstance();
+                            String date = dateFormat.format(cal.getTime());
+
+                            MutableDateTime epoch = new MutableDateTime();
+                            epoch.setDate(0);
+                            DateTime now = new DateTime();
+                            Months months = Months.monthsBetween(epoch, now);
+
+                            Data data = new Data(expenseItem, date, id, null, Integer.parseInt(expenseAmount), months.getMonths());
+                            expenseRef.child(id).setValue(data).addOnCompleteListener(task -> {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                                loader.dismiss();
+                            });
+                        }
+                        dialog.dismiss();
+                    });
+
+                    //Toast.makeText(ExpenseActivity.this, "Expense button checked", Toast.LENGTH_SHORT).show();
+                }
+                else if (group.getCheckedButtonId()==R.id.incomeBTN){
+                    receiptLayout.setVisibility(View.GONE);
+                    spinnerExpense.setVisibility(View.GONE);
+                    spinnerIncome.setVisibility(View.VISIBLE);
+
+                    addTransBTN.setOnClickListener(view -> {
+                        String incomeAmount = AmountET.getText().toString();
+                        String incomeItem = spinnerIncome.getSelectedItem().toString();
+                        String walletItem = spinnerWallet.getSelectedItem().toString();
+
+                        if (TextUtils.isEmpty(incomeAmount)){
+                            AmountET.setError("Amount is required!");
+                            return;
+                        }
+
+                        if(walletItem.equals("Select wallet")){
+                            Toast.makeText(ExpenseActivity.this, "Select a valid wallet", Toast.LENGTH_SHORT).show();
+                        }
+                        if(incomeAmount.equals("Select an income category")){
+                            Toast.makeText(ExpenseActivity.this, "Select a valid category", Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            loader.setMessage("Adding an income");
+                            loader.setCanceledOnTouchOutside(false);
+                            loader.show();
+
+                            String id = incomeRef.push().getKey();
+                            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                            Calendar cal = Calendar.getInstance();
+                            String date = dateFormat.format(cal.getTime());
+
+                            MutableDateTime epoch = new MutableDateTime();
+                            epoch.setDate(0);
+                            DateTime now = new DateTime();
+                            Months months = Months.monthsBetween(epoch, now);
+
+                            Data data = new Data(incomeItem, date, id, null, Integer.parseInt(incomeAmount), months.getMonths());
+                            incomeRef.child(id).setValue(data).addOnCompleteListener(task -> {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(ExpenseActivity.this, "Income added successfully!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                                loader.dismiss();
+                            });
+                        }
+                        dialog.dismiss();
+                    });
+                    //Toast.makeText(ExpenseActivity.this, "Income button checked", Toast.LENGTH_SHORT).show();
+                }
             }
-
-            if(expenseItem.equals("Select an expense category")){
-                Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
-            }
-
-            else {
-                loader.setMessage("Adding an expense");
-                loader.setCanceledOnTouchOutside(false);
-                loader.show();
-
-                String id = expenseRef.push().getKey();
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                Calendar cal = Calendar.getInstance();
-                String date = dateFormat.format(cal.getTime());
-
-                MutableDateTime epoch = new MutableDateTime();
-                epoch.setDate(0);
-                DateTime now = new DateTime();
-                Months months = Months.monthsBetween(epoch, now);
-
-                Data data = new Data(expenseItem, date, id, null, Integer.parseInt(expenseAmount), months.getMonths());
-                expenseRef.child(id).setValue(data).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-                        Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    else {
-                        Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    loader.dismiss();
-                });
-
-            }
-            dialog.dismiss();
         });
 
+        //canceling transaction for either expense and income
         cancelTransBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 
@@ -201,9 +297,7 @@ public class ExpenseActivity extends AppCompatActivity {
                     case "Transportation":
                         holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
                         break;
-
                 }
-
             }
 
             @NonNull
