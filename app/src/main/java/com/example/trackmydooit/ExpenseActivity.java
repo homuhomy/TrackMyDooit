@@ -48,8 +48,9 @@ public class ExpenseActivity extends AppCompatActivity {
 
     private ExtendedFloatingActionButton FABAddTrans;
 
-    private DatabaseReference expenseRef;
     private FirebaseAuth mAuth;
+    private DatabaseReference expenseRef;
+    private String onlineUserId = "";
     private ProgressDialog loader;
 
     @Override
@@ -58,7 +59,8 @@ public class ExpenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_expense);
 
         mAuth = FirebaseAuth.getInstance();
-        expenseRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
+        onlineUserId = mAuth.getCurrentUser().getUid();
+        expenseRef = FirebaseDatabase.getInstance().getReference().child("expense").child(onlineUserId);
         loader = new ProgressDialog(this);
 
         expenseTV = findViewById(R.id.expenseTV);
@@ -94,12 +96,12 @@ public class ExpenseActivity extends AppCompatActivity {
         FABAddTrans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                additem();
+                addItemSpentOn();
             }
         });
     }
 
-    private void additem() {
+    private void addItemSpentOn() {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -109,60 +111,54 @@ public class ExpenseActivity extends AppCompatActivity {
         final AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
 
-        final Spinner spinnerExpense = myView.findViewById(R.id.spinnerBudget);
-        final EditText TransAmountET = myView.findViewById(R.id.AmountET);
+        final Spinner spinnerExpense = myView.findViewById(R.id.spinnerExpense);
+        final EditText ExpenseAmountET = myView.findViewById(R.id.AmountET);
         final Button cancelTransBTN = myView.findViewById(R.id.cancelTransBTN);
         final Button addTransBTN = myView.findViewById(R.id.addTransBTN);
 
-        addTransBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String transAmount = TransAmountET.getText().toString();
-                String transItem = spinnerExpense.getSelectedItem().toString();
+        addTransBTN.setOnClickListener(view -> {
+            String expenseAmount = ExpenseAmountET.getText().toString();
+            String expenseItem = spinnerExpense.getSelectedItem().toString();
 
-                if (TextUtils.isEmpty(transAmount)){
-                    TransAmountET.setError("Amount is required!");
-                    return;
-                }
-
-                if(transItem.equals("Select a budget category")){
-                    Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
-                }
-
-                else {
-                    loader.setMessage("adding a transaction item");
-                    loader.setCanceledOnTouchOutside(false);
-                    loader.show();
-
-                    String id = expenseRef.push().getKey();
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    Calendar cal = Calendar.getInstance();
-                    String date = dateFormat.format(cal.getTime());
-
-                    MutableDateTime epoch = new MutableDateTime();
-                    epoch.setDate(0);
-                    DateTime now = new DateTime();
-                    Months months = Months.monthsBetween(epoch, now);
-
-                    Data data = new Data(transItem, date, id, null, Integer.parseInt(transAmount), months.getMonths());
-                    expenseRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(ExpenseActivity.this, "Budget item added successfully", Toast.LENGTH_SHORT).show();
-                            }
-
-                            else {
-                                Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            loader.dismiss();
-                        }
-                    });
-
-                }
-                dialog.dismiss();
+            if (TextUtils.isEmpty(expenseAmount)){
+                ExpenseAmountET.setError("Amount is required!");
+                return;
             }
+
+            if(expenseItem.equals("Select an expense category")){
+                Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
+            }
+
+            else {
+                loader.setMessage("Adding an expense");
+                loader.setCanceledOnTouchOutside(false);
+                loader.show();
+
+                String id = expenseRef.push().getKey();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                Calendar cal = Calendar.getInstance();
+                String date = dateFormat.format(cal.getTime());
+
+                MutableDateTime epoch = new MutableDateTime();
+                epoch.setDate(0);
+                DateTime now = new DateTime();
+                Months months = Months.monthsBetween(epoch, now);
+
+                Data data = new Data(expenseItem, date, id, null, Integer.parseInt(expenseAmount), months.getMonths());
+                expenseRef.child(id).setValue(data).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else {
+                        Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    loader.dismiss();
+                });
+
+            }
+            dialog.dismiss();
         });
 
         cancelTransBTN.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +169,6 @@ public class ExpenseActivity extends AppCompatActivity {
         });
 
         dialog.show();
-
     }
 
     @Override
@@ -194,17 +189,17 @@ public class ExpenseActivity extends AppCompatActivity {
                 holder.notes.setVisibility(View.GONE);
 
                 switch (model.getItem()){
-                    case "Transport":
+                    case "Rent":
                         holder.itemIV.setImageResource(R.drawable.ic_home);
                         break;
-                    case "Food":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                    case "Utilities":
+                        holder.itemIV.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
                         break;
-                    case "Entertainment":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                    case "Dental":
+                        holder.itemIV.setImageResource(R.drawable.dentistry_fill1_wght300_grad0_opsz40);
                         break;
-                    case "Home":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                    case "Transportation":
+                        holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
                         break;
 
                 }
@@ -214,7 +209,7 @@ public class ExpenseActivity extends AppCompatActivity {
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieve_layout, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieve_layout_budget, parent, false);
                 return new MyViewHolder(view);
             }
         };

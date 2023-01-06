@@ -28,14 +28,14 @@
             android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/spinnerBudget"
+                android:id="@+id/spinnerExpense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#fff"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:entries="@array/budgetItems">
+                android:entries="@array/expensesCategory">
             </Spinner>
 
             <EditText
