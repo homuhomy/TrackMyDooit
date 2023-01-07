@@ -30,4 +30,9 @@
         android:name="com.example.trackmydooit.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" />
+    <activity
+        android:id="@+id/DestGoals"
+        android:name="com.example.trackmydooit.CreateSavingsGoalActivity"
+        android:label="activity_goals"
+        tools:layout="@layout/activity_create_savings_goal"/>
 </navigation>

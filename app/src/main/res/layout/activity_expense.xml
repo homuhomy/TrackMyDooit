@@ -38,34 +38,54 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/RVExpense"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/RVIncome"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/FABAddTrans"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom_nav_view"
             android:layout_gravity="bottom|center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/black"
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
-            android:layout_marginVertical="20dp"
             android:text="Add transaction"
+            android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/menu_bottom"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RVIncome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
 
 
 
