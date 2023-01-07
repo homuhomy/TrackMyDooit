@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
             android:textStyle="bold"
-            android:text="Update this item?"
+            android:text="Update this category?"
             android:gravity="center"
             android:textColor="#000"
             android:textSize="18sp"

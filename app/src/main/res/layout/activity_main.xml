@@ -80,14 +80,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Budget"/>
+
                     <TextView
                         android:id="@+id/BudgetAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="RM 600.20"
-                        android:textSize="20sp"
                         android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

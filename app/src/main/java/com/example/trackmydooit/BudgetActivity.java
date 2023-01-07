@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -45,7 +45,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private TextView budgetTV;
     private RecyclerView RVBudget;
-    private Toolbar settingsToolBar;
+    private Toolbar ToolBar;
 
     private ExtendedFloatingActionButton FABAddBudget;
 
@@ -62,6 +62,11 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
+
+        //toolbar title
+        ToolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(ToolBar);
+        getSupportActionBar().setTitle("My Budgets");
 
         mAuth = FirebaseAuth.getInstance();
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
