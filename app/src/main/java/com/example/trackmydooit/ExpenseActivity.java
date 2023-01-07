@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,6 +31,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,6 +66,8 @@ public class ExpenseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserId = mAuth.getCurrentUser().getUid();
@@ -271,11 +276,15 @@ public class ExpenseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+        FirebaseRecyclerOptions<Data> expenseOption = new FirebaseRecyclerOptions.Builder<Data>()
                 .setQuery(expenseRef, Data.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Data,MyViewHolder> adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
+        /*FirebaseRecyclerOptions<Data> incomeOption = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(incomeRef, Data.class)
+                .build();*/
+
+        FirebaseRecyclerAdapter<Data,MyViewHolder> expenseAdapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(expenseOption) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
                 holder.setItemAmount("Allocated amount: RM" + model.getAmount());
@@ -308,9 +317,43 @@ public class ExpenseActivity extends AppCompatActivity {
             }
         };
 
-        RVExpense.setAdapter(adapter);
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
+        /*FirebaseRecyclerAdapter<Data,MyViewHolder> incomeAdapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(incomeOption) {
+            @Override
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Data model) {
+                holder.setItemAmount("Allocated amount: +RM" + model.getAmount());
+                holder.setDate("On" + model.getDate());
+                holder.setItemName("Income Item: " + model.getItem());
+
+                holder.notes.setVisibility(View.GONE);
+
+                switch (model.getItem()){
+                    case "Salary":
+                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                        break;
+                    case "Scholarship":
+                        holder.itemIV.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
+                        break;
+                    case "Allowance":
+                        holder.itemIV.setImageResource(R.drawable.dentistry_fill1_wght300_grad0_opsz40);
+                        break;
+                }
+            }
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieve_layout_budget, parent, false);
+                return new MyViewHolder(view);
+            }
+        };*/
+
+        RVExpense.setAdapter(expenseAdapter);
+        expenseAdapter.startListening();
+        expenseAdapter.notifyDataSetChanged();
+
+        /*RVIncome.setAdapter(incomeAdapter);
+        incomeAdapter.startListening();
+        incomeAdapter.notifyDataSetChanged();*/
 
     }
 
