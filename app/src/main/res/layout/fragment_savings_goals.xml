@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.942" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/Goal3"
         android:layout_width="311dp"
         android:layout_height="75dp"
         android:orientation="horizontal"
@@ -88,7 +88,7 @@
             android:src="@drawable/home_fill1_wght300_grad0_opsz20" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
@@ -98,13 +98,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="House" />
+                android:text="House"
+                android:id="@+id/House"/>
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="150dp"
+                android:layout_width="155dp"
                 android:layout_height="10dp"
-                android:layout_margin="10dp"
+                android:layout_margin="1dp"
                 android:max="100"
                 android:progress="60" />
         </LinearLayout>
@@ -137,7 +138,8 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9" />
+                    app:tint="#C9C9C9"
+                    android:id="@+id/Edit3"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -145,7 +147,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/Goal1"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -176,13 +178,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Airpods" />
+                android:text="Airpods"
+                android:id="@+id/Airpods"/>
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="10dp"
-                android:layout_margin="10dp"
+                android:layout_margin="1dp"
                 android:max="100"
                 android:progress="60" />
         </LinearLayout>
@@ -217,7 +220,8 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9" />
+                    app:tint="#C9C9C9"
+                    android:id="@+id/Edit1"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -225,7 +229,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/Goal2"
         android:layout_width="310dp"
         android:layout_height="68dp"
         android:orientation="horizontal"
@@ -256,15 +260,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Treasure Ticket Concert" />
+                android:text="Treasure Ticket Concert"
+                android:id="@+id/Ticket"/>
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
                 android:layout_height="10dp"
-                android:layout_margin="10dp"
+                android:layout_margin="1dp"
                 android:max="100"
                 android:progress="60" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -294,7 +300,8 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9" />
+                    app:tint="#C9C9C9"
+                    android:id="@+id/Edit2"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -302,13 +309,13 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/SavingsGoals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Savings Goals"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/Goal1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -97,7 +97,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
 
                 }
                 else {
-                    loader.setMessage("adding a budegt item");
+                    loader.setMessage("adding a budget item");
                     loader.setCanceledOnTouchOutside(false);
                     loader.show();
 
