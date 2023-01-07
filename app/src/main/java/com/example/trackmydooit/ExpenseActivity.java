@@ -362,6 +362,7 @@ public class ExpenseActivity extends AppCompatActivity {
         View mView;
         public ImageView itemIV;
         public TextView notes;
+        public TextView date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -382,6 +383,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         public void setDate (String itemDate){
             TextView item = mView.findViewById(R.id.date);
+            item.setText(itemDate);
         }
     }
 }
