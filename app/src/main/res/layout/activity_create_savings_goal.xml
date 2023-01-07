@@ -302,43 +302,37 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="100dp"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/FABAddBudget"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="157dp"
-            android:layout_marginTop="650dp"
-            android:layout_marginEnd="166dp"
-            android:layout_marginBottom="120dp"
-            android:backgroundTint="@color/orange"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/update"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="157dp"
             android:layout_marginTop="600dp"
-            android:layout_marginEnd="166dp"
-            android:layout_marginBottom="120dp"
-            android:backgroundTint="@color/orange"
-            android:text="Update"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_gravity="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="Update Goals"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/orange" />
 
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/FABack"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="Back"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/orange" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

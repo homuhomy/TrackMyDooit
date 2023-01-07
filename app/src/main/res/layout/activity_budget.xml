@@ -42,16 +42,16 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
+            android:layout_marginVertical="20dp"
             android:layout_marginBottom="10dp"
-            app:backgroundTint="@color/orange"
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
-            android:layout_marginVertical="20dp"
             android:text="Add Budget"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:backgroundTint="@color/orange" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
