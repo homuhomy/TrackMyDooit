@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -44,6 +45,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private TextView budgetTV;
     private RecyclerView RVBudget;
+    private Toolbar settingsToolBar;
 
     private ExtendedFloatingActionButton FABAddBudget;
 
@@ -103,6 +105,7 @@ public class BudgetActivity extends AppCompatActivity {
         });
     }
 
+
     private void additem() {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
@@ -129,7 +132,7 @@ public class BudgetActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(budgetItem.equals("Select a budget category")){
+                if(budgetItem.equals("Click to select a budget category")){
                     Toast.makeText(BudgetActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
                 }
 
@@ -193,7 +196,7 @@ public class BudgetActivity extends AppCompatActivity {
                 protected void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Data model) {
 
                 holder.setItemAmount("Allocated amount: RM" + model.getAmount());
-                holder.setDate("On" + model.getDate());
+                holder.setDate("Date Created: " + model.getDate());
                 holder.setItemName("Category: " + model.getItem());
 
                 holder.notes.setVisibility(View.GONE);
@@ -244,27 +247,32 @@ public class BudgetActivity extends AppCompatActivity {
 
         View mView;
         public ImageView itemIV;
-        public TextView notes;
+        public TextView notes, date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
             itemIV = itemView.findViewById(R.id.itemIV);
             notes = itemView.findViewById(R.id.note);
+            date = itemView.findViewById(R.id.date);
         }
 
+        // item from update budget layout xml
         public void setItemName (String itemName){
             TextView item = mView.findViewById(R.id.item);
             item.setText(itemName);
         }
 
+        //amount from retreive layout budget xml
         public void setItemAmount (String itemAmount){
             TextView item = mView.findViewById(R.id.amount);
             item.setText(itemAmount);
         }
 
+        //date from retrive layout budget xml
         public void setDate (String itemDate){
             TextView item = mView.findViewById(R.id.date);
+            item.setText(itemDate);
         }
     }
 

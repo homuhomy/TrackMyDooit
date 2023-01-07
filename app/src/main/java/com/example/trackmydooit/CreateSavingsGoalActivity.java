@@ -57,7 +57,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
         });
 
         //go to MainPage
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.FABack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

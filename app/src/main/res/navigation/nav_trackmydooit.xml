@@ -30,4 +30,5 @@
         android:name="com.example.trackmydooit.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" />
+
 </navigation>
