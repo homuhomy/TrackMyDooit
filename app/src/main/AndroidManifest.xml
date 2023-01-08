@@ -18,6 +18,27 @@
         android:theme="@style/Theme.TrackMyDooit"
         tools:targetApi="31">
         <activity
+            android:name=".DailyAnalyticsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ChooseAnalyticActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WeekSpendingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".BudgetActivity"
             android:exported="false">
             <meta-data
@@ -49,7 +70,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ExpenseActivity"
             android:exported="false">
