@@ -69,15 +69,13 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    //implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    //implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 
 allprojects {
     repositories {
         mavenCentral()
         //maven { url 'http://repo1.maven.org/maven2' }
-
-
     }
-
 }

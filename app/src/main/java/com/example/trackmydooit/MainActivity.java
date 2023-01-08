@@ -8,6 +8,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private CardView CVExpense;
     private CardView CVBudget;
     private TextView BudgetAmount;
+    //private TextView CVTest;
+    //private TextView mainTitle;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference budgetRef, expensesRef, personalRef;
+    private DatabaseReference budgetRef, expenseRef, personalRef;
     private String onlineUserID = "";
 
     private int totalAmountMonth = 0;
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private int totalAmountBudgetC = 0;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
-        expensesRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
+        expenseRef = FirebaseDatabase.getInstance().getReference("expense").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
 
 
@@ -77,15 +82,19 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+ //                   case R.id.DestNotifications:
+ //                       startActivity(new Intent(getApplicationContext(), Notification.class));
+ //                       overridePendingTransition(0,0);
+ //                       return true;
                 }
                 return false;
             }
         });
 
-
-
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
+        //CVTest = findViewById(R.id.CVTest);
+        //mainTitle = findViewById(R.id.mainTitle);
 
         CVExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +109,28 @@ public class MainActivity extends AppCompatActivity {
                 CVBudget.getContext().startActivity(new Intent(CVBudget.getContext(), BudgetActivity.class));
             }
         });
+
+        //dummy click to weekly report
+        /*
+        CVTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WeekSpendingActivity.class);
+                intent.putExtra("type", "week");
+                startActivity(intent);
+            }
+        });
+
+        //dummy to click on monthly report
+        mainTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WeekSpendingActivity.class);
+                intent.putExtra("type", "month");
+                startActivity(intent);
+            }
+        });
+        */
 
         //to check if budget exists or not
         budgetRef.addValueEventListener(new ValueEventListener() {

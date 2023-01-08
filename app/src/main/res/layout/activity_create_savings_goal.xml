@@ -311,7 +311,7 @@
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
-            android:text="Update Goals"
+            android:text="Add Goals"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
