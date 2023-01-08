@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add new expenses"
+            android:text="Add new income"
             android:gravity="center"
             android:textColor="#000"
             android:id="@+id/itemExpenseTV"
@@ -43,45 +43,6 @@
                 android:entries="@array/walletList">
             </Spinner>
 
-            <LinearLayout
-                android:id="@+id/receiptLayout"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/receipt"
-                    android:textColor="#000000"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center_vertical"/>
-                <Button
-                    android:id="@+id/addReciptBTN"
-                    android:layout_width="wrap_content"
-                    android:text="@string/add"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round_ish_button"
-                    android:textAllCaps="false"
-                    android:textColor="#000000"
-                    style="?android:attr/borderlessButtonStyle"
-                    app:backgroundTint="@color/orange"
-                    android:layout_marginRight="10dp"/>
-
-            </LinearLayout>
-
-            <Spinner
-                android:id="@+id/spinnerExpense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#fff"
-                android:entries="@array/expensesCategory"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:visibility="visible"></Spinner>
 
             <Spinner
                 android:id="@+id/spinnerIncome"
@@ -91,11 +52,10 @@
                 android:background="#fff"
                 android:entries="@array/incomeCategory"
                 android:gravity="center"
-                android:minHeight="48dp"
-                android:visibility="gone"></Spinner>
+                android:minHeight="48dp"></Spinner>
 
             <EditText
-                android:id="@+id/ExpenseAmountET"
+                android:id="@+id/IncomeAmountET"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginStart="10dp"

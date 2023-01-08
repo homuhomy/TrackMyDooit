@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ExpenseActivity">
+    tools:context=".IncomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -18,11 +18,11 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
-        android:id="@+id/expenseTV"
+        android:id="@+id/incomeTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Expenses this month: RM500"
+        android:text="Income this month: RM500"
         android:textSize="27sp"
         android:textAlignment="center"
         android:textColor="#000000"/>
@@ -34,9 +34,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/RVExpense"/>
+            android:id="@+id/RVIncome"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABAddExpense"
+            android:id="@+id/FABAddIncome"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/bottom_nav_view"
@@ -47,7 +47,7 @@
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
-            android:text="Add expense"
+            android:text="Add income"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:textAllCaps="false"

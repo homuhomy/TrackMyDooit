@@ -13,7 +13,7 @@
     </string-array>
 
     <string-array name="walletList">
-        <item>Select wallet</item>
+        <item>Select a wallet</item>
         <item>Maybank</item>
         <item>Boost</item>
         <item>GrabPay</item>

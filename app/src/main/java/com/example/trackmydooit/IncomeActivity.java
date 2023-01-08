@@ -41,15 +41,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ExpenseActivity extends AppCompatActivity {
+public class IncomeActivity extends AppCompatActivity {
 
-    private TextView expenseTV;
-    private RecyclerView RVExpense;
+    private TextView incomeTV;
+    private RecyclerView RVIncome;
     private Toolbar ToolBar;
 
-    private ExtendedFloatingActionButton FABAddExpense;
+    private ExtendedFloatingActionButton FABAddIncome;
 
-    private DatabaseReference expenseRef;
+    private DatabaseReference incomeRef;
     private FirebaseAuth mAuth;
     private ProgressDialog loader;
 
@@ -61,27 +61,27 @@ public class ExpenseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense);
+        setContentView(R.layout.activity_income);
 
         //toolbar title
         ToolBar = findViewById(R.id.toolbar);
         setSupportActionBar(ToolBar);
-        getSupportActionBar().setTitle("My Expenses");
+        getSupportActionBar().setTitle("My Income");
 
         mAuth = FirebaseAuth.getInstance();
-        expenseRef = FirebaseDatabase.getInstance().getReference().child("expense").child(mAuth.getCurrentUser().getUid());
+        incomeRef = FirebaseDatabase.getInstance().getReference().child("income").child(mAuth.getCurrentUser().getUid());
         loader = new ProgressDialog(this);
 
-        expenseTV = findViewById(R.id.expenseTV);
-        RVExpense = findViewById(R.id.RVExpense);
+        incomeTV = findViewById(R.id.incomeTV);
+        RVIncome = findViewById(R.id.RVIncome);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
-        RVExpense.setHasFixedSize(true);
-        RVExpense.setLayoutManager(linearLayoutManager);
+        RVIncome.setHasFixedSize(true);
+        RVIncome.setLayoutManager(linearLayoutManager);
 
-        expenseRef.addValueEventListener(new ValueEventListener() {
+        incomeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int totalAmount = 0;
@@ -89,8 +89,8 @@ public class ExpenseActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     Data data = snap.getValue(Data.class);
                     totalAmount = totalAmount + data.getAmount();
-                    String sTotal = "Expense this month: RM" + totalAmount;
-                    expenseTV.setText(sTotal);
+                    String sTotal = "Income this month: RM" + totalAmount;
+                    incomeTV.setText(sTotal);
                 }
             }
 
@@ -100,9 +100,9 @@ public class ExpenseActivity extends AppCompatActivity {
             }
         });
 
-        FABAddExpense = findViewById(R.id.FABAddExpense);
+        FABAddIncome = findViewById(R.id.FABAddIncome);
 
-        FABAddExpense.setOnClickListener(view -> additem());
+        FABAddIncome.setOnClickListener(view -> additem());
     }
 
 
@@ -110,41 +110,41 @@ public class ExpenseActivity extends AppCompatActivity {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
-        View myView = inflater.inflate(R.layout.input_layout_expense, null);
+        View myView = inflater.inflate(R.layout.input_layout_income, null);
         myDialog.setView(myView);
 
         final AlertDialog dialog = myDialog.create();
         dialog.setCancelable(false);
 
-        final Spinner spinnerExpense = myView.findViewById(R.id.spinnerExpense);
+        final Spinner spinnerIncome = myView.findViewById(R.id.spinnerIncome);
         final Spinner spinnerWallet = myView.findViewById(R.id.spinnerWallet);
-        final EditText ExpenseAmountET = myView.findViewById(R.id.ExpenseAmountET);
+        final EditText IncomeAmountET = myView.findViewById(R.id.IncomeAmountET);
         final Button cancelTransBTN = myView.findViewById(R.id.cancelTransBTN);
         final Button addTransBTN = myView.findViewById(R.id.addTransBTN);
 
         addTransBTN.setOnClickListener(view -> {
-            String expenseAmount = ExpenseAmountET.getText().toString();
-            String expenseItem = spinnerExpense.getSelectedItem().toString();
+            String incomeAmount = IncomeAmountET.getText().toString();
+            String incomeItem = spinnerIncome.getSelectedItem().toString();
             String walletItem = spinnerWallet.getSelectedItem().toString();
 
-            if (TextUtils.isEmpty(expenseAmount)){
-                ExpenseAmountET.setError("Amount is required!");
+            if (TextUtils.isEmpty(incomeAmount)){
+                IncomeAmountET.setError("Amount is required!");
                 return;
             }
 
-            if(expenseItem.equals("Select an expense category")){
-                Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
+            if(incomeItem.equals("Select an expense category")){
+                Toast.makeText(IncomeActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
             }
 
             if(walletItem.equals("Select a wallet")){
-                Toast.makeText(ExpenseActivity.this, "Select a valid wallet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(IncomeActivity.this, "Select a valid wallet", Toast.LENGTH_SHORT).show();
             }
             else {
-                loader.setMessage("Adding an expene item..");
+                loader.setMessage("Adding an income item..");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
 
-                String id = expenseRef.push().getKey();
+                String id = incomeRef.push().getKey();
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 Calendar cal = Calendar.getInstance();
                 String date = dateFormat.format(cal.getTime());
@@ -154,16 +154,16 @@ public class ExpenseActivity extends AppCompatActivity {
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(expenseItem, date, id, null, Integer.parseInt(expenseAmount), months.getMonths());
-                expenseRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                Data data = new Data(incomeItem, date, id, null, Integer.parseInt(incomeAmount), months.getMonths());
+                incomeRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IncomeActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
                         }
 
                         else {
-                            Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IncomeActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
 
                         loader.dismiss();
@@ -190,7 +190,7 @@ public class ExpenseActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
-                .setQuery(expenseRef, Data.class)
+                .setQuery(incomeRef, Data.class)
                 .build();
 
         FirebaseRecyclerAdapter<Data,MyViewHolder> adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
@@ -204,21 +204,18 @@ public class ExpenseActivity extends AppCompatActivity {
                 holder.notes.setVisibility(View.GONE);
 
                 switch (model.getItem()){
-                    case "Rent":
+                    case "Salary":
                         holder.itemIV.setImageResource(R.drawable.home_fill1_wght300_grad0_opsz24);
                         break;
-                    case "Utilities":
+                    case "Scholarship":
                         holder.itemIV.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
                         break;
-                    case "Dental":
+                    case "Allowance":
                         holder.itemIV.setImageResource(R.drawable.dentistry_fill1_wght300_grad0_opsz40);
-                        break;
-                    case "Transportation":
-                        holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
                         break;
                 }
 
-                //edit expense
+                //edit budget
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -234,12 +231,12 @@ public class ExpenseActivity extends AppCompatActivity {
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieve_layout_expense, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrieve_layout_income, parent, false);
                 return new MyViewHolder(view);
             }
         };
 
-        RVExpense.setAdapter(adapter);
+        RVIncome.setAdapter(adapter);
         adapter.startListening();
         adapter.notifyDataSetChanged();
 
@@ -259,13 +256,13 @@ public class ExpenseActivity extends AppCompatActivity {
             date = itemView.findViewById(R.id.date);
         }
 
-        // item from update expense layout xml
+        // item from update budget layout xml
         public void setItemName (String itemName){
             TextView item = mView.findViewById(R.id.item);
             item.setText(itemName);
         }
 
-        //amount from retreive layout expense xml
+        //amount from retreive layout budget xml
         public void setItemAmount (String itemAmount){
             TextView item = mView.findViewById(R.id.amount);
             item.setText(itemAmount);
@@ -282,7 +279,7 @@ public class ExpenseActivity extends AppCompatActivity {
     private void updateData(){
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
-        View mView = inflater.inflate(R.layout.update_layout_expense,null);
+        View mView = inflater.inflate(R.layout.update_layout_income,null);
 
         myDialog.setView(mView);
         final AlertDialog dialog = myDialog.create();
@@ -315,13 +312,13 @@ public class ExpenseActivity extends AppCompatActivity {
             Months months = Months.monthsBetween(epoch, now);
 
             Data data = new Data(item, date, postKey, null, amount, months.getMonths());
-            expenseRef.child(postKey).setValue(data).addOnCompleteListener(task -> {
+            incomeRef.child(postKey).setValue(data).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
-                    Toast.makeText(ExpenseActivity.this, "Expense was updated successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IncomeActivity.this, "Income was updated successfully!", Toast.LENGTH_SHORT).show();
                 }
 
                 else {
-                    Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IncomeActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
 
             });
@@ -331,15 +328,15 @@ public class ExpenseActivity extends AppCompatActivity {
         delBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                expenseRef.child(postKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                incomeRef.child(postKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(ExpenseActivity.this, "Deleted successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IncomeActivity.this, "Deleted successfully!", Toast.LENGTH_SHORT).show();
                         }
 
                         else {
-                            Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IncomeActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
 
                     }

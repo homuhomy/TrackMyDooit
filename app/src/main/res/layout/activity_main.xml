@@ -109,14 +109,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="15dp">
-
-                    <ProgressBar
-                        android:id="@+id/ExpenseProgressBar"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:indeterminateOnly="false"
-                        android:progress="60"
-                        android:progressDrawable="@drawable/circle_progress"/>
                     <TextView
                         android:id="@+id/TVExpenses"
                         android:layout_width="wrap_content"
@@ -136,19 +128,38 @@
                         android:text="RM 200 for today"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVIncome"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+                    <TextView
+                        android:id="@+id/TVIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Income"/>
+                    <TextView
+                        android:id="@+id/IncomeAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RM 600.20"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RM 200 for today"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/CVTest"
-            android:backgroundTint="@color/light_grey"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardElevation="5dp"
-            android:layout_margin="30dp"
-            app:cardCornerRadius="20dp">
-
-        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
