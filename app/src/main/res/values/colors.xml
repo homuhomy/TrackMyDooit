@@ -15,4 +15,11 @@
     <color name="light_border_color">#DADADA</color>
     <color name="black_shade_1">#292D36</color>
     <color name="yellow">#ffa500</color>
+    <color name="baby_grey">#DEE0E4</color>
+    <color name="baby_blue">#DDF2FD</color>
+    <color name="baby_yellow">#FAF8DF</color>
+    <color name="baby_pink">#FCEBF6</color>
+    <color name="baby_purple">#ECE3FC</color>
+    <color name="baby_green">#E8FBE1</color>
+
 </resources>

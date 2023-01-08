@@ -47,7 +47,8 @@
             android:textStyle="bold"
             android:text="RM 25,011.58"
             android:textSize="32sp"
-            android:layout_margin="30dp" />
+            android:layout_margin="30dp"
+            />
 
         <LinearLayout
             android:layout_weight="1"
