@@ -3,8 +3,13 @@ package com.example.trackmydooit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,14 +29,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView CVExpense, CVIncome;
+    private CardView CVExpense;
     private CardView CVBudget;
     private TextView BudgetAmount;
     //private TextView CVTest;
     //private TextView mainTitle;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef;
+    private DatabaseReference budgetRef, expenseRef, personalRef;
     private String onlineUserID = "";
 
     private int totalAmountMonth = 0;
@@ -87,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         CVExpense = findViewById(R.id.CVExpense);
-        CVIncome = findViewById(R.id.CVIncome);
         CVBudget = findViewById(R.id.CVBudget);
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
@@ -96,13 +100,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class));
-            }
-        });
-
-        CVIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), IncomeActivity.class));
             }
         });
 

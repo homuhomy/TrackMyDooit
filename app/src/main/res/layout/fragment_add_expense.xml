@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".AddExpense"
     android:orientation="vertical"
     android:padding="30dp">
 
@@ -23,27 +24,10 @@
             android:textColor="#000000"
             android:textSize="15sp" />
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Expense"/>
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Income"/>
-        </RadioGroup>
-
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
 
             <Button
                 android:id="@+id/BTExpenses"
@@ -73,7 +57,7 @@
                 android:textColor="#000000"
                 android:layout_weight="1"/>
 
-        </LinearLayout>-->
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -171,8 +155,8 @@
                 android:background="@drawable/round_ish_button"
                 android:fontFamily="@font/open_sans"
                 android:shadowColor="#00FFFFFF"
-                style="?android:attr/borderlessButtonStyle"
                 android:text="Maybank"
+                style="?android:attr/borderlessButtonStyle"
                 app:backgroundTint="@color/orange"
                 android:textAllCaps="false"
                 android:textColor="#000000" />
@@ -290,7 +274,7 @@
         android:textAlignment="center"
         android:text="Add transaction"
         android:textAllCaps="false"
-        /> -->
+        />
 
 
 </LinearLayout>

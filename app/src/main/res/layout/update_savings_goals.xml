@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:elevation="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -51,6 +52,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
                 android:text="Cancel"
+                android:id="@+id/cancel"
                 android:textAllCaps="false"
                 app:backgroundTint="@color/orange"
                 android:background="@drawable/round_ish_button"
@@ -71,6 +73,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
                 android:text="Update"
+                android:id="@+id/update"
                 android:textAllCaps="false"
                 app:backgroundTint="@color/orange"
                 android:background="@drawable/round_ish_button"

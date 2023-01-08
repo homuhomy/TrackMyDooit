@@ -11,9 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+
 public class SavingsGoals extends AppCompatActivity {
 
     private Button button;
+    private DatabaseReference savingRef;
+    String savings = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,10 +29,12 @@ public class SavingsGoals extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SavingsGoals.this, AddGoals.class);
+                Intent intent = new Intent(SavingsGoals.this, CreateSavingsGoalActivity.class);
                 startActivity(intent);
             }
         });
 
+//        savingRef.child(savings).setValue()
     }
+
 }
