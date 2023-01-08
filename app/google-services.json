@@ -1,9 +1,9 @@
 {
   "project_info": {
     "project_number": "718914901606",
+    "firebase_url": "https://trackmydooit-default-rtdb.asia-southeast1.firebasedatabase.app/",
     "project_id": "trackmydooit",
-    "storage_bucket": "trackmydooit.appspot.com",
-    "firebase_url": "https://trackmydooit-default-rtdb.asia-southeast1.firebasedatabase.app"
+    "storage_bucket": "trackmydooit.appspot.com"
   },
   "client": [
     {

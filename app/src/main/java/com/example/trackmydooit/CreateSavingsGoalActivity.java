@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
 
     private DatabaseReference budgetRef;
     private ProgressDialog loader;
+    private ImageView edit1,edit2,edit3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,30 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CreateSavingsGoalActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        edit1 = findViewById(R.id.Edit1);
+        edit1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CreateSavingsGoalActivity.this, SavingsGoals.class);
+                startActivity(intent);
+            }
+        });
+        edit2 = findViewById(R.id.Edit2);
+        edit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CreateSavingsGoalActivity.this, SavingsGoals.class);
+                startActivity(intent);
+            }
+        });
+        edit3 = findViewById(R.id.Edit3);
+        edit3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CreateSavingsGoalActivity.this, SavingsGoals.class);
                 startActivity(intent);
             }
         });

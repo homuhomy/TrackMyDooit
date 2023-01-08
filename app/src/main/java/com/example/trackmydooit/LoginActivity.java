@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout email, password;
     private Button loginBtn;
-    private TextView loginQn;
+    private TextView loginQn, ForgotPassword;
 
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.loginBtn);
         loginQn = findViewById(R.id.loginQn);
+        ForgotPassword = findViewById(R.id.ForgotPassword);
 
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -105,6 +106,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+        ForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
             }
         });
     }
