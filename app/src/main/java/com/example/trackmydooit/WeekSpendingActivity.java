@@ -1,4 +1,4 @@
-package com.example.trackmydooit;
+/*package com.example.trackmydooit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -158,3 +158,4 @@ public class WeekSpendingActivity extends AppCompatActivity {
 });
     }
 }
+*/
