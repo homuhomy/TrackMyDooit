@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="<50%"
+            android:text="&lt;50%"
             android:layout_gravity="center_vertical"
             android:textSize="12sp"
             android:textColor="#000"/>
@@ -76,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text=">100%"
+            android:text="&gt;100%"
             android:layout_gravity="center_vertical"
             android:textSize="12sp"
             android:textColor="#000"/>
