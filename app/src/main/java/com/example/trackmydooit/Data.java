@@ -2,7 +2,7 @@ package com.example.trackmydooit;
 
 public class Data {
 
-    String item, date, id, notes;
+    String item, date, id, notes, wallet;
     int amount, month;
 
     public Data(){
@@ -19,6 +19,10 @@ public class Data {
 
     public String getItem() {
         return item;
+    }
+
+    public String getWallet() {
+        return wallet;
     }
 
     public void setItem(String item) {

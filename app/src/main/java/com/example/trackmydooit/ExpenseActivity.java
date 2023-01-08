@@ -43,6 +43,7 @@ import java.util.Calendar;
 
 public class ExpenseActivity extends AppCompatActivity {
 
+    //TODO: Add wallet
     private TextView expenseTV;
     private RecyclerView RVExpense;
     private Toolbar ToolBar;
@@ -200,6 +201,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 holder.setItemAmount("Allocated amount: RM" + model.getAmount());
                 holder.setDate("Date Created: " + model.getDate());
                 holder.setItemName("Category: " + model.getItem());
+                holder.setWalletName("Wallet: " + model.getItem());
 
                 holder.notes.setVisibility(View.GONE);
 
@@ -249,7 +251,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         View mView;
         public ImageView itemIV;
-        public TextView notes, date;
+        public TextView notes, date, wallet;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -257,12 +259,17 @@ public class ExpenseActivity extends AppCompatActivity {
             itemIV = itemView.findViewById(R.id.itemIV);
             notes = itemView.findViewById(R.id.note);
             date = itemView.findViewById(R.id.date);
+            wallet = itemView.findViewById(R.id.wallet);
         }
 
         // item from update expense layout xml
         public void setItemName (String itemName){
             TextView item = mView.findViewById(R.id.item);
             item.setText(itemName);
+        }
+        public void setWalletName (String walletName){
+            TextView item = mView.findViewById(R.id.wallet);
+            item.setText(walletName);
         }
 
         //amount from retreive layout expense xml

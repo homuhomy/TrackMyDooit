@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView CVExpense;
+    private CardView CVExpense, CVIncome;
     private CardView CVBudget;
     private TextView BudgetAmount;
     //private TextView CVTest;
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
+        CVIncome = findViewById(R.id.CVIncome);
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
 
@@ -100,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class));
+            }
+        });
+
+        CVIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), IncomeActivity.class));
             }
         });
 
