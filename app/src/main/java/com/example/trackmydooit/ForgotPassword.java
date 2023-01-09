@@ -38,7 +38,7 @@ public class ForgotPassword extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setMessage("Loading");
 
-        binding.FPasswordBtn.setOnClickListener(view -> {
+        binding.ForgotBtn.setOnClickListener(view -> {
             forgotpassword();
         });
 
@@ -54,7 +54,7 @@ public class ForgotPassword extends AppCompatActivity {
     }
 
     private boolean validateEmail(){
-        String emailInput = binding.email.getText().toString();
+        String emailInput = binding.email.getEditText().getText().toString();
         if (emailInput.isEmpty()){
             binding.email.setError("Field can't be empty");
             return false;
@@ -76,7 +76,7 @@ public class ForgotPassword extends AppCompatActivity {
         }
         dialog.show();
 
-        auth.sendPasswordResetEmail(binding.email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        auth.sendPasswordResetEmail(binding.email.getEditText().getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 dialog.dismiss();

@@ -32,6 +32,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -91,6 +92,7 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/cancel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -111,6 +113,7 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/addGoal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"

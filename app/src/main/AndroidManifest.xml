@@ -21,6 +21,20 @@
         android:theme="@style/Theme.TrackMyDooit"
         tools:targetApi="31">
         <activity
+            android:name=".Logout"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".History"
             android:exported="false">
             <meta-data
@@ -69,15 +83,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".CameraActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
             <meta-data
                 android:name="com.google.mlkit.vision.DEPENDENCIES"
                 android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->

@@ -111,6 +111,14 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //get current state of logging status
+        mAuth = FirebaseAuth.getInstance();
+
+        //if user nvr logout, send them str8 to homescreen
+        if(mAuth.getCurrentUser() != null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
 /*
     @Override
