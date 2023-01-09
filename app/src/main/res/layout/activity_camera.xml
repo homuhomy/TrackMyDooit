@@ -20,10 +20,19 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Scan your receipt"
+            android:layout_marginBottom="100dp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/black"
             android:textStyle="bold"/>
     </ScrollView>
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:visibility="gone"/>
+
 
     <ImageView
         android:id="@+id/capturedImage"
@@ -39,9 +48,9 @@
         android:gravity="bottom"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
+        android:paddingTop="50dp"
         android:paddingRight="10dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="50dp">
+        android:paddingBottom="20dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/BTCapture"
@@ -74,7 +83,6 @@
             app:iconGravity="textStart"
             app:iconTint="@color/black" />
     </LinearLayout>
-
 
 
 </LinearLayout>
