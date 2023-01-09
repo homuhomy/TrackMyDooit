@@ -31,13 +31,14 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth.AuthStateListener authStateListener;
+    //private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /*
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
             }
-        };
+        };*/
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -122,5 +123,5 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(authStateListener);
-    }
+    }*/
 }

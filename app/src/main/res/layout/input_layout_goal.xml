@@ -7,7 +7,7 @@
     android:elevation="10dp"
     app:cardElevation="10dp"
     android:layout_marginTop="10dp">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,12 +17,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a budget categoy:"
+            android:text="Select a goal category:"
             android:fontFamily="@font/open_sans"
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="#000"
-            android:id="@+id/itemBudgetTV"
+            android:id="@+id/itemGoal"
             android:textSize="18sp"
             android:layout_margin="5dp"/>
 
@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/spinnerBudget"
+                android:id="@+id/spinnerGoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
@@ -45,7 +45,7 @@
             </Spinner>
 
             <EditText
-                android:id="@+id/BudgetAmountET"
+                android:id="@+id/GoalAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Amount..."
@@ -55,6 +55,19 @@
                 android:textColor="#000"
                 android:textColorHint="#000"
                 android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/GoalDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Desc..."
+                android:fontFamily="@font/open_sans_semibold"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="#000"
+                android:textColorHint="#000"
+                android:layout_margin="5dp"/>
+
 
         </LinearLayout>
 

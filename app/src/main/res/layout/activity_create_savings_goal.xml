@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateSavingsGoalActivity">
+    android:orientation="vertical"
+    tools:context=".BudgetFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,326 +15,44 @@
         android:background="#000"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/savingsTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="116dp"
-        android:text="My Saving Goals"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/Goal1"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.217">
-
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:background="@drawable/small_button"
-            android:backgroundTint="@color/light_border_color"
-            android:src="@drawable/headphones_fill1_wght300_grad0_opsz20" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Airpods"
-                android:id="@+id/Airpods"/>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="150dp"
-                android:layout_height="10dp"
-                android:layout_margin="1dp"
-                android:max="100"
-                android:progress="60" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Total Savings" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:text="RM50" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9"
-                    android:id="@+id/Edit1"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Goal2"
-        android:layout_width="310dp"
-        android:layout_height="68dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36">
-
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:background="@drawable/small_button"
-            android:backgroundTint="@color/light_border_color"
-            android:src="@drawable/confirmation_number_fill1_wght300_grad0_opsz24" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Treasure Ticket Concert"
-                android:id="@+id/Ticket"/>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="150dp"
-                android:layout_height="10dp"
-                android:layout_margin="1dp"
-                android:max="100"
-                android:progress="60" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Savings" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RM1000" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9"
-                    android:id="@+id/Edit2"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Goal3"
-        android:layout_width="311dp"
-        android:layout_height="75dp"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.509">
-
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:background="@drawable/small_button"
-            android:backgroundTint="@color/light_border_color"
-            android:src="@drawable/home_fill1_wght300_grad0_opsz20" />
-
-        <LinearLayout
-            android:layout_width="155dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="House"
-                android:id="@+id/House"/>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="155dp"
-                android:layout_height="10dp"
-                android:layout_margin="1dp"
-                android:max="100"
-                android:progress="60" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Savings" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RM100" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:src="@drawable/drive_file_rename_outline_fill1_wght300_grad0_opsz24"
-                    app:tint="#C9C9C9"
-                    android:id="@+id/Edit3"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:text="My Total Savings: RM0"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="#000000"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/add_circle_40"
-            app:backgroundTint="#fff"
-            app:fabSize="normal"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Goal"/>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABAddBudget"
-            android:layout_width="200dp"
+            android:id="@+id/AddGoal"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="600dp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/open_sans_semibold"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:text="Add Goals"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/orange" />
-
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABack"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
             android:layout_marginVertical="20dp"
-            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/open_sans_semibold"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
-            android:text="Back"
+            android:text="Add New Goal"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:backgroundTint="@color/orange" />
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>
