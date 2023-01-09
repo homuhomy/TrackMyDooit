@@ -22,9 +22,9 @@ public class SavingsGoals extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_savings_goals);
+        setContentView(R.layout.activity_create_savings_goal);
 
-        button = findViewById(R.id.button);
+        button = findViewById(R.id.FABAddBudget);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

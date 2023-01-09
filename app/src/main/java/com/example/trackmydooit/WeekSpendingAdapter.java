@@ -1,4 +1,4 @@
-/*package com.example.trackmydooit;
+package com.example.trackmydooit;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -88,4 +88,3 @@ public class WeekSpendingAdapter extends RecyclerView.Adapter<WeekSpendingAdapte
         }
     }
 }
-*/

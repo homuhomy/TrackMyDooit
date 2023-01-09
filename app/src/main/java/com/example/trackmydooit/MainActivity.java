@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private CardView CVExpense, CVIncome;
     private CardView CVBudget;
     private TextView BudgetAmount;
-    //private TextView CVTest;
-    //private TextView mainTitle;
+    private TextView CVTest;
+    private TextView mainTitle;
 
     private FirebaseAuth mAuth;
     private DatabaseReference budgetRef, expenseRef, personalRef;
@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
                         overridePendingTransition(0,0);
                         return true;
- //                   case R.id.DestNotifications:
- //                       startActivity(new Intent(getApplicationContext(), Notification.class));
- //                       overridePendingTransition(0,0);
- //                       return true;
+                    case R.id.DestNotifications:
+                        startActivity(new Intent(getApplicationContext(), Notification.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        */
+         */
 
         //to check if budget exists or not
         budgetRef.addValueEventListener(new ValueEventListener() {
@@ -194,5 +194,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
