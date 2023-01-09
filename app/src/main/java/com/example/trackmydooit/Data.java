@@ -17,12 +17,28 @@ public class Data {
         this.month = month;
     }
 
-    public String getItem() {
-        return item;
+
+
+    public Data(String item, String date, String id, String wallet, String notes, int amount, int month) {
+        this.item = item;
+        this.date = date;
+        this.id = id;
+        this.wallet = wallet;
+        this.notes = notes;
+        this.amount = amount;
+        this.month = month;
     }
 
     public String getWallet() {
         return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
+    }
+
+    public String getItem() {
+        return item;
     }
 
     public void setItem(String item) {

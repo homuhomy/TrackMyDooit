@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class IncomeActivity extends AppCompatActivity {
     private DatabaseReference incomeRef;
     private FirebaseAuth mAuth;
     private ProgressDialog loader;
+    private Button expenseTB, incomeTB;
 
     private String postKey = "";
     private String item = "";
@@ -80,6 +82,12 @@ public class IncomeActivity extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         RVIncome.setHasFixedSize(true);
         RVIncome.setLayoutManager(linearLayoutManager);
+
+        /*expenseTB = findViewById(R.id.expenseTB);
+        incomeTB = findViewById(R.id.incomeTB);*/
+/*
+        expenseTB.setOnClickListener(view -> expenseTB.getContext().startActivity(new Intent(expenseTB.getContext(), ExpenseActivity.class)));
+        incomeTB.setOnClickListener(view -> incomeTB.getContext().startActivity(new Intent(incomeTB.getContext(), IncomeActivity.class)));*/
 
         incomeRef.addValueEventListener(new ValueEventListener() {
             @Override

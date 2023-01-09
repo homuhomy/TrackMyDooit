@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,18 +51,22 @@ public class ExpenseActivity extends AppCompatActivity {
     private Toolbar ToolBar;
 
     private ExtendedFloatingActionButton FABAddExpense;
+    private MaterialButtonToggleGroup toggleButton;
 
     private DatabaseReference expenseRef;
     private FirebaseAuth mAuth;
     private ProgressDialog loader;
+    private Button expenseTB, incomeTB;
 
     private String postKey = "";
     private String item = "";
     private int amount  = 0;
+    private String wallet = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
@@ -81,6 +87,12 @@ public class ExpenseActivity extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         RVExpense.setHasFixedSize(true);
         RVExpense.setLayoutManager(linearLayoutManager);
+
+//        expenseTB = findViewById(R.id.expenseTB);
+//        incomeTB = findViewById(R.id.incomeTB);
+
+        //expenseTB.setOnClickListener(view -> expenseTB.getContext().startActivity(new Intent(expenseTB.getContext(), ExpenseActivity.class)));
+        //incomeTB.setOnClickListener(view -> incomeTB.getContext().startActivity(new Intent(incomeTB.getContext(), IncomeActivity.class)));
 
         expenseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -122,6 +134,10 @@ public class ExpenseActivity extends AppCompatActivity {
         final EditText ExpenseAmountET = myView.findViewById(R.id.ExpenseAmountET);
         final Button cancelTransBTN = myView.findViewById(R.id.cancelTransBTN);
         final Button addTransBTN = myView.findViewById(R.id.addTransBTN);
+        final Button addReceiptBTN = myView.findViewById(R.id.addReceiptBTN);
+        final EditText note = myView.findViewById(R.id.note);
+
+        addReceiptBTN.setOnClickListener(view -> addReceiptBTN.getContext().startActivity(new Intent(addReceiptBTN.getContext(), CameraActivity.class)));
 
         addTransBTN.setOnClickListener(view -> {
             String expenseAmount = ExpenseAmountET.getText().toString();
@@ -141,7 +157,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 Toast.makeText(ExpenseActivity.this, "Select a valid wallet", Toast.LENGTH_SHORT).show();
             }
             else {
-                loader.setMessage("Adding an expene item..");
+                loader.setMessage("Adding an expense item..");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
 
@@ -155,20 +171,17 @@ public class ExpenseActivity extends AppCompatActivity {
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(expenseItem, date, id, null, Integer.parseInt(expenseAmount), months.getMonths());
-                expenseRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        else {
-                            Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                        }
-
-                        loader.dismiss();
+                Data data = new Data(expenseItem, date, id, walletItem, null, Integer.parseInt(expenseAmount), months.getMonths());
+                expenseRef.child(id).setValue(data).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
                     }
+
+                    else {
+                        Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    loader.dismiss();
                 });
 
             }
@@ -198,10 +211,11 @@ public class ExpenseActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Data model) {
 
+                //TODO : WALLET
                 holder.setItemAmount("Allocated amount: RM" + model.getAmount());
                 holder.setDate("Date Created: " + model.getDate());
                 holder.setItemName("Category: " + model.getItem());
-                holder.setWalletName("Wallet: " + model.getItem());
+                holder.setWalletName("Wallet: " + model.getWallet());
 
                 holder.notes.setVisibility(View.GONE);
 
@@ -220,6 +234,20 @@ public class ExpenseActivity extends AppCompatActivity {
                         break;
                 }
 
+                /*switch (model.getWallet()){
+                    case "Maybank":
+                        break;
+                    case "Boost":
+                        holder.itemIV.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
+                        break;
+                    case "GrabPay":
+                        holder.itemIV.setImageResource(R.drawable.dentistry_fill1_wght300_grad0_opsz40);
+                        break;
+                    case "CIMB":
+                        holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
+                        break;
+                }*/
+
                 //edit expense
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -227,6 +255,7 @@ public class ExpenseActivity extends AppCompatActivity {
                         postKey = getRef(position).getKey();
                         item = model.getItem();
                         amount = model.getAmount();
+                        wallet = model.getWallet();
                         updateData();
                     }
                 });
@@ -257,9 +286,9 @@ public class ExpenseActivity extends AppCompatActivity {
             super(itemView);
             mView = itemView;
             itemIV = itemView.findViewById(R.id.itemIV);
+            //wallet = itemView.findViewById(R.id.wallet);
             notes = itemView.findViewById(R.id.note);
             date = itemView.findViewById(R.id.date);
-            wallet = itemView.findViewById(R.id.wallet);
         }
 
         // item from update expense layout xml
@@ -267,6 +296,7 @@ public class ExpenseActivity extends AppCompatActivity {
             TextView item = mView.findViewById(R.id.item);
             item.setText(itemName);
         }
+
         public void setWalletName (String walletName){
             TextView item = mView.findViewById(R.id.wallet);
             item.setText(walletName);
@@ -296,6 +326,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         // elements to edit the budget
         final TextView mItem = mView.findViewById(R.id.itemName);
+        //final TextView mWallet = mView.findViewById(R.id.wallet);
         final EditText mAmount = mView.findViewById(R.id.amountTransET);
         final EditText mNotes = mView.findViewById(R.id.note);
 
@@ -312,6 +343,7 @@ public class ExpenseActivity extends AppCompatActivity {
         updateBut.setOnClickListener(view -> {
             amount = Integer.parseInt(mAmount.getText().toString());
 
+
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Calendar cal = Calendar.getInstance();
             String date = dateFormat.format(cal.getTime());
@@ -321,7 +353,7 @@ public class ExpenseActivity extends AppCompatActivity {
             DateTime now = new DateTime();
             Months months = Months.monthsBetween(epoch, now);
 
-            Data data = new Data(item, date, postKey, null, amount, months.getMonths());
+            Data data = new Data(item, date, postKey, wallet, null, amount, months.getMonths());
             expenseRef.child(postKey).setValue(data).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
                     Toast.makeText(ExpenseActivity.this, "Expense was updated successfully!", Toast.LENGTH_SHORT).show();

@@ -59,7 +59,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_gravity="center_vertical"/>
                 <Button
-                    android:id="@+id/addReciptBTN"
+                    android:id="@+id/addReceiptBTN"
                     android:layout_width="wrap_content"
                     android:text="@string/add"
                     android:layout_height="40dp"
@@ -71,6 +71,14 @@
                     android:layout_marginRight="10dp"/>
 
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Write a note"/>
+
+
 
             <Spinner
                 android:id="@+id/spinnerExpense"
