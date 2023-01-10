@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:background="@drawable/loginv3">
+    android:background="@drawable/loginpage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:singleLine="false"
                 android:text="Sign in,
             start tracking!"
-                android:textColor="#FF9B49"
+                android:textColor="@color/pink"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -119,7 +119,7 @@
             android:text="Log In"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/dark_red"
             android:fontFamily="@font/open_sans"
             android:textAllCaps="false"
             />
@@ -146,7 +146,7 @@
                 android:layout_alignRight="@+id/loginsen"
                 android:layout_alignParentEnd="true"
                 android:text="Sign Up"
-                android:textColor="@color/dark_orange"
+                android:textColor="@color/dark_red"
                 android:textStyle="bold"
 
                 />
