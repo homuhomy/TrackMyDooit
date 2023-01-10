@@ -196,7 +196,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/chart"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -206,7 +206,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
         app:menu="@menu/menu_bottom" />
