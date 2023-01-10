@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="RegistrationActivity"
-    android:background="@drawable/registration"
+    android:background="@drawable/registerpage"
     >
 
     <LinearLayout
@@ -29,7 +29,7 @@
                 android:gravity="left"
                 android:singleLine="false"
                 android:text="Sign up, start tracking!"
-                android:textColor="#FF9B49"
+                android:textColor="@color/dark_pink"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -105,7 +105,7 @@
         android:layout_marginBottom="20dp"
         app:helperText="Required*"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/orange"
+        app:passwordToggleTint="@color/dark_red"
         app:helperTextTextColor="#D50000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusTopEnd="16dp"
@@ -140,7 +140,7 @@
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusBottomEnd="16dp"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/orange"
+        app:passwordToggleTint="@color/dark_red"
         android:inputType="textPassword"
         android:textColor="#000"
         android:textColorHint="#000"
@@ -175,7 +175,7 @@
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/dark_pink"
         android:fontFamily="@font/open_sans"
         />
 
@@ -201,7 +201,7 @@
             android:layout_alignParentRight="true"
             android:text="Login"
             android:textStyle="bold"
-            android:textColor="@color/dark_orange"
+            android:textColor="@color/dark_red"
 
             />
 

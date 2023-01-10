@@ -73,8 +73,17 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
             case "Education":
                 holder.imageView.setImageResource(R.drawable.school_black_24dp);
                 break;
-            case "Transportation":
-                holder.imageView.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
+            case "Home":
+                holder.imageView.setImageResource(R.drawable.home_fill1_wght300_grad0_opsz24);
+                break;
+            case "Food":
+                holder.imageView.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
+                break;
+            case "Entertainment":
+                holder.imageView.setImageResource(R.drawable.sports_esports_black_24dp);
+                break;
+            case "Personal":
+                holder.imageView.setImageResource(R.drawable.person_black_24dp);
                 break;
         }
 

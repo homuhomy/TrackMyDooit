@@ -76,25 +76,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:startIconDrawable="@drawable/lock_fill1_wght400_grad0_opsz24"
-            android:theme="@style/MyTextInputLayout_overlay"
+            android:layout_marginBottom="20dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/dark_red"
+            app:helperTextTextColor="#D50000"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxCornerRadiusTopEnd="16dp"
             app:boxCornerRadiusTopStart="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusBottomEnd="16dp"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textColor="#000"
             android:textColorHint="#000"
             android:textSize="20sp"
-            app:endIconMode="password_toggle">
+            app:startIconDrawable="@drawable/lock_fill1_wght400_grad0_opsz24"
+            android:theme="@style/MyTextInputLayout_overlay">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
-                android:hint="Password"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:hint="Password" />
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/ForgotPassword"
@@ -105,7 +107,7 @@
             android:layout_height="wrap_content"
             android:text="Forgot password?"
             android:layout_marginTop="5dp"
-            android:textColor="#FF8622"/>
+            android:textColor="@color/dark_red"/>
 
 
         <Button
@@ -119,7 +121,7 @@
             android:text="Log In"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:backgroundTint="@color/dark_red"
+            android:backgroundTint="@color/dark_pink"
             android:fontFamily="@font/open_sans"
             android:textAllCaps="false"
             />

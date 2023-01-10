@@ -3,6 +3,7 @@ package com.example.trackmydooit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class SettingsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    private ImageView logOut, profile;
+    private CardView logOut, profile;
     private Toolbar toolbar;
 
     @Override
@@ -67,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //go to profile editting page
+                //go to profile editing page
                 Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }

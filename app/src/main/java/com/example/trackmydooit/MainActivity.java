@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
 
-        CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(),MonthlyAnalyticsActivity.class)));
+        CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(), MonthlyAnalyticsActivity.class)));
 
         CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class)));
 

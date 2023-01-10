@@ -13,7 +13,7 @@
     </string-array>
 
     <string-array name="walletList">
-        <item>Select a wallet</item>
+        <item>Click to select a wallet</item>
         <item>Maybank</item>
         <item>Boost</item>
         <item>GrabPay</item>
@@ -22,14 +22,14 @@
     </string-array>
 
     <string-array name="incomeCategory">
-        <item>Select an income category</item>
+        <item>Click to select an income category</item>
         <item>Salary</item>
         <item>Scholarship</item>
         <item>Allowance</item>
     </string-array>
 
     <string-array name="expensesCategory">
-        <item>Select an expense category</item>
+        <item>Click to select an expense category</item>
         <item>Utilities</item>
         <item>Transportation</item>
         <item>Food</item>
