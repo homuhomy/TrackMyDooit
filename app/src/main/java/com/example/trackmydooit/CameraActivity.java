@@ -70,8 +70,9 @@ public class CameraActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("My Expenses");
+
         //to add back button
+        getSupportActionBar().setTitle("Scan receipt");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         capturedImage = findViewById(R.id.capturedImage);
@@ -156,6 +157,7 @@ public class CameraActivity extends AppCompatActivity {
             startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,  String[] permissions,  int[] grantResults) {

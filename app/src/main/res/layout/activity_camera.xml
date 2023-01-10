@@ -10,10 +10,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
+        android:background="@color/white"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:titleTextColor="@color/black" />
 
 
     <ScrollView
