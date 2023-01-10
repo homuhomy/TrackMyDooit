@@ -20,6 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackMyDooit"
         tools:targetApi="31">
+
+
         <activity
             android:name=".Logout"
             android:exported="false">
@@ -155,6 +157,20 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".Wallet_Activity"
+            android:exported="false">
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+        </activity>
+
+
     </application>
 
 </manifest>

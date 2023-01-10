@@ -1,5 +1,6 @@
 package com.example.trackmydooit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,14 +28,22 @@ public class Wallet_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.wallet_activity);
 
         createExampleList();
         buildRecyclerView();
         setButtons();
+    }
 
+    public void clickbtn(View view)
+    {
+        Intent intent=new Intent(this,IncomeActivity.class);
+        EditText walletName=(EditText) findViewById(R.id.textview01);
+        String name = walletName.getText().toString();
 
+        intent.putExtra("Wallet Name",name);
 
+        startActivity(intent);
     }
 
     public void insertItem(int position){

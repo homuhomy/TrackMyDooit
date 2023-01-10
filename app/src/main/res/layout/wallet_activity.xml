@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Wallet_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,19 +105,23 @@
     </RelativeLayout>
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="3dp"
-        android:scrollbars="vertical"
+        android:layout_height="510dp"
+        android:layout_marginTop="20dp"
         android:background="#d8d8d8"
-        android:layout_marginTop="20dp">
-
+        android:padding="3dp"
+        android:scrollbars="vertical">
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:menu="@menu/menu_bottom"/>
 
 </LinearLayout>
