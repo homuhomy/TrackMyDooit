@@ -1,92 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/home3"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="235dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="Hi,
+            username!"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="#3A1111"
+            android:textSize="32sp" />
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                android:background="@drawable/banner"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:textSize="20sp"
-                android:text="user name"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"/>
-        </FrameLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/custom_border">
 
         <TextView
-            android:id="@+id/BalanceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            android:text="Balance"/>
+            android:text="Total balance"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/mainTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="RM 25,011.58"
-            android:textSize="32sp"
-            android:layout_margin="30dp"
-            />
+            android:text="RM 30,000.55"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textSize="35sp" />
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal">
+            <!-- CV Budget-->
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/CVBudget"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
+                android:background="@drawable/_1229"
                 android:layout_marginEnd="20dp"
-                app:cardCornerRadius="20dp">
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                android:backgroundTint="#EAC7C7">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="15dp">
-                    <ProgressBar
-                        android:id="@+id/budgetProgressBar"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:indeterminateOnly="false"
-                        android:progress="60"
-                        android:progressDrawable="@drawable/circle_progress"/>
                     <TextView
                         android:id="@+id/TVBudget"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Budget"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Budget" />
 
                     <TextView
                         android:id="@+id/BudgetAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="RM 600.20"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -95,79 +93,122 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="RM 200 for today"/>
+                        android:text="RM 200 for today" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/CVExpense"
+
+            <!--CV income/expense -->
+            <LinearLayout
                 android:layout_weight="1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardCornerRadius="20dp">
-                <LinearLayout
+                android:orientation="vertical">
+                <!-- CV Income cv -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CVIncome"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                    <TextView
-                        android:id="@+id/TVExpenses"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Expenses"/>
-                    <TextView
-                        android:id="@+id/ExpenseAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RM 600.20"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#C5E4F1">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="RM 200 for today"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/CVIncome"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardCornerRadius="20dp">
-                <LinearLayout
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/TVIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Income" />
+
+                        <TextView
+                            android:id="@+id/IncomeAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="RM 600.20"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <!-- CV Expense-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CVExpense"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                    <TextView
-                        android:id="@+id/TVIncome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Income"/>
-                    <TextView
-                        android:id="@+id/IncomeAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="RM 600.20"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <TextView
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:backgroundTint="#C5E4F1"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="RM 200 for today"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/TVExpenses"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Expense" />
+
+                        <TextView
+                            android:id="@+id/ExpenseAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="RM 600.20"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
         </LinearLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav_view"
+        <!-- CV Report -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CVReport"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:menu="@menu/menu_bottom"/>
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/TVReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Monthly Report"
+                    android:textAlignment="center"/>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/chart"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+        app:menu="@menu/menu_bottom" />
+
+</LinearLayout>

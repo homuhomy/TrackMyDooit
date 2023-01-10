@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.DestAddExpense:
-                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        startActivity(new Intent(getApplicationContext(),ExpenzeActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.settings:
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         CVExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class));
+                CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenzeActivity.class));
             }
         });
 
