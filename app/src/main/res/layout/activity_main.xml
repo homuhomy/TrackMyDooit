@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RM 30,000.55"
+            android:text="RM 0"
             android:textAlignment="center"
             android:padding="10dp"
             android:textSize="35sp" />
@@ -85,7 +85,7 @@
                         android:id="@+id/BudgetAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="RM 600.20"
+                        android:text="RM 0"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -129,7 +129,7 @@
                             android:id="@+id/IncomeAmount"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="RM 600.20"
+                            android:text="RM 0"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -160,7 +160,7 @@
                             android:id="@+id/ExpenseAmount"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="RM 600.20"
+                            android:text="RM 0"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />

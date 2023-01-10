@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CardView CVExpense, CVIncome;
     private CardView CVBudget;
-    private TextView BudgetAmount, ExpenseAmount;
+    private TextView BudgetAmount, ExpenseAmount, IncomeAmount;
     private TextView CVTest;
     private TextView mainTitle;
 
@@ -39,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private int totalAmountBudgetD = 0;
     private int totalAmountBudgetC = 0;
 
+    private int totalAmountIncome = 0;
+    private int totalAmountIncomeD = 0;
+    private int totalAmountIncomeC = 0;
+
+    private int totalAmountExpense = 0;
+    private int totalAmountExpenseD = 0;
+    private int totalAmountExpenseC = 0;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         BudgetAmount = findViewById(R.id.BudgetAmount);
         ExpenseAmount = findViewById(R.id.ExpenseAmount);
+        IncomeAmount = findViewById(R.id.IncomeAmount);
+
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -161,10 +170,58 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //to check if expense exists or not
+        expenseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount()>0){
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        int pTotal = Integer.parseInt(String.valueOf(total));
+                        totalAmountExpenseD+=pTotal;
+                    }
+                    totalAmountExpenseC = totalAmountExpenseD;
+                } else {
+                    personalRef.child("expense").setValue(0);
+                    Toast.makeText(MainActivity.this, "Please select expense!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //to check if income exists or not
+        incomeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount()>0){
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        int pTotal = Integer.parseInt(String.valueOf(total));
+                        totalAmountIncomeD+=pTotal;
+                    }
+                    totalAmountIncomeC = totalAmountIncomeD;
+                } else {
+                    personalRef.child("income").setValue(0);
+                    Toast.makeText(MainActivity.this, "Please select income!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //to call the amount  from respective page
         getBudgetAmount();
-
+        getIncomeAmount();
+        getExpenseAmount();
 
     }
 
@@ -184,6 +241,58 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     totalAmountBudget=0;
                     BudgetAmount.setText("RM " + String.valueOf(0));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getIncomeAmount() {
+
+        incomeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount()>0){
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        int pTotal = Integer.parseInt(String.valueOf(total));
+                        totalAmountIncome+=pTotal;
+                        IncomeAmount.setText("RM " + String.valueOf(totalAmountIncome));
+                    }
+                } else {
+                    totalAmountIncome=0;
+                    IncomeAmount.setText("RM " + String.valueOf(0));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getExpenseAmount() {
+
+        expenseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount()>0){
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        int pTotal = Integer.parseInt(String.valueOf(total));
+                        totalAmountExpense+=pTotal;
+                        ExpenseAmount.setText("RM " + String.valueOf(totalAmountExpense));
+                    }
+                } else {
+                    totalAmountExpense=0;
+                    ExpenseAmount.setText("RM " + String.valueOf(0));
                 }
             }
 
