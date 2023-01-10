@@ -22,8 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackMyDooit"
         tools:targetApi="31">
-
-
         <activity
             android:name=".ProfileActivity"
             android:exported="false">
@@ -70,7 +68,6 @@
             android:name=".IncomeActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -98,8 +95,8 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:parentActivityName=".ExpenseActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".ExpenseActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -112,8 +109,8 @@
         </activity>
         <activity
             android:name=".ExpenseActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -181,15 +178,14 @@
         <activity
             android:name=".Wallet_Activity"
             android:exported="false">
-        <intent-filter>
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
-
 
     </application>
 

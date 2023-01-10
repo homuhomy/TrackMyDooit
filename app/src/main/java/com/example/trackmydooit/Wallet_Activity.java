@@ -20,9 +20,11 @@ public class Wallet_Activity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     private Button buttonInsert;
     private EditText editTextInsert;
+
+
+
 
 
     @Override
@@ -33,6 +35,8 @@ public class Wallet_Activity extends AppCompatActivity {
         createExampleList();
         buildRecyclerView();
         setButtons();
+
+
     }
 
     public void clickbtn(View view)
@@ -45,6 +49,7 @@ public class Wallet_Activity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
 
     public void insertItem(int position){
         mExampleList.add(position,new ExampleItem(R.drawable.wallet_ic,"NEW WALLET"+position,"Current Balance","RM0.00"));
@@ -71,7 +76,7 @@ public class Wallet_Activity extends AppCompatActivity {
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager=new LinearLayoutManager(this);
-        mAdapter=new ExampleAdapter(mExampleList);
+        mAdapter=new ExampleAdapter(this, mExampleList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -80,7 +85,10 @@ public class Wallet_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 changeItem(position,"Wallet Name");
+
+
             }
+
 
             @Override
             public void onDeleteClick(int position) {
