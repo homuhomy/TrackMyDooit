@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select a goal category:"
+            android:text="Add a new goal"
             android:fontFamily="@font/open_sans"
             android:textStyle="bold"
             android:gravity="center"
@@ -44,30 +44,32 @@
                 android:layout_margin="5dp">
             </Spinner>
 
-            <EditText
-                android:id="@+id/GoalAmount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Amount..."
-                android:fontFamily="@font/open_sans_semibold"
-                android:inputType="number"
-                android:minHeight="48dp"
-                android:textColor="#000"
-                android:textColorHint="#000"
-                android:layout_margin="5dp"/>
+
 
             <EditText
                 android:id="@+id/GoalDesc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Desc..."
-                android:fontFamily="@font/open_sans_semibold"
+                android:layout_height="40dp"
+                android:layout_margin = "10dp"
+                android:ems="10"
+                android:hint="Enter goal description"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:textColor="#000"
-                android:textColorHint="#000"
-                android:layout_margin="5dp"/>
+                android:paddingLeft="15dp"
+                android:background="@drawable/edit_text_frame"
+                />
 
+            <EditText
+                android:id="@+id/GoalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="RM"
+                android:inputType="numberDecimal"
+                android:paddingLeft="15dp"
+                android:background="@drawable/edit_text_frame"
+                />
 
         </LinearLayout>
 

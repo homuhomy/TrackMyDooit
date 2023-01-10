@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -66,10 +69,45 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_savings_goal);
 
-        //toolbar title
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Savings");
+        //to add back button
+        getSupportActionBar().setTitle("MY GOALS");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //bottom nav bar code
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.DestGoals);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.DestGoals:
+                        startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestWallet:
+                        startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestAddExpense:
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.DestSettings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //bottom nav bar code
 
         mAuth = FirebaseAuth.getInstance();
         goalRef = FirebaseDatabase.getInstance().getReference().child("savings").child(mAuth.getCurrentUser().getUid());

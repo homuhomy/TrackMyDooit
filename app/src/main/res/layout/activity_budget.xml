@@ -53,7 +53,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:backgroundTint="@color/orange" />
+            app:backgroundTint="@color/black" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

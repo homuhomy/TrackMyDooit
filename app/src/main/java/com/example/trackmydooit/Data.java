@@ -17,8 +17,6 @@ public class Data {
         this.month = month;
     }
 
-
-
     public Data(String item, String date, String id, String wallet, String notes, int amount, int month) {
         this.item = item;
         this.date = date;

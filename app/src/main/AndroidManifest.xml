@@ -147,7 +147,8 @@
         </activity>
         <activity
             android:name=".CreateSavingsGoalActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
