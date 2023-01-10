@@ -83,7 +83,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/cancelBudgetBTN"
+                    android:id="@+id/cancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
@@ -103,7 +103,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/saveBudgetBTN"
+                    android:id="@+id/save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"

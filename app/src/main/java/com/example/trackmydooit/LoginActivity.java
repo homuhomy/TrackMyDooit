@@ -41,17 +41,17 @@ public class LoginActivity extends AppCompatActivity {
 
         //to stop login
 
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = mAuth.getCurrentUser();
-//                if(user!=null){
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            }
-//        };
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                if(user!=null){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        };
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -122,15 +122,15 @@ public class LoginActivity extends AppCompatActivity {
 //            finish();
 //        }
     }
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(authStateListener);
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mAuth.removeAuthStateListener(authStateListener);
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(authStateListener);
+    }
 }
