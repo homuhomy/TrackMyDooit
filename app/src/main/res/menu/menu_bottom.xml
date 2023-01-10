@@ -22,6 +22,6 @@
         app:showAsAction="always"/>
     <item android:title="Notifications"
         android:id="@+id/settings"
-        android:icon="@drawable/notifications_fill1_wght300_grad0_opsz24__1_"
+        android:icon="@drawable/settings"
         app:showAsAction="always"/>
 </menu>
