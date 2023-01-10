@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     private CardView CVExpense, CVIncome;
     private CardView CVBudget;
-    private TextView BudgetAmount;
+    private TextView BudgetAmount, ExpenseAmount;
     private TextView CVTest;
     private TextView mainTitle;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference budgetRef, expenseRef, personalRef;
+    private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef;
     private String onlineUserID = "";
 
     private int totalAmountMonth = 0;
@@ -47,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BudgetAmount = findViewById(R.id.BudgetAmount);
+        ExpenseAmount = findViewById(R.id.ExpenseAmount);
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
-        expenseRef = FirebaseDatabase.getInstance().getReference("expense").child(onlineUserID);
+        incomeRef = FirebaseDatabase.getInstance().getReference("income").child(onlineUserID);
+        expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
 
 
@@ -159,8 +161,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //to call the amount  from respective page
         getBudgetAmount();
+
 
     }
 

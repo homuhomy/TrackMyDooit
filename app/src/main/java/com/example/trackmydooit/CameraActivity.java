@@ -31,6 +31,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -54,6 +55,7 @@ public class CameraActivity extends AppCompatActivity {
 
     //another one
     private TextView resultText;
+    private Toolbar toolbar;
     private EditText editText;
     private ImageView capturedImage;
     private Bitmap bitmap;
@@ -64,6 +66,12 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("My Expenses");
+        //to add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         capturedImage = findViewById(R.id.capturedImage);
         resultText = findViewById(R.id.resultText);

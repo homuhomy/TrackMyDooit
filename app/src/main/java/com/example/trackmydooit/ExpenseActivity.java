@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -65,9 +66,12 @@ public class ExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Expenses");
+        //getSupportActionBar().setTitle("My Expenses");
+        //to add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         expenzeTV = findViewById(R.id.expenseTV);
@@ -158,6 +162,14 @@ public class ExpenseActivity extends AppCompatActivity {
         final EditText ExpenseDescriptionET = myView.findViewById(R.id.ExpenseDescriptionET);
         final Button cancelTransBTN = myView.findViewById(R.id.cancelTransBTN);
         final Button addTransBTN = myView.findViewById(R.id.addTransBTN);
+        final Button addReceiptBTN = myView.findViewById(R.id.addReceiptBTN);
+
+        addReceiptBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addReceiptBTN.getContext().startActivity(new Intent(addReceiptBTN.getContext(), CameraActivity.class));
+            }
+        });
 
         addTransBTN.setOnClickListener(new View.OnClickListener() {
             @Override

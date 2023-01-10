@@ -28,30 +28,30 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHolder> {
-    private ExpenseActivity mContext;
-    private List<Data> myDataListExpense;
+public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder> {
+    private IncomeActivity mContext;
+    private List<Data> myDataListIncome;
     private String postKey = "";
     private String item = "";
     private String note = "";
     private String wallet = "";
     private int amount  = 0;
 
-    public ExpensesAdapter(ExpenseActivity mContext, List<Data> myDataList) {
+    public IncomeAdapter(IncomeActivity mContext, List<Data> myDataList) {
         this.mContext = mContext;
-        this.myDataListExpense = myDataList;
+        this.myDataListIncome = myDataList;
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.retrieve_layout_expense, parent,false);
-        return new ExpensesAdapter.ViewHolder(view);    }
+        View view = LayoutInflater.from(mContext).inflate(R.layout.retrieve_layout_income, parent,false);
+        return new IncomeAdapter.ViewHolder(view);    }
 
     @Override
-    public void onBindViewHolder(@NonNull ExpensesAdapter.ViewHolder holder, int position) {
-        final Data data = myDataListExpense.get(position);
+    public void onBindViewHolder(@NonNull IncomeAdapter.ViewHolder holder, int position) {
+        final Data data = myDataListIncome.get(position);
 
         holder.item.setText("Item: " + data.getItem());
         holder.amount.setText("Amount: " + data.getAmount());
@@ -60,17 +60,17 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
         holder.wallet.setText("Wallet: " + data.getWallet());
 
         switch (data.getItem()){
-            case "Rent":
-                holder.imageView.setImageResource(R.drawable.home_fill1_wght300_grad0_opsz24);
+            case "Salary":
+                holder.imageView.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
                 break;
-            case "Utilities":
-                holder.imageView.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
-                break;
-            case "Education":
+            case "Scholarship":
                 holder.imageView.setImageResource(R.drawable.ic_home);
                 break;
-            case "Transportation":
-                holder.imageView.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
+            case "Allowance":
+                holder.imageView.setImageResource(R.drawable.ic_home);
+                break;
+            case "Home":
+                holder.imageView.setImageResource(R.drawable.ic_home);
                 break;
         }
 
@@ -131,7 +131,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
                 Months months = Months.monthsBetween(epoch, now);
 
                 Data data = new Data(item, date, postKey, wallet, note, amount, months.getMonths());
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("income").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.child(postKey).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -152,7 +152,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
         delBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("income").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.child(postKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -175,7 +175,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return myDataListExpense.size();
+        return myDataListIncome.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

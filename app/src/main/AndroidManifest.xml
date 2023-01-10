@@ -94,6 +94,7 @@
         </activity>
         <activity
             android:name=".CameraActivity"
+            android:parentActivityName=".ExpenseActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -107,6 +108,7 @@
         </activity>
         <activity
             android:name=".ExpenseActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
