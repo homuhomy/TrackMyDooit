@@ -2,13 +2,18 @@ package com.example.trackmydooit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -22,6 +27,7 @@ public class Wallet_Activity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private Button buttonInsert;
     private EditText editTextInsert;
+    private Toolbar toolbar;
 
 
 
@@ -35,6 +41,47 @@ public class Wallet_Activity extends AppCompatActivity {
         createExampleList();
         buildRecyclerView();
         setButtons();
+
+        //toolbar
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //to add back button
+        getSupportActionBar().setTitle("EXPENSES");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //bottom nav bar code
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.DestWallet);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.DestGoals:
+                        startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestWallet:
+                        startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestAddExpense:
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //bottom nav bar code
 
 
     }

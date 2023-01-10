@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context=".Wallet_Activity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:titleTextColor="@color/black" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
