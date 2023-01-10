@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private CardView CVExpense, CVIncome;
     private CardView CVBudget;
     private TextView BudgetAmount, ExpenseAmount, IncomeAmount;
-    private ImageView monthly_report;
+    private TextView CVTest;
+    private TextView mainTitle;
 
     private FirebaseAuth mAuth;
     private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         ExpenseAmount = findViewById(R.id.ExpenseAmount);
         IncomeAmount = findViewById(R.id.IncomeAmount);
 
+
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
@@ -64,24 +66,25 @@ public class MainActivity extends AppCompatActivity {
         expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
 
+
+        //bottom nav bar code
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.DestHome);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch(item.getItemId())
                 {
-                    case R.id.wallet_Activity:
-                        startActivity(new Intent(getApplicationContext(), Wallet_Activity.class));
+                    case R.id.DestWallet:
+                        startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.DestAddExpense:
-                        startActivity(new Intent(getApplicationContext(), ExpenseActivity.class));
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-
                     case R.id.settings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(0,0);
@@ -94,11 +97,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        //bottom nav bar code
 
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
         CVIncome = findViewById(R.id.CVIncome);
-        monthly_report = findViewById(R.id.monthly_report);
+        //CVTest = findViewById(R.id.CVTest);
+        //mainTitle = findViewById(R.id.mainTitle);
 
         CVExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,16 +126,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //to click on monthly report
-        monthly_report.setOnClickListener(new View.OnClickListener() {
+        //dummy click to weekly report
+        /*
+        CVTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          //    monthly_report.getContext().startActivity(new Intent(monthly_report.getContext(), WeekSpendingActivity.class));
-                Intent intent = new Intent(MainActivity.this, History.class);
+                Intent intent = new Intent(MainActivity.this, WeekSpendingActivity.class);
+                intent.putExtra("type", "week");
+                startActivity(intent);
+            }
+        });
+
+        //dummy to click on monthly report
+        mainTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WeekSpendingActivity.class);
                 intent.putExtra("type", "month");
                 startActivity(intent);
             }
         });
+         */
 
         //to check if budget exists or not
         budgetRef.addValueEventListener(new ValueEventListener() {

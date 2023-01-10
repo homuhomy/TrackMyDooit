@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -70,8 +73,40 @@ public class IncomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //to add back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setTitle("My Incomes");
+        getSupportActionBar().setTitle("INCOMES");
 
+        //bottom nav bar code
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.DestAddExpense);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.DestGoals:
+                        startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestWallet:
+                        startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestAddExpense:
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //bottom nav bar code
 
         incomeTV = findViewById(R.id.incomeTV);
         //progressBar = findViewById(R.id.progressBar);
