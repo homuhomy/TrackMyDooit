@@ -35,7 +35,7 @@ public class Logout extends AppCompatActivity {
 //                progressDialog.setCanceledOnTouchOutside(false);
 //                progressDialog.show();
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), SplashScreenActivity.class));
                 finish();
             }
         });
@@ -43,8 +43,9 @@ public class Logout extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Logout.this,SettingsActivity.class);
-                startActivity(intent);
+                Logout.super.onBackPressed();
+//                Intent intent = new Intent(Logout.this,SettingsActivity.class);
+//                startActivity(intent);
             }
         });
 

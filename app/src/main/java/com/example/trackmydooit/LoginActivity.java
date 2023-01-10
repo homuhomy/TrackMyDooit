@@ -117,11 +117,16 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //if user nvr logout, send them str8 to homescreen
-//        if(mAuth.getCurrentUser() != null){
-//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//            finish();
-//        }
+        if(mAuth.getCurrentUser() != null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
+    android:layout_width="300dp"
     android:layout_height="400dp"
     android:orientation="vertical"
     android:layout_gravity="center"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="No, go back"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="30dp"
+            android:layout_alignParentLeft="true"
             android:backgroundTint="@color/orange"
             />
 
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="240dp"
+            android:layout_alignParentRight="true"
             android:text="Yes, Logout"
             android:backgroundTint="@color/orange"
             />
