@@ -25,8 +25,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CardView CVExpense, CVIncome;
-    private CardView CVBudget;
+    private CardView CVExpense, CVIncome, CVBudget, CVReport;
     private TextView BudgetAmount, ExpenseAmount, IncomeAmount;
     private TextView CVTest;
     private TextView mainTitle;
@@ -102,22 +101,15 @@ public class MainActivity extends AppCompatActivity {
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
         CVIncome = findViewById(R.id.CVIncome);
+        CVReport = findViewById(R.id.CVReport);
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
 
-        CVExpense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class));
-            }
-        });
+        CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(),MonthlyAnalyticsActivity.class)));
 
-        CVIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), IncomeActivity.class));
-            }
-        });
+        CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class)));
+
+        CVIncome.setOnClickListener(view -> CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), IncomeActivity.class)));
 
         CVBudget.setOnClickListener(new View.OnClickListener() {
             @Override
