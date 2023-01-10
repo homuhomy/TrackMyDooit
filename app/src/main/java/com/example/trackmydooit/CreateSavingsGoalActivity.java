@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +40,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
     private DatabaseReference budgetRef;
     private ProgressDialog loader;
     private ImageView edit1,edit2,edit3;
-    private FloatingActionButton addGoals;
+    private ExtendedFloatingActionButton addGoals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

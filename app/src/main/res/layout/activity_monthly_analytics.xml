@@ -43,7 +43,7 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/shopping_cart_fill0_wght300_grad0_opsz20"/>
+                android:src="@drawable/red"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -59,7 +59,7 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/shopping_cart_fill0_wght300_grad0_opsz20"/>
+                android:src="@drawable/brown"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -75,7 +75,7 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/shopping_cart_fill0_wght300_grad0_opsz20"/>
+                android:src="@drawable/green"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -113,6 +113,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="TRANSPORT"
+                            android:fontFamily="@font/open_sans_semibold"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
@@ -199,6 +200,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="FOOD"
+                            android:fontFamily="@font/open_sans_semibold"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
@@ -247,13 +249,12 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout2"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/restaurant_fill1_wght300_grad0_opsz20" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -285,6 +286,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ENTERTAINMENT"
+                            android:fontFamily="@font/open_sans_semibold"
+
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
@@ -333,13 +336,12 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout3"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/sports_esports_black_24dp" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -371,6 +373,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="PERSONAL"
+                            android:fontFamily="@font/open_sans_semibold"
+
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
@@ -419,13 +423,12 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout4"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/person_black_24dp" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -457,6 +460,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="HOME"
+                            android:fontFamily="@font/open_sans_semibold"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
@@ -496,7 +500,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="This week"
+                            android:text="This month"
                             android:textColor="#000"
                             android:textSize="12sp"/>
 
@@ -505,13 +509,12 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout5"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/house_fill0_wght300_grad0_opsz40" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -528,7 +531,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativeKpopTransport"
+                    android:id="@+id/relativeUtilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -542,13 +545,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="KPOP"
+                            android:text="UTILITIES"
+                            android:fontFamily="@font/open_sans_semibold"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:textSize="15sp"/>
 
                         <TextView
-                            android:id="@+id/analyticsKpopAmount"
+                            android:id="@+id/analyticsUtilitiesAmount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="0.0"
@@ -591,56 +595,51 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout6"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/water_drop_fill0_wght300_grad0_opsz40" />
 
                 </RelativeLayout>
-            </LinearLayout>
 
-        </ScrollView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<!--                <com.anychart.AnyChartView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="600dp"-->
+<!--                    android:id="@+id/anyChartView"/>-->
 
                 <RelativeLayout
-                    android:id="@+id/relativeUniTransport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp">
+                    android:id="@+id/linearLayoutAnalysis"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linearLayout7"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/linearLayout10">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="UNIVERSITY"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:text="Summary spending status: "
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="18dp"/>
 
                         <TextView
-                            android:id="@+id/analyticsUniAmount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:text="Total spent: "
+                            android:textSize="18dp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -648,48 +647,131 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="0dp"
+                                android:layout_width="8dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:text="status"
-                                android:textColor="#000"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:text="Status"
+                                android:textSize="12dp"
+                                android:textColor="@color/black"
+                                android:id="@+id/monthRationSpending"/>
 
                             <ImageView
-                                android:id="@+id/uni_status"
                                 android:layout_width="0dp"
                                 android:layout_height="18dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_weight="1" />
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"/>
 
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="This month"
-                            android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:text="This month: "
+                            android:textSize="12dp"
+                            android:textColor="@color/black"/>
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_toEndOf="@+id/linearLayout7"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:src="@drawable/circle"-->
+<!--                        android:layout_toEndof="@+id/linearLayout10"/>-->
 
                 </RelativeLayout>
+
 
             </LinearLayout>
 
         </ScrollView>
+
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/relativeUniTransport"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="5dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linearLayout7"-->
+<!--                        android:layout_width="250dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="UNIVERSITY"-->
+<!--                            android:textColor="#000"-->
+<!--                            android:textSize="15sp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/analyticsUniAmount"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="0.0"-->
+<!--                            android:textColor="#000"-->
+<!--                            android:textSize="15sp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_weight="2"-->
+<!--                                android:text="status"-->
+<!--                                android:textColor="#000"-->
+<!--                                android:textSize="12sp"-->
+<!--                                android:textStyle="bold" />-->
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/uni_status"-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="18dp"-->
+<!--                                android:layout_marginTop="5dp"-->
+<!--                                android:layout_weight="1" />-->
+
+<!--                        </LinearLayout>-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="This month"-->
+<!--                            android:textColor="#000"-->
+<!--                            android:textSize="12sp" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginEnd="10dp"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_toEndOf="@+id/linearLayout7"-->
+<!--                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </ScrollView>-->
 
     </LinearLayout>
 

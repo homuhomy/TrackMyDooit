@@ -18,6 +18,7 @@
         <item>Boost</item>
         <item>GrabPay</item>
         <item>CIMB</item>
+        <item>Bank Islam</item>
     </string-array>
 
     <string-array name="incomeCategory">
@@ -28,12 +29,14 @@
     </string-array>
 
     <string-array name="expensesCategory">
-        <item>Select an expense category</item>
-        <item>Rent</item>
         <item>Utilities</item>
-        <item>Education</item>
         <item>Transportation</item>
+        <item>Food</item>
+        <item>Entertainment</item>
+        <item>Personal</item>
+        <item>Home</item>
     </string-array>
+
     <string-array name="goalItems">
         <item>Click to select a goal category</item>
         <item>Food</item>
