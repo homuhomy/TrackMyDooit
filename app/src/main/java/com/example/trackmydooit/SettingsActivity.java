@@ -27,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //go to profile editting page
+                Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -34,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //go to logout page
                 Intent intent = new Intent(SettingsActivity.this, Logout.class);
                 startActivity(intent);
             }

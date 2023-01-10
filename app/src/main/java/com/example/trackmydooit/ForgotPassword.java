@@ -24,8 +24,6 @@ public class ForgotPassword extends AppCompatActivity {
     ProgressDialog dialog;
     FirebaseAuth auth;
 
-    private Button password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

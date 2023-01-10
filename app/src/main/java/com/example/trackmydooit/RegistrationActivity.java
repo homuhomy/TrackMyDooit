@@ -24,6 +24,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -40,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     ".{6,}" +               //at least 6 characters
                     "$");
 
-    private TextInputLayout email, password, confirmpassword;
+    private TextInputLayout email, username, password, confirmpassword;
     private Button registerBtn;
     private TextView registerQn;
     private CheckBox checkBox;
@@ -48,6 +50,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+    private DatabaseReference userRef;
     private ProgressDialog progressDialog;
 
     @SuppressLint("MissingInflatedId")
@@ -57,6 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         email = findViewById(R.id.email);
+        username = findViewById(R.id.Username);
         password = findViewById(R.id.password);
         confirmpassword = findViewById(R.id.ConfirmPassword);
         registerBtn = findViewById(R.id.registerBtn);
@@ -112,6 +116,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registerQn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
@@ -121,6 +126,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String emailString = email.getEditText().getText().toString();
                 String passwordString = password.getEditText().getText().toString();
                 String conPasswordString = confirmpassword.getEditText().getText().toString();
@@ -134,6 +140,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                userRef = FirebaseDatabase.getInstance().getReference().child("user").child(mAuth.getCurrentUser().getUid());
                                 Intent intent = new Intent (RegistrationActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
