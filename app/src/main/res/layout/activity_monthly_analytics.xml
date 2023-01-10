@@ -43,7 +43,8 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/red"/>
+                android:src="@drawable/red"
+                android:id="@+id/status_image_red"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -59,7 +60,8 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/brown"/>
+                android:src="@drawable/brown"
+                android:id="@+id/status_image_brown"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -75,7 +77,8 @@
                 android:layout_height="18dp"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/green"/>
+                android:src="@drawable/green"
+                android:id="@+id/status_image_green"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -162,7 +165,6 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_margin="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
@@ -185,7 +187,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativeFoodTransport"
+                    android:id="@+id/relativeFood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -271,7 +273,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativeEntertainmentTransport"
+                    android:id="@+id/relativeEntertainment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -358,7 +360,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativePersonalTransport"
+                    android:id="@+id/relativePersonal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -445,7 +447,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/relativeHomeTransport"
+                    android:id="@+id/relativeHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -577,7 +579,7 @@
                             <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="18dp"
-                                android:id="@+id/kpop_status"
+                                android:id="@+id/utilities_status"
                                 android:layout_weight="1"
                                 android:layout_marginTop="5dp"/>
 
@@ -604,10 +606,10 @@
 
                 </RelativeLayout>
 
-<!--                <com.anychart.AnyChartView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="600dp"-->
-<!--                    android:id="@+id/anyChartView"/>-->
+                <com.anychart.AnyChartView
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:id="@+id/anyChartView"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -639,7 +641,8 @@
                             android:text="Total spent: "
                             android:textSize="18dp"
                             android:textColor="@color/black"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            android:id="@+id/monthSpentAmount"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -653,7 +656,7 @@
                                 android:text="Status"
                                 android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:id="@+id/monthRationSpending"/>
+                                android:id="@+id/monthRatioSpending"/>
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -666,9 +669,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="This month: "
+                            android:text="Today: "
                             android:textSize="12dp"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black" />
 
                     </LinearLayout>
 
