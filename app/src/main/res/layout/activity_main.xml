@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/home3"
+    android:background="@drawable/home"
     android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
@@ -62,8 +62,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/CVBudget"
                 android:background="@drawable/_1229"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -90,83 +89,76 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <!--<TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="RM 200 for today" />
+                        android:text="RM 200 for this month" />-->
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <!--CV income/expense -->
-            <LinearLayout
-                android:layout_weight="1"
+            <!-- CV Income cv -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- CV Income cv -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/CVIncome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
-                    android:backgroundTint="#C5E4F1">
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="0dp"
+                android:backgroundTint="#C5E4F1">
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/TVIncome"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:text="Income" />
 
-                        <TextView
-                            android:id="@+id/TVIncome"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Income" />
-
-                        <TextView
-                            android:id="@+id/IncomeAmount"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="RM 0"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <!-- CV Expense-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/CVExpense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="20dp"
-                    android:backgroundTint="#C5E4F1"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/IncomeAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:text="RM 0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- CV Expense-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="#C5E4F1"
+                app:cardElevation="0dp">
 
-                        <TextView
-                            android:id="@+id/TVExpenses"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Expense" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-                        <TextView
-                            android:id="@+id/ExpenseAmount"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="RM 0"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/TVExpenses"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Expense" />
+
+                    <TextView
+                        android:id="@+id/ExpenseAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="RM 0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
@@ -196,13 +188,15 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/chart"/>
+                    android:layout_height="200dp"
+                    android:src="@drawable/chart"
+                    android:id="@+id/monthly_report"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
+    <!-- for bottom bar copy here -->
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

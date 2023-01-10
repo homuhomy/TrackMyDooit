@@ -1,5 +1,7 @@
 package com.example.trackmydooit;
 
+import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,47 +30,52 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder> {
-    private IncomeActivity mContext;
-    private List<Data> myDataListIncome;
+public class TodayItemsAdapter extends RecyclerView.Adapter<TodayItemsAdapter.ViewHolder> {
+
+    private Context mContext;
+    private List<Data> myDataList;
     private String postKey = "";
     private String item = "";
-    private String note = "";
-    private String wallet = "";
+    private String note ="";
     private int amount  = 0;
 
-    public IncomeAdapter(IncomeActivity mContext, List<Data> myDataList) {
+    public TodayItemsAdapter(Context mContext, List<Data> myDataList) {
         this.mContext = mContext;
-        this.myDataListIncome = myDataList;
+        this.myDataList = myDataList;
     }
-
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.retrieve_layout_expense, parent,false);
-        return new IncomeAdapter.ViewHolder(view);    }
+
+        View view = LayoutInflater.from(mContext).inflate(R.layout.retrieve_layout_expense, parent, false );
+        return new TodayItemsAdapter.ViewHolder(view);
+
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull IncomeAdapter.ViewHolder holder, int position) {
-        final Data data = myDataListIncome.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.item.setText("Item: " + data.getItem());
-        holder.amount.setText("Amount: +RM" + data.getAmount());
-        holder.amount.setTextColor(0xAA138600);
-        holder.date.setText("Date: " + data.getDate());
-        holder.notes.setText("Note: " + data.getNotes());
-        holder.wallet.setText("Wallet: " + data.getWallet());
+        final Data data = myDataList.get(position);
 
+        holder.item.setText("Item: "+ data.getItem());
+        holder.item.setText("Amount: "+ data.getAmount());
+        holder.item.setText("On: "+ data.getDate());
+        holder.item.setText("Note: "+ data.getNotes());
+
+        //update ImageResource
         switch (data.getItem()){
-            case "Salary":
-                holder.imageView.setImageResource(R.drawable.badge_black_24dp);
+            case "Transport":
+                holder.itemIV.setImageResource(R.drawable.train_fill1_wght300_grad0_opsz40);
                 break;
-            case "Scholarship":
-                holder.imageView.setImageResource(R.drawable.ic_home);
+            case "Food":
+                holder.itemIV.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
                 break;
-            case "Allowance":
-                holder.imageView.setImageResource(R.drawable.family_restroom_fill0_wght300_grad0_opsz40);
+            case "Entertainment":
+                holder.itemIV.setImageResource(R.drawable.headphones_fill1_wght300_grad0_opsz20);
+                break;
+            case "Home":
+                holder.itemIV.setImageResource(R.drawable.ic_home);
                 break;
         }
 
@@ -79,30 +86,27 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
                 item = data.getItem();
                 amount = data.getAmount();
                 note = data.getNotes();
-                wallet = data.getWallet();
                 updateData();
             }
         });
+
     }
 
     private void updateData() {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(mContext);
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View mView = inflater.inflate(R.layout.update_layout_expense,null);
+        View mView = inflater.inflate(R.layout.update_layout_budget,null);
 
         myDialog.setView(mView);
         final AlertDialog dialog = myDialog.create();
 
         // elements to edit the budget
         final TextView mItem = mView.findViewById(R.id.itemName);
-        final TextView mWallet = mView.findViewById(R.id.walletName);
-        final EditText mAmount = mView.findViewById(R.id.amountTransET);
+        final EditText mAmount = mView.findViewById(R.id.amountBudgetET);
         final EditText mNotes = mView.findViewById(R.id.note);
 
         mItem.setText(item);
-        mWallet.setText(wallet);
-
 
         mAmount.setText(String.valueOf(amount));
         mAmount.setSelection(String.valueOf(amount).length());
@@ -110,12 +114,13 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
         mNotes.setText(note);
         mNotes.setSelection(note.length());
 
-        Button delBut = mView.findViewById(R.id.deleteTransBTN);
-        Button updateBut = mView.findViewById(R.id.updateTransBTN);
+        Button delBut = mView.findViewById(R.id.deleteBudgetBTN);
+        Button updateBut = mView.findViewById(R.id.updateBudgetBTN);
 
         updateBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 amount = Integer.parseInt(mAmount.getText().toString());
                 note = mNotes.getText().toString();
 
@@ -128,13 +133,14 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(item, date, postKey, wallet, note, amount, months.getMonths());
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("income").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                Data data = new Data(item, date, postKey, note,null, amount, months.getMonths());
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.child(postKey).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(mContext, "Update was successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Updated was successfully!", Toast.LENGTH_SHORT).show();
                         }
 
                         else {
@@ -150,7 +156,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
         delBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("income").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.child(postKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -173,14 +179,13 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return myDataListIncome.size();
+        return myDataList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView item, amount, date, notes, wallet;
-        public ImageView imageView;
-
+        public TextView item, amount, wallet, date, notes;
+        public ImageView itemIV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -189,9 +194,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
             amount = itemView.findViewById(R.id.amount);
             date = itemView.findViewById(R.id.date);
             notes = itemView.findViewById(R.id.note);
-            wallet = itemView.findViewById(R.id.wallet);
-            imageView = itemView.findViewById(R.id.itemIV);
-
+            itemIV = itemView.findViewById(R.id.itemIV);
         }
     }
 }

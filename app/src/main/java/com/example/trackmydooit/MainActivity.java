@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,20 +67,16 @@ public class MainActivity extends AppCompatActivity {
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
 
 
+        //bottom nav bar code
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.DestHome);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch(item.getItemId())
                 {
-                    case R.id.DestGoals:
-                        startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.wallet_Activity:
+                    case R.id.DestWallet:
                         startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
                         overridePendingTransition(0,0);
                         return true;
@@ -92,10 +89,15 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.DestGoals:
+                        startActivity(new Intent(getApplicationContext(), CreateSavingsGoalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
         });
+        //bottom nav bar code
 
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);

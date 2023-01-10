@@ -210,13 +210,13 @@ public class BudgetActivity extends AppCompatActivity {
 
                 switch (model.getItem()){
                     case "Transport":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                        holder.itemIV.setImageResource(R.drawable.train_fill1_wght300_grad0_opsz40);
                         break;
                     case "Food":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                        holder.itemIV.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
                         break;
                     case "Entertainment":
-                        holder.itemIV.setImageResource(R.drawable.ic_home);
+                        holder.itemIV.setImageResource(R.drawable.headphones_fill1_wght300_grad0_opsz20);
                         break;
                     case "Home":
                         holder.itemIV.setImageResource(R.drawable.ic_home);

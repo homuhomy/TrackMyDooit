@@ -74,7 +74,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         }
     }
 
-    public ExampleAdapter(ArrayList<ExampleItem> exampleList){
+    public ExampleAdapter(Wallet_Activity wallet_activity, ArrayList<ExampleItem> exampleList){
         mExampleList=exampleList;
     }
 
