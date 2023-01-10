@@ -29,6 +29,7 @@
     </string-array>
 
     <string-array name="expensesCategory">
+        <item>Select an expense category</item>
         <item>Utilities</item>
         <item>Transportation</item>
         <item>Food</item>

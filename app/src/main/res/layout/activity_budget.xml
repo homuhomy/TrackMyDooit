@@ -12,10 +12,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
+        android:background="@color/white"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:titleTextColor="@color/black" />
 
     <TextView
         android:id="@+id/budgetTV"
@@ -30,7 +31,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="590dp"
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -54,5 +56,24 @@
             app:backgroundTint="@color/orange" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- for bottom bar copy here -->
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
+        app:menu="@menu/menu_bottom"
+        android:clipToPadding="false"/>
 
 </LinearLayout>

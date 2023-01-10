@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +50,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private TextView budgetTV;
     private RecyclerView RVBudget;
-    private Toolbar ToolBar;
+    private Toolbar toolbar;
 
     private ExtendedFloatingActionButton FABAddBudget;
 
@@ -65,10 +68,45 @@ public class BudgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
-        //toolbar title
-        ToolBar = findViewById(R.id.toolbar);
-        setSupportActionBar(ToolBar);
-        getSupportActionBar().setTitle("My Budgets");
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //to add back button
+        getSupportActionBar().setTitle("MY BUDGET");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //bottom nav bar code
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.DestAddExpense);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.DestGoals:
+                        startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestWallet:
+                        startActivity(new Intent(getApplicationContext(),Wallet_Activity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.DestAddExpense:
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.DestSettings:
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //bottom nav bar code
 
         mAuth = FirebaseAuth.getInstance();
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());

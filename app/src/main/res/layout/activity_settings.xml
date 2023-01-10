@@ -7,13 +7,23 @@
     android:orientation="vertical"
     tools:context=".SettingsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:titleTextColor="@color/black" />
+
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="320dp"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
-        android:src="@drawable/settings"
+        android:src="@drawable/settings_black_24dp"
 
         />
 
@@ -135,11 +145,22 @@
 
     </LinearLayout>
 
+    <!-- for bottom bar copy here -->
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="10dp"
         app:menu="@menu/menu_bottom"
-        />
+        android:clipToPadding="false"/>
 </LinearLayout>

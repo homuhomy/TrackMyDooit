@@ -98,7 +98,7 @@ public class IncomeActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.settings:
+                    case R.id.DestSettings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(0,0);
                         return true;

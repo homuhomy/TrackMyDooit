@@ -72,7 +72,7 @@ public class ExpenseActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //to add back button
-        getSupportActionBar().setTitle("EXPENSES");
+        getSupportActionBar().setTitle("MY EXPENSES");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -100,7 +100,7 @@ public class ExpenseActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.settings:
+                    case R.id.DestSettings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(0,0);
                         return true;

@@ -17,23 +17,6 @@
         android:gravity="center_horizontal"
         app:titleTextColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="HI,BIGHERO!"
-            android:textStyle="bold"
-            android:textSize="24dp"
-            android:layout_marginLeft="10dp"
-            >
-
-        </TextView>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -115,23 +98,35 @@
     </RelativeLayout>
 
 
+    <!-- for bottom bar copy here -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="510dp"
+        android:layout_height="400dp"
         android:layout_marginTop="20dp"
         android:background="#d8d8d8"
         android:padding="3dp"
         android:scrollbars="vertical">
 
-
     </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
-        app:menu="@menu/menu_bottom"/>
+        app:menu="@menu/menu_bottom"
+        android:clipToPadding="false"/>
 
 </LinearLayout>

@@ -27,7 +27,7 @@
         app:showAsAction="ifRoom"/>
     <item android:title=""
         android:tooltipText="Settings"
-        android:id="@+id/settings"
-        android:icon="@drawable/settings"
+        android:id="@+id/DestSettings"
+        android:icon="@drawable/settings_black_24dp"
         app:showAsAction="ifRoom"/>
 </menu>

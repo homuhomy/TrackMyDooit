@@ -38,7 +38,8 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -74,6 +75,7 @@
         </activity>
         <activity
             android:name=".BudgetActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -177,10 +179,8 @@
 
         <activity
             android:name=".Wallet_Activity"
-            android:exported="false">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
 
             <meta-data
                 android:name="android.app.lib_name"
