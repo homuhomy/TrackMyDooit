@@ -4,6 +4,7 @@ import static android.Manifest.permission.CAMERA;
 
 import android.Manifest;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -59,7 +60,7 @@ public class CameraActivity extends AppCompatActivity {
     private EditText editText;
     private ImageView capturedImage;
     private Bitmap bitmap;
-    private Button BTCapture, BTCopyText;
+    private Button BTCapture, BTCopyText, BTCopy;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -77,6 +78,7 @@ public class CameraActivity extends AppCompatActivity {
         resultText = findViewById(R.id.resultText);
         BTCapture = findViewById(R.id.BTCapture);
         BTCopyText = findViewById(R.id.BTCopyText);
+        BTCopy = findViewById(R.id.BTCopy);
 
         ActivityCompat.requestPermissions(this,
                 new String []{CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -91,6 +93,17 @@ public class CameraActivity extends AppCompatActivity {
         });
 
         BTCopyText.setOnClickListener(v -> detectText());
+
+        //to copy text
+        BTCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("Copy", resultText.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(CameraActivity.this, "Copied", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
