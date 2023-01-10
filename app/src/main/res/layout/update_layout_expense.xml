@@ -37,6 +37,18 @@
             android:textSize="20dp"
             android:layout_margin="5dp"/>
 
+        <TextView
+            android:id="@+id/walletName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="wallet type"
+            android:gravity="center"
+            android:fontFamily="@font/open_sans"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:layout_margin="5dp"/>
+
         <EditText
             android:id="@+id/amountTransET"
             android:layout_width="match_parent"

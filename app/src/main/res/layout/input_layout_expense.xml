@@ -24,7 +24,6 @@
             android:textSize="18sp"/>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,14 +71,24 @@
 
             </LinearLayout>
 
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/note"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:hint="Expense note" />-->
+
             <EditText
-                android:id="@+id/note"
+                android:id="@+id/ExpenseDescriptionET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Expense note"
+                android:layout_height="40dp"
+                android:layout_margin = "10dp"
+                android:ems="10"
+                android:hint="Expense description"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:background="@drawable/edit_text_frame"
                 />
-
-
 
             <Spinner
                 android:id="@+id/spinnerExpense"
@@ -115,6 +124,7 @@
                 android:paddingLeft="15dp"
                 android:background="@drawable/edit_text_frame"
                 />
+
 
         </LinearLayout>
 

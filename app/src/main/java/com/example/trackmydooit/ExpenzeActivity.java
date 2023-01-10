@@ -1,9 +1,9 @@
+/*
 package com.example.trackmydooit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -24,13 +24,10 @@ import androidx.appcompat.widget.Toolbar;;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import org.joda.time.DateTime;
 import org.joda.time.Months;
@@ -38,17 +35,14 @@ import org.joda.time.MutableDateTime;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
-public class ExpenseActivity extends AppCompatActivity {
+public class ExpenzeActivity extends AppCompatActivity {
 
     private TextView expenzeTV;
     private RecyclerView RVExpense;
     private Toolbar toolbar;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
     private ExtendedFloatingActionButton FABAddExpense;
 
     private FirebaseAuth mAuth;
@@ -56,21 +50,18 @@ public class ExpenseActivity extends AppCompatActivity {
     private ProgressDialog loader;
     private DatabaseReference expenseRef;
 
-    private ExpensesAdapter expensesAdapter;
-    private List<Data> myDataList;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense);
+        setContentView(R.layout.activity_expenze);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Expenses");
+        getSupportActionBar().setTitle("My Budgets");
 
 
-        expenzeTV = findViewById(R.id.expenseTV);
+        expenzeTV = findViewById(R.id.expenzeTV);
         //progressBar = findViewById(R.id.progressBar);
         RVExpense = findViewById(R.id.RVExpense);
         FABAddExpense = findViewById(R.id.FABAddExpense);
@@ -78,20 +69,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = mAuth.getCurrentUser().getUid();
-        expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.setReverseLayout(true);
-        RVExpense.setHasFixedSize(true);
-        RVExpense.setLayoutManager(linearLayoutManager);
-
-        myDataList = new ArrayList<>();
-        expensesAdapter = new ExpensesAdapter(ExpenseActivity.this, myDataList);
-        RVExpense.setAdapter(expensesAdapter);
-
-        readItems();
-
+        expenseRef = FirebaseDatabase.getInstance().getReference("expense").child(onlineUserID);
 
         FABAddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,49 +82,11 @@ public class ExpenseActivity extends AppCompatActivity {
 
     }
 
-    private void readItems() {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        String date = dateFormat.format(cal.getTime());
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
-        Query query = reference.orderByChild("date").equalTo(date);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                myDataList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Data data = dataSnapshot.getValue(Data.class);
-                    myDataList.add(data);
-                }
-
-                expensesAdapter.notifyDataSetChanged();
-                //progressBar.setVisibility(View.GONE);
-
-                int totalAmount = 0;
-                for (DataSnapshot ds : snapshot.getChildren()){
-                    Map<String,Object> map = (Map<String, Object>)ds.getValue();
-                    Object total = map.get("amount");
-                    int pTotal = Integer.parseInt(String.valueOf(total));
-                    totalAmount += pTotal;
-
-                    expenzeTV.setText("Total Spendings: RM" + totalAmount);
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
     private void addItemSpentOn() {
 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
-        View myView = inflater.inflate(R.layout.input_layout_expense, null);
+        View myView = inflater.inflate(R.layout.input_layout_expenze, null);
         myDialog.setView(myView);
 
         final AlertDialog dialog = myDialog.create();
@@ -173,12 +113,12 @@ public class ExpenseActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(expenseItem.equals("Select an expense category")){
-                    Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
+                if(expenseItem.equals("Click to select a budget category")){
+                    Toast.makeText(ExpenzeActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
                 }
 
                 if(walletItem.equals("Select a wallet")){
-                    Toast.makeText(ExpenseActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExpenzeActivity.this, "Select a valid item", Toast.LENGTH_SHORT).show();
                 }
 
                 if (TextUtils.isEmpty(notes)){
@@ -187,7 +127,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 }
 
                 else {
-                    loader.setMessage("Adding an expense item..");
+                    loader.setMessage("Adding a expense item..");
                     loader.setCanceledOnTouchOutside(false);
                     loader.show();
 
@@ -206,11 +146,11 @@ public class ExpenseActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(ExpenseActivity.this, "Expense item added successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ExpenzeActivity.this, "Budget item added successfully!", Toast.LENGTH_SHORT).show();
                             }
 
                             else {
-                                Toast.makeText(ExpenseActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ExpenzeActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }
 
                             loader.dismiss();
@@ -231,4 +171,4 @@ public class ExpenseActivity extends AppCompatActivity {
 
         dialog.show();
     }
-}
+}*/
