@@ -24,6 +24,7 @@ import com.google.firebase.database.collection.LLRBNode;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
+import org.joda.time.Weeks;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -133,8 +134,13 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
                 epoch.setDate(0);
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
+                Weeks weeks = Weeks.weeksBetween(epoch,now);
 
-                Data data = new Data(item, date, postKey, wallet, note, amount, months.getMonths());
+                String itemNday = item+date;
+                String itemNweek = item+weeks.getWeeks();
+                String itemNmonth = item+months.getMonths();
+
+                Data data = new Data(item, date, postKey, note, wallet, itemNday, itemNweek, itemNmonth, amount, months.getMonths(), weeks.getWeeks());
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("expenses").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 reference.child(postKey).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

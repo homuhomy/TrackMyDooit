@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
+import org.joda.time.Weeks;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -194,9 +195,14 @@ public class BudgetActivity extends AppCompatActivity {
                     MutableDateTime epoch = new MutableDateTime();
                     epoch.setDate(0);
                     DateTime now = new DateTime();
+                    Weeks weeks = Weeks.weeksBetween(epoch,now);
                     Months months = Months.monthsBetween(epoch, now);
 
-                    Data data = new Data(budgetItem, date, id, null, Integer.parseInt(budgetAmount), months.getMonths());
+                    String itemNday = budgetItem+date;
+                    String itemNweek = budgetItem+weeks.getWeeks();
+                    String itemNmonth = budgetItem+months.getMonths();
+
+                    Data data = new Data(budgetItem, date, id, null, null, itemNday, itemNweek, itemNmonth, Integer.parseInt(budgetAmount), months.getMonths(), weeks.getWeeks());
                     budgetRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -357,9 +363,14 @@ public class BudgetActivity extends AppCompatActivity {
                 MutableDateTime epoch = new MutableDateTime();
                 epoch.setDate(0);
                 DateTime now = new DateTime();
+                Weeks weeks = Weeks.weeksBetween(epoch,now);
                 Months months = Months.monthsBetween(epoch, now);
 
-                Data data = new Data(item, date, postKey, null, amount, months.getMonths());
+                String itemNday = item+date;
+                String itemNweek = item+weeks.getWeeks();
+                String itemNmonth = item+months.getMonths();
+
+                Data data = new Data(item, date, postKey, null, null, itemNday, itemNweek, itemNmonth, amount, months.getMonths(), weeks.getWeeks());
                 budgetRef.child(postKey).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

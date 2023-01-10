@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import org.joda.time.MutableDateTime;
+import org.joda.time.Weeks;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -196,8 +197,13 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
                     epoch.setDate(0);
                     DateTime now = new DateTime();
                     Months months = Months.monthsBetween(epoch, now);
+                    Weeks weeks = Weeks.weeksBetween(epoch,now);
 
-                    Data data = new Data(budgetItem, date, id, null, Integer.parseInt(budgetAmount), months.getMonths());
+//                    String itemNday = budgetItem+date;
+//                    String itemNweek = budgetItem+weeks.getWeeks();
+//                    String itemNmonth = budgetItem+months.getMonths();
+
+                    Data data = new Data(budgetItem, date, id, null, null,null, null,null, Integer.parseInt(budgetAmount), months.getMonths(), weeks.getWeeks());
                     goalRef.child(id).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -359,8 +365,13 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
                 epoch.setDate(0);
                 DateTime now = new DateTime();
                 Months months = Months.monthsBetween(epoch, now);
+                Weeks weeks = Weeks.weeksBetween(epoch,now);
 
-                Data data = new Data(item, date, postKey, null, amount, months.getMonths());
+//                    String itemNday = budgetItem+date;
+//                    String itemNweek = budgetItem+weeks.getWeeks();
+//                    String itemNmonth = budgetItem+months.getMonths();
+
+                Data data = new Data(item, date, postKey, null, null, null, null, null, amount, months.getMonths(), weeks.getWeeks());
                 goalRef.child(postKey).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
