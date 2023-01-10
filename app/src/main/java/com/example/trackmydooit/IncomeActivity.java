@@ -65,9 +65,12 @@ public class IncomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
 
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My Incomes");
+        //to add back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("My Incomes");
 
 
         incomeTV = findViewById(R.id.incomeTV);
@@ -129,7 +132,7 @@ public class IncomeActivity extends AppCompatActivity {
                     int pTotal = Integer.parseInt(String.valueOf(total));
                     totalAmount += pTotal;
 
-                    incomeTV.setText("Total Spendings: RM" + totalAmount);
+                    incomeTV.setText("Total Income: RM" + totalAmount);
                 }
             }
 

@@ -54,23 +54,21 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.ViewHolder
         final Data data = myDataListIncome.get(position);
 
         holder.item.setText("Item: " + data.getItem());
-        holder.amount.setText("Amount: " + data.getAmount());
+        holder.amount.setText("Amount: +RM" + data.getAmount());
+        holder.amount.setTextColor(0xAA138600);
         holder.date.setText("Date: " + data.getDate());
         holder.notes.setText("Note: " + data.getNotes());
         holder.wallet.setText("Wallet: " + data.getWallet());
 
         switch (data.getItem()){
             case "Salary":
-                holder.imageView.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
+                holder.imageView.setImageResource(R.drawable.badge_black_24dp);
                 break;
             case "Scholarship":
                 holder.imageView.setImageResource(R.drawable.ic_home);
                 break;
             case "Allowance":
-                holder.imageView.setImageResource(R.drawable.ic_home);
-                break;
-            case "Home":
-                holder.imageView.setImageResource(R.drawable.ic_home);
+                holder.imageView.setImageResource(R.drawable.family_restroom_fill0_wght300_grad0_opsz40);
                 break;
         }
 

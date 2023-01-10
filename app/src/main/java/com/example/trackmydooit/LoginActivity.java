@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     //to stop login
-//    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,19 +117,17 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //if user nvr logout, send them str8 to homescreen
-        if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
+//        if(mAuth.getCurrentUser() != null){
+//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//            finish();
+//        }
     }
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
 //        mAuth.addAuthStateListener(authStateListener);
 //    }
-
-    //to stop login
-
+//
 //    @Override
 //    protected void onStop() {
 //        super.onStop();

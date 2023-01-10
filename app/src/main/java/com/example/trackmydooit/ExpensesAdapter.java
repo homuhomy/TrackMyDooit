@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.collection.LLRBNode;
 
 import org.joda.time.DateTime;
 import org.joda.time.Months;
@@ -54,7 +56,8 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
         final Data data = myDataListExpense.get(position);
 
         holder.item.setText("Item: " + data.getItem());
-        holder.amount.setText("Amount: " + data.getAmount());
+        holder.amount.setText("Amount: - RM" + data.getAmount());
+        holder.amount.setTextColor(0xAAEE0000);
         holder.date.setText("Date: " + data.getDate());
         holder.notes.setText("Note: " + data.getNotes());
         holder.wallet.setText("Wallet: " + data.getWallet());
@@ -67,7 +70,7 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
                 holder.imageView.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
                 break;
             case "Education":
-                holder.imageView.setImageResource(R.drawable.ic_home);
+                holder.imageView.setImageResource(R.drawable.school_black_24dp);
                 break;
             case "Transportation":
                 holder.imageView.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
@@ -193,6 +196,8 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.ViewHo
             notes = itemView.findViewById(R.id.note);
             wallet = itemView.findViewById(R.id.wallet);
             imageView = itemView.findViewById(R.id.itemIV);
+
+            //imageView.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.button_selector));
 
         }
     }

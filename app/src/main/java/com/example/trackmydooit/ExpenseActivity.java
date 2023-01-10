@@ -69,9 +69,12 @@ public class ExpenseActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("My Expenses");
         //to add back button
+        getSupportActionBar().setTitle("EXPENSES");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
 
         expenzeTV = findViewById(R.id.expenseTV);

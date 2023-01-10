@@ -49,31 +49,34 @@
             android:textSize="18dp"
             android:layout_margin="5dp"/>
 
+
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop = "20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Expense description"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:background="@drawable/edit_text_frame"/>
+
         <EditText
             android:id="@+id/amountTransET"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:fontFamily="@font/open_sans"
-            android:hint="Enter amount"
-            android:inputType="number"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter note"
-            android:fontFamily="@font/open_sans"
-            android:textStyle="bold"
-            android:textColorHint="@color/black"
-            android:inputType="number"
-            android:id="@+id/note"
-            android:textColor="@color/black"
-            android:layout_margin="5dp"/>
+            android:layout_height="40dp"
+            android:layout_marginLeft= "10dp"
+            android:layout_marginRight= "10dp"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="Amount"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:background="@drawable/edit_text_frame" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginEnd="5dp"
                     android:text="Delete"
                     android:fontFamily="@font/open_sans"
                     android:textAllCaps="false"
