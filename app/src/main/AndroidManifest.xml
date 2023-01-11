@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <meta-data android:name="android.max_aspect" android:value="2.4" />
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.4" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -23,7 +25,14 @@
         android:theme="@style/Theme.TrackMyDooit"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".EditProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ChangePasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -76,8 +85,8 @@
         </activity>
         <activity
             android:name=".BudgetActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -133,13 +142,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ChangePassword"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ForgotPassword"
             android:exported="false">
             <meta-data
@@ -183,12 +185,10 @@
             android:name=".Wallet_Activity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>

@@ -169,7 +169,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(samePassword()){
 
                 }
-                Data data = new Data(email, username);
+//                Data data = new Data(email, username);
                 //Create a new node with some data
                 Map<String, String> newData = new HashMap<>();
                 newData.put("username", username.getEditText().getText().toString());

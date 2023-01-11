@@ -9,14 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    private CardView logOut, profile;
+    private CardView logOut, profile, editprofile;
     private Toolbar toolbar;
 
     @Override
@@ -64,12 +63,22 @@ public class SettingsActivity extends AppCompatActivity {
         });
         //bottom nav bar code
 
+        editprofile = findViewById(R.id.editprofile);
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //go to profile
+                Intent intent = new Intent(SettingsActivity.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
+
         profile = findViewById(R.id.profile);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //go to profile editing page
-                Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
+                //go to change password
+                Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
                 startActivity(intent);
             }
         });

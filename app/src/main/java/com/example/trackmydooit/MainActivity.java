@@ -67,27 +67,43 @@ public class MainActivity extends AppCompatActivity {
         incomeRef = FirebaseDatabase.getInstance().getReference("income").child(onlineUserID);
         expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
-        UserRef = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+//        UserRef = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+//
+//        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());;
+//        ValueEventListener eventListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    String username = dataSnapshot.child("username").getValue(String.class);
+//                    hiUser.setText("Hi, "+username);
+////                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Handle error
+//            }
+//        };
+//        usersRef.addValueEventListener(eventListener);
 
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+        //bottom nav bar code
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String username = ds.child("username").getValue(String.class);
-                    hiUser.setText("Hi, "+username);
-                }
+                String username = dataSnapshot.child("username").getValue(String.class);
+                hiUser.setText("Hi, "+username);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle error
             }
         };
-        usersRef.addValueEventListener(eventListener);
+        userRef.addValueEventListener(eventListener);
 
 
-        //bottom nav bar code
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.DestHome);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -119,23 +135,23 @@ public class MainActivity extends AppCompatActivity {
         });
         //bottom nav bar code
 
-        UserRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
-                    Object total = map.get("username");
-                    hiUser = (TextView) total;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        UserRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
+//                    Object total = map.get("username");
+//                    hiUser = (TextView) total;
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);

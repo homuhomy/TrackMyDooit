@@ -9,33 +9,33 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import com.example.trackmydooit.databinding.ActivityForgotPasswordBinding;
+import com.example.trackmydooit.databinding.ActivityChangePasswordBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
-    ActivityForgotPasswordBinding binding;
+    ActivityChangePasswordBinding binding;
     ProgressDialog dialog;
     FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_change_password);
 
-        binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
+        binding = ActivityChangePasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
 
-        dialog = new ProgressDialog(ProfileActivity.this);
+        dialog = new ProgressDialog(ChangePasswordActivity.this);
         dialog.setCancelable(false);
         dialog.setMessage("Loading");
 
-        binding.ForgotBtn.setOnClickListener(view -> {
+        binding.sendEmail.setOnClickListener(view -> {
             forgotpassword();
         });
     }
@@ -66,18 +66,18 @@ public class ProfileActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     dialog.dismiss();
                     if(task.isSuccessful()){
-                        startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
+                        startActivity(new Intent(ChangePasswordActivity.this,LoginActivity.class));
                         finish();
-                        Toast.makeText(ProfileActivity.this,"Please Check your Email",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this,"Please Check your Email",Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(ProfileActivity.this,"Enter correct Email Address", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this,"Enter correct Email Address", Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
