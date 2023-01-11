@@ -8,8 +8,11 @@ public class Data {
     int amount, month, week;
 
 
-    public Data(TextInputLayout username, TextInputLayout textInputLayout){
+    public Data(){
     }
+
+//    public Data(TextInputLayout username, TextInputLayout textInputLayout){
+//    }
 
 //    public Data(String item, String date, String id, String notes, int amount, int month) {
 //        this.item = item;
@@ -32,6 +35,9 @@ public class Data {
         this.amount = amount;
         this.month = month;
         this.week = week;
+    }
+
+    public Data(TextInputLayout email, TextInputLayout username) {
     }
 
     public String getItem() {

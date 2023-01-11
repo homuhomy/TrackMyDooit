@@ -143,7 +143,8 @@
                                 android:text="status"
                                 android:textColor="#000"
                                 android:textStyle="bold"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp"
+                                android:id="@+id/progress_ratio_transport"/>
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -229,7 +230,8 @@
                                 android:text="status"
                                 android:textColor="#000"
                                 android:textStyle="bold"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp"
+                                android:id="@+id/progress_ratio_food"/>
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -315,7 +317,8 @@
                                 android:text="status"
                                 android:textColor="#000"
                                 android:textStyle="bold"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp"
+                                android:id="@+id/progress_ratio_entertainment"/>
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -401,7 +404,8 @@
                                 android:text="status"
                                 android:textColor="#000"
                                 android:textStyle="bold"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp"
+                                android:id="@+id/progress_ratio_personal"/>
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -487,7 +491,8 @@
                                 android:text="status"
                                 android:textColor="#000"
                                 android:textStyle="bold"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp"
+                                android:id="@+id/progress_ratio_home"/>
 
                             <ImageView
                                 android:layout_width="0dp"

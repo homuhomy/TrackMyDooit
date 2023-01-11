@@ -34,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.joda.time.DateTime;
@@ -55,7 +56,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private ExtendedFloatingActionButton FABAddBudget;
 
-    private DatabaseReference budgetRef;
+    private DatabaseReference budgetRef, personalRef;
     private FirebaseAuth mAuth;
     private ProgressDialog loader;
 
@@ -111,6 +112,8 @@ public class BudgetActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         budgetRef = FirebaseDatabase.getInstance().getReference().child("budget").child(mAuth.getCurrentUser().getUid());
+        personalRef = FirebaseDatabase.getInstance().getReference("personal").child("budget").child(mAuth.getCurrentUser().getUid());
+
         loader = new ProgressDialog(this);
 
         budgetTV = findViewById(R.id.budgetTV);
@@ -149,7 +152,49 @@ public class BudgetActivity extends AppCompatActivity {
                 additem();
             }
         });
+
+        budgetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount()>0){
+                    int totalAmount = 0;
+                    for (DataSnapshot snap : snapshot.getChildren()){
+                        Data data = snap.getValue(Data.class);
+                        totalAmount += data.getAmount();
+                        String sttotal = String.valueOf("Month Budget: " +totalAmount);
+                        budgetTV.setText(sttotal);
+                    }
+                    int weeklyBudget = totalAmount/4;
+                    int dailyBudget = totalAmount/30;
+                    personalRef.child("budget").setValue(totalAmount);
+                    personalRef.child("weeklyBudget").setValue(weeklyBudget);
+                    personalRef.child("dailyBudget").setValue(dailyBudget);
+                }
+                else {
+                    personalRef.child("budget").setValue(0);
+                    personalRef.child("weeklyBudget").setValue(0);
+                    personalRef.child("dailyBudget").setValue(0);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        getMonthTransportBudgetRatios();
+        getMonthFoodBudgetRatios();
+        getMonthEntertainmentBudgetRatios();
+        getMonthPersonalBudgetRatios();
+        getMonthHomeBudgetRatios();
+        getMonthUtilitiesBudgetRatios();
+
+
     }
+
 
 
     private void additem() {
@@ -409,5 +454,221 @@ public class BudgetActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    private void getMonthTransportBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Transport");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayTransRatio = pTotal/30;
+                    int weekTransRation = pTotal/4;
+                    int monthTransRatio = pTotal;
+
+                    personalRef.child("dayTransRatio").setValue(dayTransRatio);
+                    personalRef.child("weekTransRatio").setValue(weekTransRation);
+                    personalRef.child("monthTransRatio").setValue(monthTransRatio);
+                }
+                else {
+                    personalRef.child("dayTransRatio").setValue(0);
+                    personalRef.child("weekTransRatio").setValue(0);
+                    personalRef.child("monthTransRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getMonthFoodBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Food");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayFoodRatio = pTotal/30;
+                    int weekFoodRation = pTotal/4;
+                    int monthFoodRatio = pTotal;
+
+                    personalRef.child("dayFoodRatio").setValue(dayFoodRatio);
+                    personalRef.child("weekFoodRatio").setValue(weekFoodRation);
+                    personalRef.child("monthFoodRatio").setValue(monthFoodRatio);
+                }
+                else {
+                    personalRef.child("dayFoodRatio").setValue(0);
+                    personalRef.child("weekFoodRatio").setValue(0);
+                    personalRef.child("monthFoodRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getMonthEntertainmentBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Entertainment");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayEntertainmentRatio = pTotal/30;
+                    int weekEntertainmentRation = pTotal/4;
+                    int monthEntertainmentRatio = pTotal;
+
+                    personalRef.child("dayEntertainmentRatio").setValue(dayEntertainmentRatio);
+                    personalRef.child("weekEntertainmentRation").setValue(weekEntertainmentRation);
+                    personalRef.child("monthEntertainmentRatio").setValue(monthEntertainmentRatio);
+                }
+                else {
+                    personalRef.child("dayEntertainmentRatio").setValue(0);
+                    personalRef.child("weekEntertainmentRation").setValue(0);
+                    personalRef.child("monthEntertainmentRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getMonthPersonalBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Personal");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayPersonalRatio = pTotal/30;
+                    int weekPersonalRation = pTotal/4;
+                    int monthPersonalRatio = pTotal;
+
+                    personalRef.child("dayPersonalRatio").setValue(dayPersonalRatio);
+                    personalRef.child("weekPersonalRation").setValue(weekPersonalRation);
+                    personalRef.child("monthPersonalRatio").setValue(monthPersonalRatio);
+                }
+                else {
+                    personalRef.child("dayPersonalRatio").setValue(0);
+                    personalRef.child("weekPersonalRation").setValue(0);
+                    personalRef.child("monthPersonalRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getMonthHomeBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Home");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayHomeRatio = pTotal/30;
+                    int weekHomeRation = pTotal/4;
+                    int monthHomeRatio = pTotal;
+
+                    personalRef.child("dayHomeRatio").setValue(dayHomeRatio);
+                    personalRef.child("weekHomeRation").setValue(weekHomeRation);
+                    personalRef.child("monthHomeRatio").setValue(monthHomeRatio);
+                }
+                else {
+                    personalRef.child("dayHomeRatio").setValue(0);
+                    personalRef.child("weekHomeRation").setValue(0);
+                    personalRef.child("monthHomeRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getMonthUtilitiesBudgetRatios() {
+        Query query = budgetRef.orderByChild("item").equalTo("Utilities");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    int pTotal = 0;
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Map<String,Object> map = (Map<String, Object>)ds.getValue();
+                        Object total = map.get("amount");
+                        pTotal = Integer.parseInt(String.valueOf(total));
+                    }
+
+                    int dayUtilitiesRatio = pTotal/30;
+                    int weekUtilitiesRation = pTotal/4;
+                    int monthUtilitiesRatio = pTotal;
+
+                    personalRef.child("dayUtilitiesRatio").setValue(dayUtilitiesRatio);
+                    personalRef.child("weekUtilitiesRation").setValue(weekUtilitiesRation);
+                    personalRef.child("monthUtilitiesRatio").setValue(monthUtilitiesRatio);
+                }
+                else {
+                    personalRef.child("dayUtilitiesRatio").setValue(0);
+                    personalRef.child("weekUtilitiesRation").setValue(0);
+                    personalRef.child("monthUtilitiesRatio").setValue(0);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
