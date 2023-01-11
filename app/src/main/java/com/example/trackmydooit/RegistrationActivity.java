@@ -13,20 +13,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -50,8 +54,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private DatabaseReference userRef;
+//    private DatabaseReference userRef;
     private ProgressDialog progressDialog;
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+//                .setQuery(userRef, Data.class)
+//                .build();
+//
+//    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -136,11 +149,11 @@ public class RegistrationActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
+
                     mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                userRef = FirebaseDatabase.getInstance().getReference().child("user").child(mAuth.getCurrentUser().getUid());
                                 Intent intent = new Intent (RegistrationActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -156,6 +169,32 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(samePassword()){
 
                 }
+                Data data = new Data(email, username);
+                //Create a new node with some data
+                Map<String, String> newData = new HashMap<>();
+                newData.put("username", username.getEditText().getText().toString());
+                newData.put("email", email.getEditText().getText().toString());
+
+
+//                newData.put("email", email);
+
+                //Adding a new node to the database
+                FirebaseDatabase.getInstance().getReference().child("users").push().setValue(newData);
+
+//        userRef = FirebaseDatabase.getInstance().getReference().child("user").child(mAuth.getCurrentUser().getUid());
+//        userRef.child("user").setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    Toast.makeText(RegistrationActivity.this, "Budget item added successfully!", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                else {
+//                    Toast.makeText(RegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
             }
         });
 

@@ -14,13 +14,12 @@
 
 
         <TextView
+            android:id="@+id/hiUser"
             android:layout_width="235dp"
             android:layout_height="100dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:paddingTop="20dp"
-            android:text="Hi,
-            username!"
             android:fontFamily="@font/open_sans_semibold"
             android:textColor="#3A1111"
             android:textSize="32sp" />

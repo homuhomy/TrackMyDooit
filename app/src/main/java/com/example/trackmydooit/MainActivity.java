@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mainTitle;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef;
+    private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef, UserRef;
     private String onlineUserID = "";
 
     private int totalAmountMonth = 0;
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private int totalAmountExpenseD = 0;
     private int totalAmountExpenseC = 0;
 
+    private TextView hiUser;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         BudgetAmount = findViewById(R.id.BudgetAmount);
         ExpenseAmount = findViewById(R.id.ExpenseAmount);
         IncomeAmount = findViewById(R.id.IncomeAmount);
+        hiUser = findViewById(R.id.hiUser);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -64,6 +67,24 @@ public class MainActivity extends AppCompatActivity {
         incomeRef = FirebaseDatabase.getInstance().getReference("income").child(onlineUserID);
         expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
+        UserRef = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String username = ds.child("username").getValue(String.class);
+                    hiUser.setText("Hi, "+username);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        };
+        usersRef.addValueEventListener(eventListener);
 
 
         //bottom nav bar code
@@ -97,6 +118,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //bottom nav bar code
+
+        UserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
+                    Object total = map.get("username");
+                    hiUser = (TextView) total;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);

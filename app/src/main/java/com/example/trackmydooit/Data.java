@@ -1,12 +1,14 @@
 package com.example.trackmydooit;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 public class Data {
 
     String item, date, id, notes, wallet, itemNday, itemNweek, itemNmonth;
     int amount, month, week;
 
 
-    public Data(){
+    public Data(TextInputLayout username, TextInputLayout textInputLayout){
     }
 
 //    public Data(String item, String date, String id, String notes, int amount, int month) {
