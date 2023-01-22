@@ -25,8 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textSize="25sp"
         android:text="Expenses this month: RM0"
-        android:textSize="27sp"
         android:textAlignment="center"
         android:textColor="#000000"/>
 

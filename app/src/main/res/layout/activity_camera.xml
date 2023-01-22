@@ -84,7 +84,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_ish_button"
             android:fontFamily="@font/open_sans"
-            android:text="Confirm"
+            android:text="Scan"
             android:layout_marginRight="5dp"
             android:textAllCaps="false"
             android:textColor="#000000"

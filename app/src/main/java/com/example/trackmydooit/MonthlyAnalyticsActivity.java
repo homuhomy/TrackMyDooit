@@ -64,7 +64,10 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Analytics: ");
+        //to add back button
+        getSupportActionBar().setTitle("Analytics");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = mAuth.getCurrentUser().getUid();
@@ -117,7 +120,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
         progress_ratio_home = findViewById(R.id.progress_ratio_home);
         progress_ratio_utilities = findViewById(R.id.progress_ratio_utilities);
 
-        anyChartView = findViewById(R.id.anyChartView);
+        //anyChartView = findViewById(R.id.anyChartView);
 
         getTotalMonthTransportExpense();
         getTotalMonthFoodExpense();
@@ -163,7 +166,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthUtilities").setValue(totalAmount);
                 }
                 else {
-                    relativeUtilities.setVisibility(View.GONE);
+                    //relativeUtilities.setVisibility(View.GONE);
                     personalRef.child("monthUtilities").setValue(0);
                 }
             }
@@ -200,7 +203,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthHome").setValue(totalAmount);
                 }
                 else {
-                    relativeHome.setVisibility(View.GONE);
+                    //relativeHome.setVisibility(View.GONE);
                     personalRef.child("monthHome").setValue(0);
                 }
             }
@@ -237,7 +240,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthPersonal").setValue(totalAmount);
                 }
                 else {
-                    relativePersonal.setVisibility(View.GONE);
+                    //relativePersonal.setVisibility(View.GONE);
                     personalRef.child("monthPersonal").setValue(0);
                 }
             }
@@ -274,7 +277,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthEntertainment").setValue(totalAmount);
                 }
                 else {
-                    relativeEntertainment.setVisibility(View.GONE);
+                    //relativeEntertainment.setVisibility(View.GONE);
                     personalRef.child("monthEntertainment").setValue(0);
                 }
             }
@@ -311,7 +314,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthFood").setValue(totalAmount);
                 }
                 else {
-                    relativeFood.setVisibility(View.GONE);
+                    //relativeFood.setVisibility(View.GONE);
                     personalRef.child("monthFood").setValue(0);
                 }
             }
@@ -348,7 +351,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     personalRef.child("monthTrans").setValue(totalAmount);
                 }
                 else {
-                    relativeLayoutTransport.setVisibility(View.GONE);
+                    //relativeLayoutTransport.setVisibility(View.GONE);
                     personalRef.child("monthTrans").setValue(0);
                 }
             }
@@ -443,30 +446,30 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                         utilitiesTotal = 0;
                     }
 
-                    Pie pie = AnyChart.pie();
-                    List<DataEntry> data = new ArrayList<>();
-                    data.add(new ValueDataEntry("Transport", transTotal));
-                    data.add(new ValueDataEntry("Food", foodTotal));
-                    data.add(new ValueDataEntry("Entertainment", entertainmentTotal));
-                    data.add(new ValueDataEntry("Personal", personalTotal));
-                    data.add(new ValueDataEntry("Home", homeTotal));
-                    data.add(new ValueDataEntry("Utilities", utilitiesTotal));
+//                    Pie pie = AnyChart.pie();
+//                    List<DataEntry> data = new ArrayList<>();
+//                    data.add(new ValueDataEntry("Transport", transTotal));
+//                    data.add(new ValueDataEntry("Food", foodTotal));
+//                    data.add(new ValueDataEntry("Entertainment", entertainmentTotal));
+//                    data.add(new ValueDataEntry("Personal", personalTotal));
+//                    data.add(new ValueDataEntry("Home", homeTotal));
+//                    data.add(new ValueDataEntry("Utilities", utilitiesTotal));
 
-                    pie.data(data);
-                    pie.title("Month Analytics");
-                    pie.labels().position("outside");
+//                    pie.data(data);
+//                    pie.title("Month Analytics");
+//                    pie.labels().position("outside");
+//
+//                    pie.legend().title().enabled(true);
+//                    pie.legend().title()
+//                            .text("Items spent on: ")
+//                            .padding(0d,0d,10d,0d);
 
-                    pie.legend().title().enabled(true);
-                    pie.legend().title()
-                            .text("Items spent on: ")
-                            .padding(0d,0d,10d,0d);
+//                    pie.legend()
+//                            .position("center-bottom")
+//                            .itemsLayout(LegendLayout.HORIZONTAL)
+//                            .align(Align.CENTER);
 
-                    pie.legend()
-                            .position("center-bottom")
-                            .itemsLayout(LegendLayout.HORIZONTAL)
-                            .align(Align.CENTER);
-
-                    anyChartView.setChart(pie);
+                    //anyChartView.setChart(pie);
                 }
                 else {
                     Toast.makeText(MonthlyAnalyticsActivity.this, "Child does not exist! ", Toast.LENGTH_SHORT).show();

@@ -32,7 +32,6 @@ public class Wallet_Activity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,10 @@ public class Wallet_Activity extends AppCompatActivity {
 
                 switch(item.getItemId())
                 {
+                    case R.id.DestHome:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.DestGoals:
                         startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
                         overridePendingTransition(0,0);

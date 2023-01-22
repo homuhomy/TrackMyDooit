@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:background="@color/orange"
-            android:id="@+id/toolbar"
+            android:background="@color/white"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            app:titleTextColor="@color/black" />
 
         <TextView
             android:id="@+id/totalAmountSpentOn"
@@ -73,12 +73,13 @@
                 android:textColor="#000"/>
 
             <ImageView
+                android:id="@+id/status_image_green"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
-                android:layout_weight="1"
                 android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 android:src="@drawable/green"
-                android:id="@+id/status_image_green"/>
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:layout_width="0dp"
@@ -612,10 +613,10 @@
 
                 </RelativeLayout>
 
-                <com.anychart.AnyChartView
+                <!--<com.anychart.AnyChartView
                     android:layout_width="match_parent"
                     android:layout_height="600dp"
-                    android:id="@+id/anyChartView"/>
+                    android:id="@+id/anyChartView"/>-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"

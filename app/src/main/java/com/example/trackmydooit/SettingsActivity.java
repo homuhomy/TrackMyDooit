@@ -39,6 +39,11 @@ public class SettingsActivity extends AppCompatActivity {
 
                 switch(item.getItemId())
                 {
+                    case R.id.DestHome:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.DestGoals:
                         startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
                         overridePendingTransition(0,0);

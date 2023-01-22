@@ -1,3 +1,4 @@
+/*
 package com.example.trackmydooit;
 //package android.demo.learnandroidwithrealapps;
 
@@ -32,7 +33,8 @@ public class MonthlyReport extends AppCompatActivity {
         //drawChart();
     }
 
-    /*private void drawChart() {
+    */
+/*private void drawChart() {
         BarChart barChart = findViewById(R.id.barchart);
         barChart.setDrawBarShadow(false);
         barChart.setDrawValueAboveBar(true);
@@ -96,6 +98,7 @@ public class MonthlyReport extends AppCompatActivity {
         barChart.groupBars(startYear, groupSpace, barSpace);
         barChart.invalidate();
 
-    }*/
+    }*//*
 
-}
+
+}*/

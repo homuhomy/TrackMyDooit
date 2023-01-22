@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.DestAddExpense:
-                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity2.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.DestSettings:
@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
 
         CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(), MonthlyAnalyticsActivity.class)));
 
-        CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity.class)));
+        CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity2.class)));
 
-        CVIncome.setOnClickListener(view -> CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), IncomeActivity.class)));
+        CVIncome.setOnClickListener(view -> CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), ExpenseActivity2.class)));
 
         CVBudget.setOnClickListener(new View.OnClickListener() {
             @Override

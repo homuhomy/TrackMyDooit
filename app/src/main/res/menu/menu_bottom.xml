@@ -25,7 +25,7 @@
         android:id="@+id/DestGoals"
         android:icon="@drawable/savings_fill1_wght300_grad0_opsz24__1_"
         app:showAsAction="ifRoom"/>
-    <item android:title=""
+    <item android:title="Settings"
         android:tooltipText="Settings"
         android:id="@+id/DestSettings"
         android:icon="@drawable/settings_black_24dp"

@@ -74,7 +74,7 @@ public class IncomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //to add back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("INCOMES");
+        getSupportActionBar().setTitle("MY INCOMES");
 
         //bottom nav bar code
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
@@ -85,6 +85,10 @@ public class IncomeActivity extends AppCompatActivity {
 
                 switch(item.getItemId())
                 {
+                    case R.id.DestHome:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.DestGoals:
                         startActivity(new Intent(getApplicationContext(),CreateSavingsGoalActivity.class));
                         overridePendingTransition(0,0);

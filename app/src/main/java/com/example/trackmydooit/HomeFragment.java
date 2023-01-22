@@ -1,3 +1,4 @@
+/*
 package com.example.trackmydooit;
 
 import android.os.Bundle;
@@ -29,4 +30,4 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home3, container, false);
     }
-}
+}*/
