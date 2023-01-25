@@ -35,7 +35,8 @@
         <item>Food</item>
         <item>Entertainment</item>
         <item>Personal</item>
-        <item>Home</item>
+        <item>Rent</item>
+        <item>Travel</item>
     </string-array>
 
     <string-array name="goalItems">
@@ -57,4 +58,5 @@
     <string name="income">Income</string>
     <string name="choose_transaction_type">Choose transaction type</string>
     <string name="add_new_transaction">Add New Transaction</string>
+    <string name="scan_image">Scan Image</string>
 </resources>

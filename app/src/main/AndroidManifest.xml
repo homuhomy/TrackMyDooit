@@ -46,7 +46,8 @@
         </activity>
         <activity
             android:name=".ExpenseActivity2"
-            android:exported="false" >
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -144,7 +145,7 @@
         <activity
             android:name=".CameraActivity"
             android:exported="false"
-            android:parentActivityName=".ExpenseActivity" >
+            android:parentActivityName=".ExpenseActivity2" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

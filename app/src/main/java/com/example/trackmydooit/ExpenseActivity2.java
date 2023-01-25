@@ -2,6 +2,7 @@ package com.example.trackmydooit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
@@ -58,6 +59,13 @@ public class ExpenseActivity2 extends AppCompatActivity {
         transactionModelArrayList = new ArrayList<>();
         binding.RVTransaction.setLayoutManager(new LinearLayoutManager(this));
         binding.RVTransaction.setHasFixedSize(true);
+
+        Toolbar toolbar = binding.toolbar;
+        setSupportActionBar(toolbar);
+        //to add back button
+        getSupportActionBar().setTitle("My Transaction");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //bottom nav bar code
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav_view);
@@ -216,6 +224,7 @@ public class ExpenseActivity2 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //loadData();
         /*ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setCancelable(false);

@@ -4,17 +4,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+
     android:elevation="10dp"
     app:cardElevation="10dp">
 
     <LinearLayout
+        android:background="@drawable/custom_border_trans"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/add_menu"/>
 
 
         <TextView
@@ -74,7 +73,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/receipt"
+                    android:text="@string/scan_image"
                     android:textColor="#000000"
                     android:layout_weight="1"
                     android:layout_marginStart="10dp"

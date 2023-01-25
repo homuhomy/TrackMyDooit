@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,6 +49,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityAddExpenseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fStore = FirebaseFirestore.getInstance();
@@ -53,7 +57,6 @@ public class AddExpenseActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         type = getIntent().getStringExtra("type");
-
 
         if(type.equals("Income")){
             binding.RBIncome.setChecked(true);
@@ -79,6 +82,13 @@ public class AddExpenseActivity extends AppCompatActivity {
                 type = "Expense";
                 binding.spinnerExpense.setVisibility(View.VISIBLE);
                 binding.spinnerIncome.setVisibility(View.GONE);
+            }
+        });
+
+        binding.addReceiptBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.addReceiptBTN.getContext().startActivity(new Intent(binding.addReceiptBTN.getContext(), CameraActivity.class));
             }
         });
 
@@ -116,6 +126,8 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String expenseCategory = binding.spinnerExpense.getSelectedItem().toString();
                 String incomeCategory = binding.spinnerIncome.getSelectedItem().toString();
 
+
+
                 Map<String,Object> transaction = new HashMap<>();
                 transaction.put("date", currentDate);
                 transaction.put("id", id);
@@ -127,6 +139,8 @@ public class AddExpenseActivity extends AppCompatActivity {
                 transaction.put("wallet", walletCategory);
 
 
+
+
                 fStore.collection("Expenses").document(firebaseAuth.getUid()).collection("Transaction").document(id)
                         .set(transaction)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -135,6 +149,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                                 Toast.makeText(AddExpenseActivity.this, "Added", Toast.LENGTH_SHORT).show();
                                 binding.ExpenseDescriptionET.setText("");
                                 binding.amount.setText("");
+                                startActivity(new Intent(getApplicationContext(),ExpenseActivity2.class));
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -147,6 +162,8 @@ public class AddExpenseActivity extends AppCompatActivity {
 
             }
         });
+        binding.cancelTransBTN.setOnClickListener(view -> binding.cancelTransBTN.getContext().startActivity(new Intent(binding.cancelTransBTN.getContext(), ExpenseActivity2.class)));
+
     }
 
     /*@Override
