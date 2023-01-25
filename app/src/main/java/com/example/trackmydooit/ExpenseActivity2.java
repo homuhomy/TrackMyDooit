@@ -177,13 +177,13 @@ public class ExpenseActivity2 extends AppCompatActivity {
                         //binding.expenseTV.setText("Expenses this month : RM " + sumExpense);
                         //binding.incomeTV.setText("Expenses this month :" + sumIncome);
 
-                        //setUpGraph();
-                        setUpBarChart();
+                        setUpGraph();
+                        //setUpBarChart();
                     }
                 });
     }
 
-    /*private void setUpGraph() {
+    private void setUpGraph() {
         ArrayList<PieEntry> pieEntryArrayList = new ArrayList<>();
         ArrayList<Integer> colorsList = new ArrayList<>();
         if(sumIncome!=0){
@@ -200,23 +200,23 @@ public class ExpenseActivity2 extends AppCompatActivity {
 
         pieData.setValueTextSize(20);
 
-        binding.piechart.setData(pieData);
-        binding.piechart.invalidate();
-    }*/
+        binding.PieChart.setData(pieData);
+        binding.PieChart.invalidate();
+    }
 
-    private void setUpBarChart() {
+   /* private void setUpBarChart() {
         BarChart barChart = binding.barChart;
 
         ArrayList<BarEntry> barEntryArrayList = new ArrayList<>();
         ArrayList<Integer> colorsList = new ArrayList<>();
-        /*if(sumIncome!=0){
+        *//*if(sumIncome!=0){
             barEntryArrayList.add(new BarEntry(sumIncome,"Income"));
             colorsList.add(getResources().getColor(R.color.orange));
         }
         if(sumExpense!=0){
             barEntryArrayList.add(new BarEntry(sumExpense,"Expense"));
             colorsList.add(getResources().getColor(R.color.red));
-        }*/
+        }*//*
         BarDataSet barDataSet= new BarDataSet(barEntryArrayList,String.valueOf(sumIncome = sumExpense));
         BarData barData = new BarData(barDataSet);
         getBarData();
@@ -240,7 +240,7 @@ public class ExpenseActivity2 extends AppCompatActivity {
         barArrayList.add(new BarEntry(5f,40));
         barArrayList.add(new BarEntry(6f,50));
         barArrayList.add(new BarEntry(7f,60));
-    }
+    }*/
 
     @Override
     protected void onResume() {
