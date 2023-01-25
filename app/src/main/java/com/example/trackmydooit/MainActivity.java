@@ -1,8 +1,11 @@
 package com.example.trackmydooit;
 
+import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,28 +13,40 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private CardView CVExpense, CVIncome, CVBudget, CVReport;
-    private TextView BudgetAmount, ExpenseAmount, IncomeAmount;
+    private TextView BudgetAmount, ExpenseAmount, IncomeAmount, BalanceAmount;
     private TextView CVTest;
     private TextView mainTitle;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference budgetRef, expenseRef, personalRef, incomeRef, UserRef;
+    private DatabaseReference budgetRef, personalRef;
     private String onlineUserID = "";
 
     private int totalAmountMonth = 0;
@@ -39,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
     private int totalAmountBudgetD = 0;
     private int totalAmountBudgetC = 0;
 
-    private int totalAmountIncome = 0;
-    private int totalAmountIncomeD = 0;
-    private int totalAmountIncomeC = 0;
+    ArrayList<TransactionModel> transactionModelArrayList;
+    TransactionAdapter transactionAdapter;
 
-    private int totalAmountExpense = 0;
-    private int totalAmountExpenseD = 0;
-    private int totalAmountExpenseC = 0;
+    int sumExpense = 0;
+    int sumIncome = 0;
+
+    FirebaseFirestore firebaseFirestore;
+    FirebaseUser firebaseUser;
 
     private TextView hiUser;
 
@@ -58,16 +74,22 @@ public class MainActivity extends AppCompatActivity {
         BudgetAmount = findViewById(R.id.BudgetAmount);
         ExpenseAmount = findViewById(R.id.ExpenseAmount);
         IncomeAmount = findViewById(R.id.IncomeAmount);
+        BalanceAmount = findViewById(R.id.BalanceText);
         hiUser = findViewById(R.id.hiUser);
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         mAuth = FirebaseAuth.getInstance();
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         budgetRef = FirebaseDatabase.getInstance().getReference("budget").child(onlineUserID);
-        incomeRef = FirebaseDatabase.getInstance().getReference("income").child(onlineUserID);
-        expenseRef = FirebaseDatabase.getInstance().getReference("expenses").child(onlineUserID);
         personalRef = FirebaseDatabase.getInstance().getReference("personal").child(onlineUserID);
-//        UserRef = FirebaseDatabase.getInstance().getReference("users").child(onlineUserID);
+
+        //for transaction reference
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        //DocumentReference documentReference = firebaseFirestore.collection("Expenses").document(onlineUserID);
+
+
+
 //
 //        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());;
 //        ValueEventListener eventListener = new ValueEventListener() {
@@ -209,55 +231,6 @@ public class MainActivity extends AppCompatActivity {
                     totalAmountBudgetC = totalAmountBudgetD;
                 } else {
                     personalRef.child("budget").setValue(0);
-                    Toast.makeText(MainActivity.this, "Please select a budget!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //to check if expense exists or not
-        expenseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getChildrenCount()>0){
-                    for (DataSnapshot ds : snapshot.getChildren()){
-                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
-                        Object total = map.get("amount");
-                        int pTotal = Integer.parseInt(String.valueOf(total));
-                        totalAmountExpenseD+=pTotal;
-                    }
-                    totalAmountExpenseC = totalAmountExpenseD;
-                } else {
-                    personalRef.child("expense").setValue(0);
-                    Toast.makeText(MainActivity.this, "Please select expense!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //to check if income exists or not
-        incomeRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getChildrenCount()>0){
-                    for (DataSnapshot ds : snapshot.getChildren()){
-                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
-                        Object total = map.get("amount");
-                        int pTotal = Integer.parseInt(String.valueOf(total));
-                        totalAmountIncomeD+=pTotal;
-                    }
-                    totalAmountIncomeC = totalAmountIncomeD;
-                } else {
-                    personalRef.child("income").setValue(0);
-                    Toast.makeText(MainActivity.this, "Please select income!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -269,8 +242,6 @@ public class MainActivity extends AppCompatActivity {
 
         //to call the amount  from respective page
         getBudgetAmount();
-        getIncomeAmount();
-        getExpenseAmount();
 
     }
 
@@ -300,55 +271,47 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getIncomeAmount() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadData();
 
-        incomeRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getChildrenCount()>0){
-                    for (DataSnapshot ds : snapshot.getChildren()){
-                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
-                        Object total = map.get("amount");
-                        int pTotal = Integer.parseInt(String.valueOf(total));
-                        totalAmountIncome+=pTotal;
-                        IncomeAmount.setText("RM " + String.valueOf(totalAmountIncome));
-                    }
-                } else {
-                    totalAmountIncome=0;
-                    IncomeAmount.setText("RM " + String.valueOf(0));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
-    private void getExpenseAmount() {
+    private void loadData(){
+        firebaseFirestore.collection("Expenses").document(mAuth.getUid()).collection("Transaction")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot ds:task.getResult()){
+                            //String expenseId, String type, String note, String expenseCategory, String incomeCategory, String walletCategory, String amount, String time, String uid
+                            TransactionModel model = new TransactionModel(
+                                    ds.getString("id"),
+                                    ds.getString("type"),
+                                    ds.getString("note"),
+                                    ds.getString("expense category"),
+                                    ds.getString("income category"),
+                                    ds.getString("wallet"),
+                                    ds.getString("amount"),
+                                    ds.getString("date"),
+                                    ds.getString(mAuth.getUid())
+                            );
+                            int amount = Integer.parseInt(ds.getString("amount"));
+                            if(ds.getString("type").equals("Expense")){
+                                sumExpense = sumExpense + amount;
+                            }else{
+                                sumIncome = sumIncome + amount;
+                            }
+                            //later check if this is working correctly
+                            BalanceAmount.setText("RM " + (sumIncome-sumExpense));
+                            ExpenseAmount.setText("RM " + sumExpense);
+                            IncomeAmount.setText("RM " + sumIncome);
 
-        expenseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getChildrenCount()>0){
-                    for (DataSnapshot ds : snapshot.getChildren()){
-                        Map<String, Object> map = (Map<String, Object>)ds.getValue();
-                        Object total = map.get("amount");
-                        int pTotal = Integer.parseInt(String.valueOf(total));
-                        totalAmountExpense+=pTotal;
-                        ExpenseAmount.setText("RM " + String.valueOf(totalAmountExpense));
+                            transactionAdapter = new TransactionAdapter(MainActivity.this, transactionModelArrayList);
+                            //binding.RVTransaction.setAdapter(transactionAdapter);
+                            //later check if this is working correctly
+                        }
                     }
-                } else {
-                    totalAmountExpense=0;
-                    ExpenseAmount.setText("RM " + String.valueOf(0));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                });
     }
 }

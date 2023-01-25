@@ -37,14 +37,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Total balance"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:paddingTop="10dp"
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/BalanceText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RM 0"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:padding="10dp"
             android:textSize="35sp" />
@@ -67,7 +70,7 @@
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
-                android:backgroundTint="#EAC7C7">
+                android:backgroundTint="#C5E4F1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -77,7 +80,8 @@
                         android:id="@+id/TVBudget"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Budget" />
+                        android:text="Budget"
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:id="@+id/BudgetAmount"
@@ -115,7 +119,8 @@
                         android:id="@+id/TVIncome"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Income" />
+                        android:text="Income"
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:id="@+id/IncomeAmount"
@@ -133,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="20dp"
-                android:backgroundTint="#C5E4F1"
+                android:backgroundTint="#EAC7C7"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -146,7 +151,8 @@
                         android:id="@+id/TVExpenses"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Expense" />
+                        android:text="Expense"
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:id="@+id/ExpenseAmount"
@@ -185,11 +191,15 @@
                     android:textAlignment="center"/>
 
 
-                <ImageView
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/mainPieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <!--<ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:src="@drawable/chart"
-                    android:id="@+id/monthly_report"/>
+                    android:id="@+id/monthly_report"/>-->
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

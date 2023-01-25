@@ -7,11 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.trackmydooit.databinding.ActivityExpense2Binding;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -31,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpenseActivity2 extends AppCompatActivity {
+
+    ArrayList barArrayList;
 
     ActivityExpense2Binding binding;
     FirebaseFirestore firebaseFirestore;
@@ -133,6 +140,7 @@ public class ExpenseActivity2 extends AppCompatActivity {
         loadData();
     }
 
+
     private void loadData() {
         firebaseFirestore.collection("Expenses").document(firebaseAuth.getUid()).collection("Transaction")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -169,12 +177,13 @@ public class ExpenseActivity2 extends AppCompatActivity {
                         //binding.expenseTV.setText("Expenses this month : RM " + sumExpense);
                         //binding.incomeTV.setText("Expenses this month :" + sumIncome);
 
-                        setUpGraph();
+                        //setUpGraph();
+                        setUpBarChart();
                     }
                 });
     }
 
-    private void setUpGraph() {
+    /*private void setUpGraph() {
         ArrayList<PieEntry> pieEntryArrayList = new ArrayList<>();
         ArrayList<Integer> colorsList = new ArrayList<>();
         if(sumIncome!=0){
@@ -193,6 +202,44 @@ public class ExpenseActivity2 extends AppCompatActivity {
 
         binding.piechart.setData(pieData);
         binding.piechart.invalidate();
+    }*/
+
+    private void setUpBarChart() {
+        BarChart barChart = binding.barChart;
+
+        ArrayList<BarEntry> barEntryArrayList = new ArrayList<>();
+        ArrayList<Integer> colorsList = new ArrayList<>();
+        /*if(sumIncome!=0){
+            barEntryArrayList.add(new BarEntry(sumIncome,"Income"));
+            colorsList.add(getResources().getColor(R.color.orange));
+        }
+        if(sumExpense!=0){
+            barEntryArrayList.add(new BarEntry(sumExpense,"Expense"));
+            colorsList.add(getResources().getColor(R.color.red));
+        }*/
+        BarDataSet barDataSet= new BarDataSet(barEntryArrayList,String.valueOf(sumIncome = sumExpense));
+        BarData barData = new BarData(barDataSet);
+        getBarData();
+
+        binding.barChart.setData(barData);
+        barDataSet.setColors(colorsList);
+        barDataSet.setValueTextColor(Color.BLACK);
+        binding.barChart.getDescription().setEnabled(true);
+
+        barData.setValueTextSize(20);
+
+        binding.barChart.setData(barData);
+        binding.barChart.invalidate();
+    }
+
+    private void getBarData(){
+        barArrayList = new ArrayList<>();
+        barArrayList.add(new BarEntry(2f,10));
+        barArrayList.add(new BarEntry(3f,20));
+        barArrayList.add(new BarEntry(4f,30));
+        barArrayList.add(new BarEntry(5f,40));
+        barArrayList.add(new BarEntry(6f,50));
+        barArrayList.add(new BarEntry(7f,60));
     }
 
     @Override
@@ -225,9 +272,5 @@ public class ExpenseActivity2 extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //loadData();
-        /*ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();*/
     }
 }
