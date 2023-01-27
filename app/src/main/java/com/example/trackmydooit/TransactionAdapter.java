@@ -46,8 +46,6 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TransactionModel model = transactionModelArrayList.get(position);
         String priority = model.getType();
-        String imageChangeExpense = model.getExpenseCategory();
-        ArrayList<Integer> colorsList = new ArrayList<>();
         switch (model.getIncomeCategory()){
             case "Salary":
                 holder.itemIV.setImageResource(R.drawable.ic_baseline_work_outline_24);
@@ -88,8 +86,8 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
                 break;
             case "Food":
                 holder.itemIV.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FB7840")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FBEADC")));
+                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#205763")));
+                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BBE7F1")));
                 break;
             case "Entertainment":
                 holder.itemIV.setImageResource(R.drawable.sports_esports_black_24dp);
@@ -132,8 +130,6 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
                 intent.putExtra("note", transactionModelArrayList.get(position).getNote());
                 intent.putExtra("type", transactionModelArrayList.get(position).getType());
                 intent.putExtra("wallet", transactionModelArrayList.get(position).getWalletCategory());
-
-
 
                 context.startActivity(intent);
             }

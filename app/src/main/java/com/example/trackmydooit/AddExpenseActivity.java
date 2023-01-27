@@ -41,7 +41,7 @@ import java.util.UUID;
 public class AddExpenseActivity extends AppCompatActivity {
 
     ActivityAddExpenseBinding binding;
-    private String type;
+    private String type, walletType;
     FirebaseFirestore fStore;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -57,6 +57,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         type = getIntent().getStringExtra("type");
+        walletType = getIntent().getStringExtra("wallet");
 
         if(type.equals("Income")){
             binding.RBIncome.setChecked(true);
@@ -126,8 +127,6 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String expenseCategory = binding.spinnerExpense.getSelectedItem().toString();
                 String incomeCategory = binding.spinnerIncome.getSelectedItem().toString();
 
-
-
                 Map<String,Object> transaction = new HashMap<>();
                 transaction.put("date", currentDate);
                 transaction.put("id", id);
@@ -137,9 +136,6 @@ public class AddExpenseActivity extends AppCompatActivity {
                 transaction.put("income category", incomeCategory);
                 transaction.put("type", type);
                 transaction.put("wallet", walletCategory);
-
-
-
 
                 fStore.collection("Expenses").document(firebaseAuth.getUid()).collection("Transaction").document(id)
                         .set(transaction)

@@ -4,7 +4,10 @@ import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.anychart.core.gauge.pointers.Bar;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.renderer.XAxisRenderer;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.github.mikephil.charting.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +58,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,9 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<TransactionModel> transactionModelArrayList;
     TransactionAdapter transactionAdapter;
+    PieChart mainPieChart;
+    BarChart mainBarChart;
 
     int sumExpense = 0;
     int sumIncome = 0;
+    int sumUtilities = 0; int sumTransportation = 0; int sumFood = 0; int sumEntertainment = 0;
+    int sumPersonal = 0; int sumRent = 0; int sumTravel = 0;
 
     FirebaseFirestore firebaseFirestore;
     FirebaseUser firebaseUser;
@@ -71,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //mainPieChart = findViewById(R.id.mainPieChart);
+        mainBarChart = findViewById(R.id.mainBarChart);
         BudgetAmount = findViewById(R.id.BudgetAmount);
         ExpenseAmount = findViewById(R.id.ExpenseAmount);
         IncomeAmount = findViewById(R.id.IncomeAmount);
@@ -178,11 +207,11 @@ public class MainActivity extends AppCompatActivity {
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
         CVIncome = findViewById(R.id.CVIncome);
-        CVReport = findViewById(R.id.CVReport);
+        //CVReport = findViewById(R.id.CVReport);
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
 
-        CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(), MonthlyAnalyticsActivity.class)));
+        //CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(), MonthlyAnalyticsActivity.class)));
 
         CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity2.class)));
 
@@ -245,6 +274,163 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void initBarChart(){
+        //hiding the grey background of the chart, default false if not set
+        mainBarChart.setDrawGridBackground(false);
+        //remove the bar shadow, default false if not set
+        mainBarChart.setDrawBarShadow(false);
+        //remove border of the chart, default false if not set
+        mainBarChart.setDrawBorders(false);
+
+        //remove the description label text located at the lower right corner
+        Description description = new Description();
+        description.setEnabled(false);
+        mainBarChart.setDescription(description);
+
+        //setting animation for y-axis, the bar will pop up from 0 to its value within the time we set
+        mainBarChart.animateY(1000);
+        //setting animation for x-axis, the bar will pop up separately within the time we set
+        mainBarChart.animateX(1000);
+
+        XAxis xAxis = mainBarChart.getXAxis();
+        xAxis.setDrawLabels(false);
+        //change the position of x-axis to the bottom
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //set the horizontal distance of the grid line
+        xAxis.setGranularity(1f);
+        //hiding the x-axis line, default true if not set
+        xAxis.setDrawAxisLine(false);
+        //hiding the vertical grid lines, default true if not set
+        xAxis.setDrawGridLines(false);
+
+        YAxis leftAxis = mainBarChart.getAxisLeft();
+        //hiding the left y-axis line, default true if not set
+        leftAxis.setDrawAxisLine(false);
+
+        YAxis rightAxis = mainBarChart.getAxisRight();
+        //hiding the right y-axis line, default true if not set
+        rightAxis.setDrawAxisLine(false);
+
+        Legend legend = mainBarChart.getLegend();
+        //setting the shape of the legend form to line, default square shape
+        legend.setForm(Legend.LegendForm.LINE);
+        //setting the text size of the legend
+        legend.setTextSize(11f);
+        //setting the alignment of legend toward the chart
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        //setting the stacking direction of legend
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        //setting the location of legend outside the chart, default false if not set
+        legend.setDrawInside(false);
+
+    }
+
+    private void initBarDataSet(BarDataSet barDataSet){
+        //Setting the size of the form in the legend
+        barDataSet.setFormSize(15f);
+        //showing the value of the bar, default true if not set
+        barDataSet.setDrawValues(false);
+        //setting the text size of the value of the bar
+        barDataSet.setValueTextSize(8f);
+
+        Legend l = mainBarChart.getLegend();
+        l.setFormSize(8f); // set the size of the legend forms/shapes
+        l.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+
+        l.setTextSize(8f);
+        l.setTextColor(Color.BLACK);
+
+        l.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+        l.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
+
+        // set custom labels and colors
+        //l.setCustom(pastelColors,labelArray);
+        LegendEntry legendEntryA = new LegendEntry();
+        LegendEntry legendEntryB = new LegendEntry();
+        LegendEntry legendEntryC = new LegendEntry();
+        LegendEntry legendEntryD = new LegendEntry();
+        LegendEntry legendEntryE = new LegendEntry();
+        LegendEntry legendEntryF = new LegendEntry();
+        LegendEntry legendEntryG = new LegendEntry();
+
+        int[] pastelColors = {
+                Color.rgb(229, 220, 255), Color.rgb(220, 255, 223), Color.rgb(187, 231, 241),
+                Color.rgb(255, 247, 220), Color.rgb(222, 229, 251), Color.rgb(251, 234, 220),
+                Color.rgb(220, 251, 255)};
+        barDataSet.setColors(pastelColors);
+
+        legendEntryA.label = "Utilities";
+        legendEntryA.formColor = Color.rgb(229, 220, 255);
+
+        legendEntryB.label = "Transportation";
+        legendEntryB.formColor = Color.rgb(220, 255, 223);
+
+        legendEntryC.label = "Food";
+        legendEntryC.formColor = Color.rgb(187, 231, 241);
+
+        legendEntryD.label = "Entertainment";
+        legendEntryD.formColor = Color.rgb(255, 247, 220);
+
+        legendEntryE.label = "Personal";
+        legendEntryE.formColor = Color.rgb(222, 229, 251);
+
+        legendEntryF.label = "Rent";
+        legendEntryF.formColor = Color.rgb(251, 234, 220);
+
+        legendEntryG.label = "Travel";
+        legendEntryG.formColor = Color.rgb(220, 251, 255);
+
+        l.setCustom(Arrays.asList(legendEntryA, legendEntryB, legendEntryC,
+                legendEntryD, legendEntryE, legendEntryF,legendEntryG));
+        mainBarChart.getLegend().setEnabled(true);
+    }
+
+    private void setBarGraph() {
+
+        //this one just display data that i have to manually input
+        ArrayList<Integer> valueList = new ArrayList<>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        String title = "Total Monthly Expenses";
+
+        //input Y data (name of expenses)
+        valueList.add(sumUtilities);
+        valueList.add(sumTransportation);
+        valueList.add(sumFood);
+        valueList.add(sumEntertainment);
+        valueList.add(sumPersonal);
+        valueList.add(sumRent);
+        valueList.add(sumTravel);
+
+        //initialize x Axis Labels (labels for 13 vertical grid lines)
+        final ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("Utilities"); //this label will be mapped to the 1st index of the valuesList
+        xAxisLabel.add("Transportation");
+        xAxisLabel.add("Food");
+        xAxisLabel.add("Entertainment");
+        xAxisLabel.add("Personal");
+        xAxisLabel.add("Rent");
+        xAxisLabel.add("Travel");
+        //xAxisLabel.add(""); //empty label for the last vertical grid line on
+
+        //fit the data into a bar
+        for (int i = 0; i < valueList.size(); i++) {
+            BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
+            entries.add(barEntry);
+        }
+
+        //mainBarChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
+
+        BarDataSet barDataSet = new BarDataSet(entries, title);
+        initBarDataSet(barDataSet);
+
+        BarData data = new BarData(barDataSet);
+        mainBarChart.setData(data);
+        mainBarChart.invalidate();
+
+    }
+
     //display budget to main activity xml
     private void getBudgetAmount() {
         budgetRef.addValueEventListener(new ValueEventListener() {
@@ -275,7 +461,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadData();
-
     }
 
     private void loadData(){
@@ -284,21 +469,25 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (DocumentSnapshot ds:task.getResult()){
-                            //String expenseId, String type, String note, String expenseCategory, String incomeCategory, String walletCategory, String amount, String time, String uid
-                            TransactionModel model = new TransactionModel(
-                                    ds.getString("id"),
-                                    ds.getString("type"),
-                                    ds.getString("note"),
-                                    ds.getString("expense category"),
-                                    ds.getString("income category"),
-                                    ds.getString("wallet"),
-                                    ds.getString("amount"),
-                                    ds.getString("date"),
-                                    ds.getString(mAuth.getUid())
-                            );
                             int amount = Integer.parseInt(ds.getString("amount"));
+
                             if(ds.getString("type").equals("Expense")){
                                 sumExpense = sumExpense + amount;
+                                if(ds.getString("expense category").equals("Utilities")){
+                                    sumUtilities = sumUtilities + amount;
+                                } else if (ds.getString("expense category").equals("Transportation")){
+                                    sumTransportation = sumTransportation + amount;
+                                } else if (ds.getString("expense category").equals("Food")){
+                                    sumFood = sumFood + amount;
+                                } else if (ds.getString("expense category").equals("Entertainment")){
+                                    sumEntertainment = sumEntertainment + amount;
+                                } else if (ds.getString("expense category").equals("Personal")){
+                                    sumPersonal = sumPersonal + amount;
+                                } else if (ds.getString("expense category").equals("Rent")){
+                                    sumRent = sumRent + amount;
+                                } else {
+                                    sumTravel = sumTravel + amount;
+                                }
                             }else{
                                 sumIncome = sumIncome + amount;
                             }
@@ -311,7 +500,14 @@ public class MainActivity extends AppCompatActivity {
                             //binding.RVTransaction.setAdapter(transactionAdapter);
                             //later check if this is working correctly
                         }
+
+                        initBarChart();
+                        setBarGraph();
+                        //setUpGraph();
                     }
+
                 });
     }
+
+
 }

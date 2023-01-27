@@ -47,8 +47,6 @@ public class ExpenseActivity2 extends AppCompatActivity {
     int sumExpense = 0;
     int sumIncome = 0;
 
-    private Integer income = 0, expense = 0;
-
     ArrayList<TransactionModel> transactionModelArrayList;
     TransactionAdapter transactionAdapter;
 
@@ -127,16 +125,6 @@ public class ExpenseActivity2 extends AppCompatActivity {
             }
         });
 
-        binding.refreshBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    startActivity(new Intent(ExpenseActivity2.this, ExpenseActivity2.class));
-                }catch (Exception e){
-
-                }
-            }
-        });
         loadData();
     }
 
@@ -174,16 +162,13 @@ public class ExpenseActivity2 extends AppCompatActivity {
                             //later check if this is working correctly
                         }
 
-                        //binding.expenseTV.setText("Expenses this month : RM " + sumExpense);
-                        //binding.incomeTV.setText("Expenses this month :" + sumIncome);
-
                         setUpGraph();
-                        //setUpBarChart();
                     }
                 });
     }
 
     private void setUpGraph() {
+
         ArrayList<PieEntry> pieEntryArrayList = new ArrayList<>();
         ArrayList<Integer> colorsList = new ArrayList<>();
         if(sumIncome!=0){
@@ -204,49 +189,9 @@ public class ExpenseActivity2 extends AppCompatActivity {
         binding.PieChart.invalidate();
     }
 
-   /* private void setUpBarChart() {
-        BarChart barChart = binding.barChart;
-
-        ArrayList<BarEntry> barEntryArrayList = new ArrayList<>();
-        ArrayList<Integer> colorsList = new ArrayList<>();
-        *//*if(sumIncome!=0){
-            barEntryArrayList.add(new BarEntry(sumIncome,"Income"));
-            colorsList.add(getResources().getColor(R.color.orange));
-        }
-        if(sumExpense!=0){
-            barEntryArrayList.add(new BarEntry(sumExpense,"Expense"));
-            colorsList.add(getResources().getColor(R.color.red));
-        }*//*
-        BarDataSet barDataSet= new BarDataSet(barEntryArrayList,String.valueOf(sumIncome = sumExpense));
-        BarData barData = new BarData(barDataSet);
-        getBarData();
-
-        binding.barChart.setData(barData);
-        barDataSet.setColors(colorsList);
-        barDataSet.setValueTextColor(Color.BLACK);
-        binding.barChart.getDescription().setEnabled(true);
-
-        barData.setValueTextSize(20);
-
-        binding.barChart.setData(barData);
-        binding.barChart.invalidate();
-    }
-
-    private void getBarData(){
-        barArrayList = new ArrayList<>();
-        barArrayList.add(new BarEntry(2f,10));
-        barArrayList.add(new BarEntry(3f,20));
-        barArrayList.add(new BarEntry(4f,30));
-        barArrayList.add(new BarEntry(5f,40));
-        barArrayList.add(new BarEntry(6f,50));
-        barArrayList.add(new BarEntry(7f,60));
-    }*/
-
     @Override
     protected void onResume() {
         super.onResume();
-        income = 0;
-        expense = 0;
         getData();
     }
 

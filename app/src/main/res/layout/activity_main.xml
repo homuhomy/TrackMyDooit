@@ -167,41 +167,26 @@
 
         </LinearLayout>
 
+        <com.github.mikephil.charting.charts.BarChart
+            android:layout_margin="10dp"
+            android:id="@+id/mainBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"/>
+
         <!-- CV Report -->
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:id="@+id/CVReport"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="270dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/TVReport"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Monthly Report"
-                    android:textAlignment="center"/>
 
 
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/mainPieChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-                <!--<ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/chart"
-                    android:id="@+id/monthly_report"/>-->
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>-->
 
     </LinearLayout>
 

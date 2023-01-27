@@ -3,6 +3,7 @@ package com.example.trackmydooit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -65,12 +66,14 @@ public class UpdateTransActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(UpdateTransActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(UpdateTransActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
                             }
                         });
             }
@@ -86,12 +89,14 @@ public class UpdateTransActivity extends AppCompatActivity {
                             public void onSuccess(Void unused) {
                                 onBackPressed();
                                 Toast.makeText(UpdateTransActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(UpdateTransActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
                             }
                         });
             }

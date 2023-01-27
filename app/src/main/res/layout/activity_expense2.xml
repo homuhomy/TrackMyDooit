@@ -41,11 +41,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
-            <ImageView
-                android:id="@+id/refreshBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_refresh_24"/>
+
             <TextView
                 android:id="@+id/expenseTV"
                 android:layout_width="wrap_content"
