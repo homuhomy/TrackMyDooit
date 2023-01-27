@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     int sumIncome = 0;
     int sumUtilities = 0; int sumTransportation = 0; int sumFood = 0; int sumEntertainment = 0;
     int sumPersonal = 0; int sumRent = 0; int sumTravel = 0;
+    int sumEducation = 0;
 
     FirebaseFirestore firebaseFirestore;
     FirebaseUser firebaseUser;
@@ -314,15 +315,20 @@ public class MainActivity extends AppCompatActivity {
         Legend legend = mainBarChart.getLegend();
         //setting the shape of the legend form to line, default square shape
         legend.setForm(Legend.LegendForm.LINE);
+
         //setting the text size of the legend
         legend.setTextSize(11f);
+
         //setting the alignment of legend toward the chart
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+
         //setting the stacking direction of legend
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+
         //setting the location of legend outside the chart, default false if not set
-        legend.setDrawInside(false);
+        legend.setDrawInside(true);
+
 
     }
 
@@ -354,36 +360,47 @@ public class MainActivity extends AppCompatActivity {
         LegendEntry legendEntryE = new LegendEntry();
         LegendEntry legendEntryF = new LegendEntry();
         LegendEntry legendEntryG = new LegendEntry();
+        LegendEntry legendEntryH = new LegendEntry();
 
         int[] pastelColors = {
-                Color.rgb(229, 220, 255), Color.rgb(220, 255, 223), Color.rgb(187, 231, 241),
-                Color.rgb(255, 247, 220), Color.rgb(222, 229, 251), Color.rgb(251, 234, 220),
-                Color.rgb(220, 251, 255)};
+                Color.rgb(175, 175, 238),
+                Color.rgb(153, 204, 204),
+                Color.rgb(187, 231, 241),
+                Color.rgb(166, 238, 173),
+                Color.rgb(222, 229, 251),
+                Color.rgb(243, 182, 128),
+                Color.rgb(140, 233, 247),
+                Color.rgb(252, 233, 172)};
         barDataSet.setColors(pastelColors);
 
         legendEntryA.label = "Utilities";
-        legendEntryA.formColor = Color.rgb(229, 220, 255);
+        legendEntryA.formColor = Color.rgb(175, 175, 238);
 
         legendEntryB.label = "Transportation";
-        legendEntryB.formColor = Color.rgb(220, 255, 223);
+        legendEntryB.formColor = Color.rgb(153, 204, 204);
 
         legendEntryC.label = "Food";
         legendEntryC.formColor = Color.rgb(187, 231, 241);
 
-        legendEntryD.label = "Entertainment";
-        legendEntryD.formColor = Color.rgb(255, 247, 220);
+        legendEntryH.label = "Entertainment";
+        legendEntryH.formColor = Color.rgb(252, 233, 172);
 
         legendEntryE.label = "Personal";
         legendEntryE.formColor = Color.rgb(222, 229, 251);
 
         legendEntryF.label = "Rent";
-        legendEntryF.formColor = Color.rgb(251, 234, 220);
+        legendEntryF.formColor = Color.rgb(243, 182, 128);
 
         legendEntryG.label = "Travel";
-        legendEntryG.formColor = Color.rgb(220, 251, 255);
+        legendEntryG.formColor = Color.rgb(140, 233, 247);
+
+        legendEntryD.label = "Education";
+        legendEntryD.formColor = Color.rgb(166, 238, 173);
 
         l.setCustom(Arrays.asList(legendEntryA, legendEntryB, legendEntryC,
-                legendEntryD, legendEntryE, legendEntryF,legendEntryG));
+                legendEntryD, legendEntryE, legendEntryF,legendEntryG, legendEntryH));
+
+        mainBarChart.getLegend().setWordWrapEnabled(true);
         mainBarChart.getLegend().setEnabled(true);
     }
 
@@ -398,29 +415,17 @@ public class MainActivity extends AppCompatActivity {
         valueList.add(sumUtilities);
         valueList.add(sumTransportation);
         valueList.add(sumFood);
+        valueList.add(sumEducation);
         valueList.add(sumEntertainment);
         valueList.add(sumPersonal);
         valueList.add(sumRent);
         valueList.add(sumTravel);
-
-        //initialize x Axis Labels (labels for 13 vertical grid lines)
-        final ArrayList<String> xAxisLabel = new ArrayList<>();
-        xAxisLabel.add("Utilities"); //this label will be mapped to the 1st index of the valuesList
-        xAxisLabel.add("Transportation");
-        xAxisLabel.add("Food");
-        xAxisLabel.add("Entertainment");
-        xAxisLabel.add("Personal");
-        xAxisLabel.add("Rent");
-        xAxisLabel.add("Travel");
-        //xAxisLabel.add(""); //empty label for the last vertical grid line on
 
         //fit the data into a bar
         for (int i = 0; i < valueList.size(); i++) {
             BarEntry barEntry = new BarEntry(i, valueList.get(i).floatValue());
             entries.add(barEntry);
         }
-
-        //mainBarChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
 
         BarDataSet barDataSet = new BarDataSet(entries, title);
         initBarDataSet(barDataSet);
@@ -485,6 +490,8 @@ public class MainActivity extends AppCompatActivity {
                                     sumPersonal = sumPersonal + amount;
                                 } else if (ds.getString("expense category").equals("Rent")){
                                     sumRent = sumRent + amount;
+                                } else if (ds.getString("expense category").equals("Education")) {
+                                    sumEducation = sumEducation + amount;
                                 } else {
                                     sumTravel = sumTravel + amount;
                                 }

@@ -165,13 +165,20 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Monthly Expenses"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
         <com.github.mikephil.charting.charts.BarChart
-            android:layout_margin="10dp"
             android:id="@+id/mainBarChart"
             android:layout_width="match_parent"
-            android:layout_height="280dp"/>
+            android:layout_height="270dp"/>
 
         <!-- CV Report -->
         <!--<androidx.cardview.widget.CardView

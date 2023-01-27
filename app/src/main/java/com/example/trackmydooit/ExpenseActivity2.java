@@ -33,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ExpenseActivity2 extends AppCompatActivity {
@@ -199,10 +200,10 @@ public class ExpenseActivity2 extends AppCompatActivity {
                         List<DocumentSnapshot> dsList = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot ds:dsList){
                             TransactionModel transactionModel = ds.toObject(TransactionModel.class);
-
                         }
                     }
                 });
+
     }
 
     @Override

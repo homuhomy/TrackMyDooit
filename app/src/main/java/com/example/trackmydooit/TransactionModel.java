@@ -14,6 +14,8 @@ public class TransactionModel {
     private String time;
     private String walletAmount;
 
+    private int month, week;
+
     public TransactionModel(){
 
     }
@@ -28,6 +30,22 @@ public class TransactionModel {
         this.amount = amount;
         this.time = time;
         this.uid = uid;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
     }
 
     public String getEmail() {

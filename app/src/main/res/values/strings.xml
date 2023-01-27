@@ -32,9 +32,10 @@
         <item>Click to select an expense category</item>
         <item>Utilities</item>
         <item>Transportation</item>
+        <item>Personal</item>
         <item>Food</item>
         <item>Entertainment</item>
-        <item>Personal</item>
+        <item>Education</item>
         <item>Rent</item>
         <item>Travel</item>
     </string-array>

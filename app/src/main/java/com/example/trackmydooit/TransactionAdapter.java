@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter.MyViewHolder>{
     Context context;
@@ -44,6 +46,7 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TransactionModel model = transactionModelArrayList.get(position);
+
         String priority = model.getType();
         switch (model.getIncomeCategory()){
             case "Salary":
@@ -118,7 +121,6 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
         holder.note.setText("Note: " + model.getNote());
         holder.wallet.setText("Wallet: " + model.getWalletCategory());
 
-
         //to update
         holder.priority.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +146,7 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
         TextView note,wallet,amount,item,date;
         ImageView itemIV;
         View priority;
+
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             note = itemView.findViewById(R.id.note);

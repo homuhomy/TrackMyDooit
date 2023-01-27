@@ -34,27 +34,22 @@ public class UpdateTransActivity extends AppCompatActivity {
         String amount = getIntent().getStringExtra("amount");
         String note = getIntent().getStringExtra("note");
         String type = getIntent().getStringExtra("type");
-        String incomeCategory = getIntent().getStringExtra("income category");
-        String expenseCategory = getIntent().getStringExtra("expense category");
         String wallet = getIntent().getStringExtra("wallet");
 
         binding.amountTransET.setText(amount);
         binding.note.setText(note);
         binding.walletName.setText(wallet);
-        binding.itemName.setText(incomeCategory);
 
         switch (type){
             case "Income":
                 newType = "Income";
-                binding.itemName.setText(incomeCategory);
+                binding.itemName.setText(newType);
                 break;
             case "Expense":
                 newType = "Expense";
-                binding.itemName.setText(expenseCategory);
+                binding.itemName.setText(newType);
                 break;
         }
-
-
 
         binding.updateTransBTN.setOnClickListener(new View.OnClickListener() {
             @Override

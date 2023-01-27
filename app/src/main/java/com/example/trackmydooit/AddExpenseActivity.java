@@ -109,6 +109,15 @@ public class AddExpenseActivity extends AppCompatActivity {
                 String currentDate = sdf.format(new Date());
                 //DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                Calendar cal = Calendar.getInstance();
+                String date = dateFormat.format(cal.getTime());
+
+                MutableDateTime epoch = new MutableDateTime();
+                epoch.setDate(0);
+                DateTime now = new DateTime();
+                Weeks weeks = Weeks.weeksBetween(epoch,now);
+                Months months = Months.monthsBetween(epoch, now);
 
                 if(incomeChecked){
                     type = "Income";
