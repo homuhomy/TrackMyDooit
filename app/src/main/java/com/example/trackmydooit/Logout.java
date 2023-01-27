@@ -36,6 +36,7 @@ public class Logout extends AppCompatActivity {
 //                progressDialog.show();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), SplashScreenActivity.class));
+
                 finish();
             }
         });

@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -143,6 +144,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String emailString = email.getEditText().getText().toString();
                 String passwordString = password.getEditText().getText().toString();
                 String conPasswordString = confirmpassword.getEditText().getText().toString();
+                String usernameString = username.getEditText().getText().toString();
 
                 if(validateEmail()&&validatePassword()){
                     progressDialog.setMessage("Registration in progress");
@@ -154,8 +156,23 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent (RegistrationActivity.this, MainActivity.class);
+//                                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username").setValue(username);
+//                                // pass the user's username to the main activity
+//                                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+//                                intent.putExtra("username", usernameString);
+//                                startActivity(intent);
+
+//                                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("users").setValue(username);
+                                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                // store the user's username in SharedPreferences
+                                SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putString("username", usernameString);
+                                editor.apply();
+                                // start the main activity
+                                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                                 startActivity(intent);
+
                                 finish();
                                 progressDialog.dismiss();
                             }
@@ -180,6 +197,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 //Adding a new node to the database
                 FirebaseDatabase.getInstance().getReference().child("users").push().setValue(newData);
+//                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username").setValue(username);
+
 
 //        userRef = FirebaseDatabase.getInstance().getReference().child("user").child(mAuth.getCurrentUser().getUid());
 //        userRef.child("user").setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {

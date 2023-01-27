@@ -139,3 +139,4 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.removeAuthStateListener(authStateListener);
     }
 }
+

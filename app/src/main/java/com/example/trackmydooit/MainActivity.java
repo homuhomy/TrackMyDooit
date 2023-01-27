@@ -4,6 +4,7 @@ import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         //for transaction reference
         firebaseFirestore = FirebaseFirestore.getInstance();
+
         //DocumentReference documentReference = firebaseFirestore.collection("Expenses").document(onlineUserID);
 
 
@@ -141,12 +143,28 @@ public class MainActivity extends AppCompatActivity {
 
         //bottom nav bar code
 
+//        String username = getIntent().getStringExtra("username");
+//        hiUser.setText(username);
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        String username = prefs.getString("username", "");
+        hiUser.setText("Hi, "+username);
+
+
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String username = dataSnapshot.child("username").getValue(String.class);
-                hiUser.setText("Hi, "+username);
+                if(username==null){
+                    SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+                    String username1 = prefs.getString("username", "");
+                    hiUser.setText("Hi, "+username1);
+                }
+                else{
+                    hiUser.setText("Hi, "+username);
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
