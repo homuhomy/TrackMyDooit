@@ -82,7 +82,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/linearLayout"
-            app:tint="@color/baby_green"
+            app:tint="@color/black"
             android:background="@drawable/small_button"
             android:backgroundTint="#E5DCFF"
             android:foregroundGravity="center_horizontal|center_vertical"

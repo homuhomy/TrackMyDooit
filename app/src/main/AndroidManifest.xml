@@ -119,14 +119,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".IncomeActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".BudgetActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
@@ -161,14 +153,6 @@
             <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
-        </activity>
-        <activity
-            android:name=".ExpenseActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".LoginActivity"

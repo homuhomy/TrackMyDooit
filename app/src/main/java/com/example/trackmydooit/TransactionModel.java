@@ -2,15 +2,6 @@ package com.example.trackmydooit;
 
 public class TransactionModel {
 
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     private String email;
     private String expenseId;
     private String note;
@@ -21,7 +12,7 @@ public class TransactionModel {
     private String amount;
     private String uid;
     private String time;
-
+    private String walletAmount;
 
     public TransactionModel(){
 
@@ -37,6 +28,14 @@ public class TransactionModel {
         this.amount = amount;
         this.time = time;
         this.uid = uid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getIncomeCategory() {

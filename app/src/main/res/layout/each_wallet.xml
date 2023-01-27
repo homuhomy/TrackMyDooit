@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:elevation="10dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="15dp"
+    android:id="@+id/walletList">
+
+    <RelativeLayout
+        android:id="@+id/eachWallet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#FECF07">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/wallet_name"
+                    android:text="Cash"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="160dp"
+                    android:layout_height="50dp"
+                    />
+                <ImageView
+                    android:id="@+id/wallet_logo"
+                    android:layout_width="160dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="0dp"
+                    android:src="@drawable/maybank"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_marginStart="100dp"
+                    android:layout_width="35dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="end"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:icon="@drawable/delete_forever_black_24dp"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/black" />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_marginStart="0dp"
+                    android:layout_width="35dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="end"
+                    android:background="?android:attr/selectableItemBackground"
+                    app:icon="@drawable/add_box_black_24dp"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="end"
+                android:text="CURRENT BALANCE"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/wallet_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="RM 0.00"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+       <!-- <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="Item name"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="RM0"
+                android:textColor="@color/red"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="note"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="wallet"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="Date"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>-->
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

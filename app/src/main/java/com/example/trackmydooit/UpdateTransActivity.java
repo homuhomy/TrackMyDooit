@@ -34,19 +34,23 @@ public class UpdateTransActivity extends AppCompatActivity {
         String amount = getIntent().getStringExtra("amount");
         String note = getIntent().getStringExtra("note");
         String type = getIntent().getStringExtra("type");
+        String incomeCategory = getIntent().getStringExtra("income category");
+        String expenseCategory = getIntent().getStringExtra("expense category");
         String wallet = getIntent().getStringExtra("wallet");
 
         binding.amountTransET.setText(amount);
         binding.note.setText(note);
+        binding.walletName.setText(wallet);
+        binding.itemName.setText(incomeCategory);
 
         switch (type){
             case "Income":
                 newType = "Income";
-                //binding.RBIncome.setChecked(true);
+                binding.itemName.setText(incomeCategory);
                 break;
             case "Expense":
                 newType = "Expense";
-                //binding.RBExpense.setChecked(true);
+                binding.itemName.setText(expenseCategory);
                 break;
         }
 
@@ -76,6 +80,12 @@ public class UpdateTransActivity extends AppCompatActivity {
                                 startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
                             }
                         });
+            }
+        });
+        binding.cancelAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UpdateTransActivity.this, ExpenseActivity2.class));
             }
         });
         binding.deleteTransBTN.setOnClickListener(new View.OnClickListener() {

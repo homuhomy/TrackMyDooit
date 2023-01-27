@@ -109,15 +109,7 @@ public class ExpenseActivity2 extends AppCompatActivity {
         });
         //bottom nav bar code
 
-        binding.FABAddIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent.putExtra("type", "Income");
-                startActivity(intent);
-            }
-        });
-
-        binding.FABAddExpense.setOnClickListener(new View.OnClickListener() {
+        binding.RABaddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intent.putExtra("type", "Expense");

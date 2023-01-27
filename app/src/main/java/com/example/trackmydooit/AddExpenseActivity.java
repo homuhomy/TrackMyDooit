@@ -154,98 +154,9 @@ public class AddExpenseActivity extends AppCompatActivity {
                                 Toast.makeText(AddExpenseActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
             }
         });
         binding.cancelTransBTN.setOnClickListener(view -> binding.cancelTransBTN.getContext().startActivity(new Intent(binding.cancelTransBTN.getContext(), ExpenseActivity2.class)));
 
     }
-
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityAddExpenseBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        type = getIntent().getStringExtra("type");
-
-
-        if(type.equals("Income")){
-            binding.RBIncome.setChecked(true);
-        }else{
-            binding.RBExpense.setChecked(true);
-        }
-        binding.RBIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                type = "Income";
-            }
-        });
-
-        binding.RBExpense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                type = "Expense";
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.add_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.addTransBTN) {
-            createExpense();
-            return true;
-        }
-        return true;
-    }
-
-
-    private void createExpense() {
-        String expenseId = UUID.randomUUID().toString();
-        String amount = binding.amount.getText().toString();
-        String note = binding.ExpenseDescriptionET.getText().toString();
-        String expenseCategory = binding.spinnerExpense.getSelectedItem().toString();
-        String walletCategory = binding.spinnerWallet.getSelectedItem().toString();
-
-        boolean incomeChecked = binding.RBIncome.isChecked();
-
-        if(incomeChecked){
-            type = "Income";
-        } else {
-            type = "Expense";
-        }
-        if(amount.trim().length() == 0){
-            binding.amount.setError("Empty");
-            return;
-        }
-
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar cal = Calendar.getInstance();
-        String date = dateFormat.format(cal.getTime());
-
-        MutableDateTime epoch = new MutableDateTime();
-        epoch.setDate(0);
-        DateTime now = new DateTime();
-        Months months = Months.monthsBetween(epoch, now);
-        Weeks weeks = Weeks.weeksBetween(epoch,now);
-
-        TransactionModel expenseModel = new TransactionModel(expenseId, note, type, expenseCategory,walletCategory, Long.parseLong(amount), date);
-
-        FirebaseFirestore
-                .getInstance()
-                .collection("Expenses")
-                .document(expenseId)
-                .set(expenseModel);
-        finish();
-    }*/
 }

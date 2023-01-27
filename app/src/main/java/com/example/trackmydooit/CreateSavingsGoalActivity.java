@@ -101,7 +101,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.DestAddExpense:
-                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity2.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.DestSettings:

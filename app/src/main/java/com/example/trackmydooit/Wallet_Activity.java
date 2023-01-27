@@ -73,7 +73,7 @@ public class Wallet_Activity extends AppCompatActivity {
                         return true;
 
                     case R.id.DestAddExpense:
-                        startActivity(new Intent(getApplicationContext(),ExpenseActivity.class));
+                        startActivity(new Intent(getApplicationContext(),ExpenseActivity2.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.DestSettings:
@@ -91,7 +91,7 @@ public class Wallet_Activity extends AppCompatActivity {
 
     public void clickbtn(View view)
     {
-        Intent intent=new Intent(this,IncomeActivity.class);
+        Intent intent=new Intent(this,ExpenseActivity2.class);
         EditText walletName=(EditText) findViewById(R.id.textview01);
         String name = walletName.getText().toString();
 

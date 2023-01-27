@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/baby_green"
+        android:background="@color/white"
         android:elevation="4dp"
         android:textAlignment="center"
         android:gravity="center_horizontal"
@@ -22,15 +22,11 @@
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="300dp">
-            <!--<com.github.mikephil.charting.charts.BarChart
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/barChart"/>-->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/PieChart"
                 android:layout_width="match_parent"
@@ -51,85 +47,48 @@
                 android:text="Expenses : RM0"
                 android:textColor="#000000"/>
         </LinearLayout>
+    </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RVTransaction"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="590dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABAddExpense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/open_sans_semibold"
-            android:text="Add expense"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:layout_marginRight="20dp"/>
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABAddIncome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/open_sans_semibold"
-            android:text="Add Income"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-    </LinearLayout>
-    <!-- for bottom bar copy here -->
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </LinearLayout>
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/RABaddTransaction"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginVertical="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="Add New Transaction"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/black" />
 
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginTop="10dp"
-        app:menu="@menu/menu_bottom"
-        android:clipToPadding="false"/>
-
-
-
-
-    <!--<FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="590dp"
-        android:layout_weight="1">
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/FABAddExpense"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginVertical="20dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/open_sans_semibold"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:text="Add expense"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-
-
-    </FrameLayout>-->
-
-
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom" />
 
 
 

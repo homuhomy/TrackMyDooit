@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter.MyViewHolder>{
+public class WalletAdapter extends  RecyclerView.Adapter<WalletAdapter.MyViewHolder>{
     Context context;
-    ArrayList<TransactionModel> transactionModelArrayList;
+    ArrayList<WalletModel> walletModelArrayList;
 
-    public TransactionAdapter(Context context, ArrayList<TransactionModel> transactionModelArrayList) {
+    public WalletAdapter(Context context, ArrayList<WalletModel> walletModelArrayList) {
         this.context = context;
-        this.transactionModelArrayList = transactionModelArrayList;
+        this.walletModelArrayList = walletModelArrayList;
     }
 
     @NonNull
@@ -31,20 +31,21 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
         return new MyViewHolder(view);
     }
 
-    public void add(TransactionModel transactionModel){
-        transactionModelArrayList.add(transactionModel);
+    public void add(WalletModel walletModel){
+        walletModelArrayList.add(walletModel);
         notifyDataSetChanged();
     }
 
     public void clear(){
-        transactionModelArrayList.clear();
+        walletModelArrayList.clear();
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        TransactionModel model = transactionModelArrayList.get(position);
-        String priority = model.getType();
+        WalletModel model = walletModelArrayList.get(position);
+        /*String priority = model.getType();
+
         switch (model.getIncomeCategory()){
             case "Salary":
                 holder.itemIV.setImageResource(R.drawable.ic_baseline_work_outline_24);
@@ -58,48 +59,6 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
                 break;
             case "Allowance":
                 holder.itemIV.setImageResource(R.drawable.family_restroom_fill0_wght300_grad0_opsz40);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#225503")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCFFDF")));
-                break;
-        }
-        switch (model.getExpenseCategory()){
-            case "Rent":
-                holder.itemIV.setImageResource(R.drawable.home_fill1_wght300_grad0_opsz24);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#954707")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FBEADC")));
-                break;
-            case "Utilities":
-                holder.itemIV.setImageResource(R.drawable.water_drop_fill0_wght300_grad0_opsz40);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#3F278A")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E5DCFF")));
-                break;
-            case "Education":
-                holder.itemIV.setImageResource(R.drawable.school_black_24dp);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#225503")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCFFDF")));
-                break;
-            case "Travel":
-                holder.itemIV.setImageResource(R.drawable.flight_fill0_wght300_grad0_opsz40);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#09878F")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCFBFF")));
-                break;
-            case "Food":
-                holder.itemIV.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#205763")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BBE7F1")));
-                break;
-            case "Entertainment":
-                holder.itemIV.setImageResource(R.drawable.sports_esports_black_24dp);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#B17500")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFF7DC")));
-                break;
-            case "Personal":
-                holder.itemIV.setImageResource(R.drawable.person_black_24dp);
-                holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#396DF8")));
-                holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DEE5FB")));
-                break;
-            case "Transportation":
-                holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
                 holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#225503")));
                 holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCFFDF")));
                 break;
@@ -132,25 +91,24 @@ public class TransactionAdapter extends  RecyclerView.Adapter<TransactionAdapter
 
                 context.startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
     public int getItemCount() {
-        return transactionModelArrayList.size();
+        return walletModelArrayList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView note,wallet,amount,item,date;
-        ImageView itemIV;
+        TextView wallet,walletAmount,item;
+        ImageView itemIV, walletLogo;
         View priority;
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
-            note = itemView.findViewById(R.id.note);
+            walletLogo = itemView.findViewById(R.id.wallet_logo);
             item = itemView.findViewById(R.id.item);
             wallet = itemView.findViewById(R.id.wallet);
-            amount = itemView.findViewById(R.id.amount);
-            date = itemView.findViewById(R.id.date);
+            walletAmount = itemView.findViewById(R.id.wallet_amount);
             itemIV = itemView.findViewById(R.id.itemIV);
             priority = itemView.findViewById(R.id.priority);
         }
