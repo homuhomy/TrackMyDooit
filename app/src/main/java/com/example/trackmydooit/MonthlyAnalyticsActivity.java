@@ -21,6 +21,7 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +53,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
     private RelativeLayout relativeLayoutTransport, relativeFood, relativeEntertainment, relativePersonal, relativeHome, relativeUtilities;
 
     private AnyChartView anyChartView;
+    private Pie analyticsChart;
 
     private ImageView monthRatioSpending_image, transport_status, food_status, entertainment_status, personal_status, home_status, utilities_status, status_image_red, status_image_green, status_image_brown;
 
@@ -445,6 +447,29 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     } else {
                         utilitiesTotal = 0;
                     }
+
+                    ArrayList<PieEntry> data = new ArrayList<>();
+                    data.add(new PieEntry(transTotal, "Transport"));
+                    data.add(new PieEntry(foodTotal, "Food"));
+                    data.add(new PieEntry(entertainmentTotal, "Entertainment"));
+                    data.add(new PieEntry(personalTotal, "Personal"));
+                    data.add(new PieEntry(homeTotal, "Home"));
+                    data.add(new PieEntry(utilitiesTotal, "Utilities"));
+
+//                    pie.data(data);
+//                    pie.title("Month Analytics");
+//                    pie.labels().position("outside");
+//
+//                    pie.legend().title().enabled(true);
+//                    pie.legend().title()
+//                            .text("Items spent on: ")
+//                            .padding(0d,0d,10d,0d);
+//
+//                    pie.legend()
+//                            .position("center-bottom")
+//                            .itemsLayout(LegendLayout.HORIZONTAL)
+//                            .align(Align.CENTER);
+
 
 //                    Pie pie = AnyChart.pie();
 //                    List<DataEntry> data = new ArrayList<>();

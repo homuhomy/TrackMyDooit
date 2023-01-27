@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         CVExpense = findViewById(R.id.CVExpense);
         CVBudget = findViewById(R.id.CVBudget);
         CVIncome = findViewById(R.id.CVIncome);
+        mainBarChart = findViewById(R.id.mainBarChart);
         //CVReport = findViewById(R.id.CVReport);
         //CVTest = findViewById(R.id.CVTest);
         //mainTitle = findViewById(R.id.mainTitle);
@@ -235,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
         CVExpense.setOnClickListener(view -> CVExpense.getContext().startActivity(new Intent(CVExpense.getContext(), ExpenseActivity2.class)));
 
         CVIncome.setOnClickListener(view -> CVIncome.getContext().startActivity(new Intent(CVIncome.getContext(), ExpenseActivity2.class)));
+
+        mainBarChart.setOnClickListener(view -> mainBarChart.getContext().startActivity(new Intent(mainBarChart.getContext(), MonthlyAnalyticsActivity.class)));
 
         CVBudget.setOnClickListener(new View.OnClickListener() {
             @Override
