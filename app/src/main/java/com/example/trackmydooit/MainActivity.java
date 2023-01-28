@@ -3,10 +3,14 @@ package com.example.trackmydooit;
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 
 import com.anychart.core.gauge.pointers.Bar;
 import com.github.mikephil.charting.charts.BarChart;
@@ -57,6 +62,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,7 +71,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private CardView CVExpense, CVIncome, CVBudget, CVReport;
-    private TextView BudgetAmount, ExpenseAmount, IncomeAmount, BalanceAmount;
+    private TextView BudgetAmount, ExpenseAmount, IncomeAmount, BalanceAmount, tokenTV;
     private TextView CVTest;
     private TextView mainTitle;
 
@@ -118,38 +124,29 @@ public class MainActivity extends AppCompatActivity {
         //for transaction reference
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        //DocumentReference documentReference = firebaseFirestore.collection("Expenses").document(onlineUserID);
+        tokenTV = findViewById(R.id.tokenTV);
 
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("Fetching FCM registration token failed");
+                            return;
+                        }
+                        // Get new FCM registration token
+                        String token = task.getResult();
 
-
-//
-//        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());;
-//        ValueEventListener eventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-////                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    String username = dataSnapshot.child("username").getValue(String.class);
-//                    hiUser.setText("Hi, "+username);
-////                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle error
-//            }
-//        };
-//        usersRef.addValueEventListener(eventListener);
-
-
-        //bottom nav bar code
-
-//        String username = getIntent().getStringExtra("username");
-//        hiUser.setText(username);
+                        // Log and toast
+                        System.out.println(token);
+                        //Toast.makeText(MainActivity.this, "Your device registration token is " + token, Toast.LENGTH_SHORT).show();
+                        tokenTV.setText(token);
+                    }
+                });
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         String username = prefs.getString("username", "");
         hiUser.setText("Hi, "+username);
-
 
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ValueEventListener eventListener = new ValueEventListener() {
@@ -159,10 +156,10 @@ public class MainActivity extends AppCompatActivity {
                 if(username==null){
                     SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
                     String username1 = prefs.getString("username", "");
-                    hiUser.setText("Hi, "+username1);
+                    hiUser.setText("Hi, "+username1 + "!");
                 }
                 else{
-                    hiUser.setText("Hi, "+username);
+                    hiUser.setText("Welcome back, "+username + "!");
                 }
 
             }
@@ -228,8 +225,6 @@ public class MainActivity extends AppCompatActivity {
         CVIncome = findViewById(R.id.CVIncome);
         mainBarChart = findViewById(R.id.mainBarChart);
         //CVReport = findViewById(R.id.CVReport);
-        //CVTest = findViewById(R.id.CVTest);
-        //mainTitle = findViewById(R.id.mainTitle);
 
         //CVReport.setOnClickListener(view -> CVReport.getContext().startActivity(new Intent(CVReport.getContext(), MonthlyAnalyticsActivity.class)));
 
