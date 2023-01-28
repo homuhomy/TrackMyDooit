@@ -54,8 +54,6 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button FABAddGoal;
 
-    private ExtendedFloatingActionButton FABAddBudget;
-
     private DatabaseReference goalRef;
     private FirebaseAuth mAuth;
     private ProgressDialog loader;
@@ -135,7 +133,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     Data data = snap.getValue(Data.class);
                     totalAmount = totalAmount + data.getAmount();
-                    String sTotal = String.valueOf("Budget this month: RM" + totalAmount);
+                    String sTotal = String.valueOf("Savings this month: RM " + totalAmount);
                     SavingsTitle.setText(sTotal);
                 }
             }
@@ -212,7 +210,7 @@ public class CreateSavingsGoalActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
-                                Toast.makeText(CreateSavingsGoalActivity.this, "Budget item added successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateSavingsGoalActivity.this, "Goal item added successfully!", Toast.LENGTH_SHORT).show();
                             }
 
                             else {

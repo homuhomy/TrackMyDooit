@@ -4,18 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    private CardView logOut, profile, editprofile;
+    private CardView logOut, profile, editprofile, notification;
     private Toolbar toolbar;
 
     @Override
@@ -98,5 +105,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //createNotificationChannel();
+
+
     }
-}
+
+    /*private void createNotificationChannel(){
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
+            CharSequence name = "notifyTrans";
+            String description = "Did you spent some money today?";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notifyTrans", name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }*/
+    }

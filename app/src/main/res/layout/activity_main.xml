@@ -197,6 +197,14 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tokenTV"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="test"
+        android:visibility="gone"/>
+
+
     <!-- for bottom bar copy here -->
     <LinearLayout
         android:id="@+id/content"
