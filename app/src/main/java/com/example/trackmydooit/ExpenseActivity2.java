@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.example.trackmydooit.databinding.ActivityExpense2Binding;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -166,17 +167,20 @@ public class ExpenseActivity2 extends AppCompatActivity {
         ArrayList<Integer> colorsList = new ArrayList<>();
         if(sumIncome!=0){
             pieEntryArrayList.add(new PieEntry(sumIncome,"Income"));
-            colorsList.add(getResources().getColor(R.color.orange));
+            colorsList.add(getResources().getColor(R.color.blue));
         }
         if(sumExpense!=0){
             pieEntryArrayList.add(new PieEntry(sumExpense,"Expense"));
-            colorsList.add(getResources().getColor(R.color.red));
+            colorsList.add(getResources().getColor(R.color.pink2));
         }
         PieDataSet pieDataSet = new PieDataSet(pieEntryArrayList,String.valueOf(sumIncome = sumExpense));
         PieData pieData = new PieData(pieDataSet);
         pieDataSet.setColors(colorsList);
 
+
         pieData.setValueTextSize(20);
+        int colorWhite = Color.parseColor("#FFFFFFFF");
+        pieDataSet.setValueTextColor(colorWhite);
 
         binding.PieChart.setData(pieData);
         binding.PieChart.invalidate();
