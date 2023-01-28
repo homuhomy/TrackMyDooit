@@ -45,7 +45,7 @@ public class Wallet_Activity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //to add back button
-        getSupportActionBar().setTitle("My Wallet");
+        getSupportActionBar().setTitle("MY WALLET");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -135,8 +135,6 @@ public class Wallet_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 changeItem(position,"Wallet Name");
-
-
             }
 
 

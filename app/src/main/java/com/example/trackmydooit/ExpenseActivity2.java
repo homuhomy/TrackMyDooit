@@ -70,7 +70,7 @@ public class ExpenseActivity2 extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
         //to add back button
-        getSupportActionBar().setTitle("My Transaction");
+        getSupportActionBar().setTitle("MY TRANSACTION");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrow_back_ios_24px);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
