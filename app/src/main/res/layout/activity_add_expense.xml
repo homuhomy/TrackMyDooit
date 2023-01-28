@@ -172,8 +172,8 @@
                     android:background="@drawable/round_ish_button"
                     android:text="Cancel"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/black" />
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/orange" />
 
             </RelativeLayout>
 
@@ -195,8 +195,8 @@
                     android:text="Add"
                     android:clickable="true"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/black" />
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/orange" />
 
             </RelativeLayout>
         </LinearLayout>
