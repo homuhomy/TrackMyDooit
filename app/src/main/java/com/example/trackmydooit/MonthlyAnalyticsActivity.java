@@ -21,6 +21,9 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +57,10 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
 
     private AnyChartView anyChartView;
     private Pie analyticsChart;
+    PieChart pieChart;
+    int [] colorClassArry = new int[]{android.R.color.holo_blue_light, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light, android.R.color.holo_purple, android.R.color.holo_blue_dark};
+
+
 
     private ImageView monthRatioSpending_image, transport_status, food_status, entertainment_status, personal_status, home_status, utilities_status, status_image_red, status_image_green, status_image_brown;
 
@@ -123,6 +130,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
         progress_ratio_utilities = findViewById(R.id.progress_ratio_utilities);
 
         //anyChartView = findViewById(R.id.anyChartView);
+        pieChart = findViewById(R.id.analyticsChart);
 
         getTotalMonthTransportExpense();
         getTotalMonthFoodExpense();
@@ -448,6 +456,7 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                         utilitiesTotal = 0;
                     }
 
+                    //PieChart pieChart = new PieChart()
                     ArrayList<PieEntry> data = new ArrayList<>();
                     data.add(new PieEntry(transTotal, "Transport"));
                     data.add(new PieEntry(foodTotal, "Food"));
@@ -456,19 +465,13 @@ public class MonthlyAnalyticsActivity extends AppCompatActivity {
                     data.add(new PieEntry(homeTotal, "Home"));
                     data.add(new PieEntry(utilitiesTotal, "Utilities"));
 
-//                    pie.data(data);
-//                    pie.title("Month Analytics");
-//                    pie.labels().position("outside");
-//
-//                    pie.legend().title().enabled(true);
-//                    pie.legend().title()
-//                            .text("Items spent on: ")
-//                            .padding(0d,0d,10d,0d);
-//
-//                    pie.legend()
-//                            .position("center-bottom")
-//                            .itemsLayout(LegendLayout.HORIZONTAL)
-//                            .align(Align.CENTER);
+
+                    PieDataSet pieDataSet = new PieDataSet(data,"");
+                    pieDataSet.setColors(colorClassArry);
+                    PieData pieData = new PieData(pieDataSet);
+                    pieChart.setData(pieData);
+                    pieChart.invalidate();
+
 
 
 //                    Pie pie = AnyChart.pie();

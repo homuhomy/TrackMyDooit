@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -304,17 +306,29 @@ public class BudgetActivity extends AppCompatActivity {
 
                 switch (model.getItem()){
                     case "Transport":
-                        holder.itemIV.setImageResource(R.drawable.train_fill1_wght300_grad0_opsz40);
+                        holder.itemIV.setImageResource(R.drawable.directions_bus_fill1_wght300_grad0_opsz40);
+                        holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#225503")));
+                        holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DCFFDF")));
                         break;
                     case "Food":
                         holder.itemIV.setImageResource(R.drawable.restaurant_fill1_wght300_grad0_opsz20);
+                        holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#205763")));
+                        holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BBE7F1")));
                         break;
                     case "Entertainment":
-                        holder.itemIV.setImageResource(R.drawable.headphones_fill1_wght300_grad0_opsz20);
+                        holder.itemIV.setImageResource(R.drawable.sports_esports_black_24dp);
+                        holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#B17500")));
+                        holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFF7DC")));
                         break;
                     case "Home":
                         holder.itemIV.setImageResource(R.drawable.ic_home);
+                        holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#3F278A")));
+                        holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E5DCFF")));
                         break;
+                    case "Personal":
+                        holder.itemIV.setImageResource(R.drawable.person_black_24dp);
+                        holder.itemIV.setImageTintList(ColorStateList.valueOf(Color.parseColor("#396DF8")));
+                        holder.itemIV.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#DEE5FB")));
                 }
 
                 //edit budget

@@ -194,7 +194,9 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout"
-                        android:src="@drawable/train_fill1_wght300_grad0_opsz40" />
+                        android:src="@drawable/train_fill1_wght300_grad0_opsz40"
+                        app:tint="#225503"
+                        android:backgroundTint="#DCFFDF"/>
 
                 </RelativeLayout>
 
@@ -269,7 +271,9 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout2"
-                        android:src="@drawable/restaurant_fill1_wght300_grad0_opsz20" />
+                        android:src="@drawable/restaurant_fill1_wght300_grad0_opsz20"
+                        app:tint="#205763"
+                        android:backgroundTint="#BBE7F1" />
 
                 </RelativeLayout>
 
@@ -345,7 +349,10 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout3"
-                        android:src="@drawable/sports_esports_black_24dp" />
+                        android:src="@drawable/sports_esports_black_24dp"
+                        app:tint="#B17500"
+                        android:backgroundTint="#FFF7DC"/>
+
 
                 </RelativeLayout>
 
@@ -421,7 +428,9 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout4"
-                        android:src="@drawable/person_black_24dp" />
+                        android:src="@drawable/person_black_24dp"
+                        app:tint="#396DF8"
+                        android:backgroundTint="#DEE5FB"/>
 
                 </RelativeLayout>
 
@@ -496,7 +505,10 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout5"
-                        android:src="@drawable/house_fill0_wght300_grad0_opsz40" />
+                        android:backgroundTint="#FBEADC"
+                        android:src="@drawable/house_fill0_wght300_grad0_opsz40"
+                        app:tint="#954707"
+                        />
 
                 </RelativeLayout>
 
@@ -571,7 +583,9 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@+id/linearLayout6"
-                        android:src="@drawable/water_drop_fill0_wght300_grad0_opsz40" />
+                        android:src="@drawable/water_drop_fill0_wght300_grad0_opsz40"
+                        app:tint="#3F278A"
+                        android:backgroundTint="#E5DCFF"/>
 
                 </RelativeLayout>
 
